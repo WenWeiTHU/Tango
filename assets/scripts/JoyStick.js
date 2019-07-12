@@ -21,7 +21,8 @@ cc.Class({
             default: null,
         },
         Max_r: 200,
-        Speed: 600,
+        Speed: 200,
+        MaxSpeed: 200
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -76,14 +77,23 @@ cc.Class({
             return;
         }
 
-        var vx = this.dir.x * this.Speed;
-        var vy = this.dir.y * this.Speed;
+        // var vx = this.dir.x * this.Speed;
+        // var vy = this.dir.y * this.Speed;
 
-        var sx = vx * dt;
-        var sy = vy * dt;
-        //移动
-        this.Player.x += sx;
-        this.Player.y += sy;
+        // var sx = vx * dt;
+        // var sy = vy * dt;
+        // //移动
+        // this.Player.x += sx;
+        // this.Player.y += sy;
+        var accelX = this.dir.x * this.Speed;
+        var accelY = this.dir.y * this.Speed;
+        var player = this.Player.getComponents("Player")[0];
+        if(Math.sqrt(Math.pow(player.speedX, 2) + Math.pow(player.speedY, 2)) < this.Speed)
+        {
+           
+            player.speedX += accelX * dt;
+            player.speedY += accelY * dt;
+        }
 
         //方向计算
         var r = Math.atan2(this.dir.y, this.dir.x);
