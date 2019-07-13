@@ -16,6 +16,12 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        supplyTimeGap: 1,
+        StaticEnemyPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
+        staticEnemyNum: 0,
         // mapUp:{
         //     default: null,
         //     type: cc.Prefab
@@ -32,7 +38,7 @@ cc.Class({
         //     default: null,
         //     type: cc.Prefab
         // },
-        supplyTimeGap: 1,
+
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -45,12 +51,16 @@ cc.Class({
         return cc.v2(randX, randY);
     },
 
+    generateNewStaticEnemy: function() {
+        var newEnemy = cc.instantiate(this.StaticEnemyPrefab);
+        this.node.addChild(newEnemy);
+        newEnemy.setPosition(0,0);
+    },
+
     generateSupply: function(){
-        console.log(2)
         var newSupply = cc.instantiate(this.supplyPrefab)
         this.node.addChild(newSupply)
         newSupply.setPosition(this.getNewPosition())
-        console.log(newSupply.x, newSupply.y)
         newSupply.getComponent('Supply').game = this
     },
 
@@ -62,6 +72,8 @@ cc.Class({
     },
 
     start () {
+        this.generateNewStaticEnemy();
+        
         this.supplyTimeCounter = 0
     },
 
