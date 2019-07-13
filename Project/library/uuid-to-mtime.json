@@ -294,11 +294,6 @@
     "meta": 1562989773267,
     "relativePath": "resource\\bind.png"
   },
-  "8f66b47f-3266-431b-8165-137314365293": {
-    "asset": 1562929088000,
-    "meta": 1562989773922,
-    "relativePath": "scripts\\Bind.js"
-  },
   "ff58430a-9d8a-481b-b2a0-b66edb61cafe": {
     "asset": 1562944588000,
     "meta": 1562989773236,
@@ -364,11 +359,6 @@
     "meta": 1562989773220,
     "relativePath": "prefab\\enemy_static.prefab"
   },
-  "b218d84e-2349-4346-bf1a-5c96f6277a84": {
-    "asset": 1562989030000,
-    "meta": 1562989773969,
-    "relativePath": "scripts\\EnemyStatic.js"
-  },
   "ad735b5f-a7c8-496a-bf4e-911b9307a2bc": {
     "asset": 1562989026000,
     "meta": 1562989774391,
@@ -378,5 +368,15 @@
     "asset": 1562989052000,
     "meta": 1562989774406,
     "relativePath": "scripts\\Player.js"
+  },
+  "b218d84e-2349-4346-bf1a-5c96f6277a84": {
+    "asset": 1562990609573,
+    "meta": 1562990611911,
+    "relativePath": "scripts\\EnemyStatic.js"
+  },
+  "8f66b47f-3266-431b-8165-137314365293": {
+    "asset": 1562996621815,
+    "meta": 1562996622786,
+    "relativePath": "scripts\\Bind.js"
   }
 }

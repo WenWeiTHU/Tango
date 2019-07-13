@@ -27,6 +27,8 @@ cc.Class({
     },
 
     onCollisionEnter (other, self) {
+        debugger;
+        console.log("hit!");
         this.node.destroy();
     },
 

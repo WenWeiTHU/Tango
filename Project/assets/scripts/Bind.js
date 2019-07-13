@@ -32,6 +32,8 @@ cc.Class({
     // onLoad () {},
 
     start() {
+        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabledDebugDraw = true;
         this.dir = cc.v2(this.Player1.x - this.Player2.x, this.Player1.y - this.Player2.y)
         var r = Math.atan2(this.dir.y, this.dir.x);
         var degree = r * 180 / (Math.PI);
@@ -69,8 +71,13 @@ cc.Class({
         var degree = r * 180 / (Math.PI);
         degree = 360 - degree + 90;
         this.node.rotation = degree;
+        
 
         this.node.height = this.dir.mag()
+        var collider = this.node._components[2];
+        debugger;
+        collider.points[2].y = this.node.height;
+        collider.points[3].y = this.node.height;
 
         // if(this.node.height > this.MaxLength){
         //     this.drag(dt)
