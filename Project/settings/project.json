@@ -3,11 +3,34 @@
   "collision-matrix": [
     [
       true,
-      true
+      true,
+      true,
+      false
     ],
     [
       true,
+      true,
+      false,
+      false
+    ],
+    [
+      true,
+      false,
+      true,
       true
+    ],
+    [
+      false,
+      false,
+      true,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false
     ]
   ],
   "design-resolution-height": 640,
@@ -27,7 +50,10 @@
   "fit-width": false,
   "group-list": [
     "default",
-    "Map"
+    "Map",
+    "Enemy",
+    "Bind",
+    "Bullet"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
