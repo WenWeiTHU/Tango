@@ -245,7 +245,7 @@
     "relativePath": "prefab\\webview.prefab"
   },
   "878d52ca-8b06-4c39-981d-5a7ed8a2e50e": {
-    "asset": 1562930064257,
+    "asset": 1562988627480,
     "meta": 1562930064224,
     "relativePath": "resource"
   },
@@ -275,7 +275,7 @@
     "relativePath": "resource\\ring.png"
   },
   "e95b089d-b6cf-4abb-bfee-00ba6a00c64c": {
-    "asset": 1562930064267,
+    "asset": 1562988627496,
     "meta": 1562930064260,
     "relativePath": "scene"
   },
@@ -285,7 +285,7 @@
     "relativePath": "scene\\Game.fire"
   },
   "c84023ab-d342-433d-afca-e00d9be7d72e": {
-    "asset": 1562930064287,
+    "asset": 1562988627558,
     "meta": 1562930064270,
     "relativePath": "scripts"
   },
@@ -320,7 +320,7 @@
     "relativePath": "resource\\enemy_static.png"
   },
   "af022619-c333-4707-a7c6-ef29bbcf83ca": {
-    "asset": 1562950009516,
+    "asset": 1562988627402,
     "meta": 1562950002227,
     "relativePath": "preFab"
   },
