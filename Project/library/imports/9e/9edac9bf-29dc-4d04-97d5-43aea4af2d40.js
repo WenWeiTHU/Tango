@@ -85,7 +85,6 @@ cc.Class({
         this.supplyTimeCounter++;
         if (this.supplyTimeCounter === this.supplyTimeGap) {
             this.supplyTimeCounter = 0;
-            console.log(1);
             this.generateSupply();
         }
     }

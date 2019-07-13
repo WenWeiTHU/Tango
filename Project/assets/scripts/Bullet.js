@@ -12,26 +12,27 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        rotationUpdate : 0
+        direction: 0,
+        speed: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.manager = cc.director.getCollisionManager();
-        this.manager.enabled = true;
-    },
+    // onLoad () {},
 
     start () {
-        
+        if(this.direction === 0)
+            return;
+        this.directionX = this.direction.x / this.direction.mag();
+        this.directionY = this.direction.y / this.direction.mag();
+        cc.director.getCollisionManager().enabled = true;
     },
 
     onCollisionEnter (other, self) {
         this.node.destroy();
     },
-
     update (dt) {
-        var newDegree = this.node.rotation + (this.rotationUpdate/Math.PI);
-        this.node.rotation = newDegree > 360 ? newDegree - 360 : newDegree;
+        this.node.x += this.speed * this.directionX * dt;
+        this.node.y += this.speed * this.directionY * dt;
     },
 });

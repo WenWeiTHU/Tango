@@ -314,11 +314,6 @@
     "meta": 1562989773376,
     "relativePath": "resource\\map_Ver.png"
   },
-  "89667108-f8a6-46f3-9607-c69d9ba502f6": {
-    "asset": 1562951044000,
-    "meta": 1562989774337,
-    "relativePath": "scripts\\Gravity.js"
-  },
   "2f23c59e-43f6-49dd-894c-36f2173dc38d": {
     "asset": 1562950966000,
     "meta": 1562989774359,
@@ -349,11 +344,6 @@
     "meta": 1562989773314,
     "relativePath": "resource\\enemy_static.png"
   },
-  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
-    "asset": 1562988500000,
-    "meta": 1562989774259,
-    "relativePath": "scripts\\Game.js"
-  },
   "c4867bf4-ffc4-4074-986d-1237f20e716a": {
     "asset": 1562989554000,
     "meta": 1562989773220,
@@ -369,14 +359,49 @@
     "meta": 1562989774406,
     "relativePath": "scripts\\Player.js"
   },
+  "8f66b47f-3266-431b-8165-137314365293": {
+    "asset": 1562998860825,
+    "meta": 1562998864197,
+    "relativePath": "scripts\\Bind.js"
+  },
+  "8c4af2af-4f1a-43f2-a168-6b8acdb886e4": {
+    "asset": 1562999973363,
+    "meta": 1562999975538,
+    "relativePath": "resource\\bullet.png"
+  },
   "b218d84e-2349-4346-bf1a-5c96f6277a84": {
-    "asset": 1562990609573,
-    "meta": 1562990611911,
+    "asset": 1563000546658,
+    "meta": 1563000579720,
     "relativePath": "scripts\\EnemyStatic.js"
   },
-  "8f66b47f-3266-431b-8165-137314365293": {
-    "asset": 1562996621815,
-    "meta": 1562996622786,
-    "relativePath": "scripts\\Bind.js"
+  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
+    "asset": 1563000552327,
+    "meta": 1563000579770,
+    "relativePath": "scripts\\Game.js"
+  },
+  "89667108-f8a6-46f3-9607-c69d9ba502f6": {
+    "asset": 1563000557891,
+    "meta": 1563000579772,
+    "relativePath": "scripts\\Gravity.js"
+  },
+  "0c609cde-ce15-43f5-8146-c20e475acc4a": {
+    "asset": 1563002362059,
+    "meta": 1563002362072,
+    "relativePath": "prefab\\bullet.prefab"
+  },
+  "d0340920-866f-410e-a7d9-0b3fe2c65dbb": {
+    "asset": 1563017511217,
+    "meta": 1563017516558,
+    "relativePath": "resource\\battery.png"
+  },
+  "132323ba-9fb9-4499-9561-7316d59538a2": {
+    "asset": 1563017540211,
+    "meta": 1563017566519,
+    "relativePath": "scripts\\Bullet.js"
+  },
+  "8246ee94-219c-4ea9-8710-ca951a0eda4f": {
+    "asset": 1563017679664,
+    "meta": 1563017686720,
+    "relativePath": "scripts\\Battery.js"
   }
 }

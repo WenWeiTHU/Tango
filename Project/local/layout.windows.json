@@ -84,6 +84,32 @@
         "cocos-services",
         "scene"
       ]
+    },
+    "window-1562999988040": {
+      "main": false,
+      "url": "unpack://static/window.html",
+      "windowType": "dockable",
+      "x": 676,
+      "y": 168,
+      "width": 600,
+      "height": 566,
+      "layout": {
+        "children": [
+          {
+            "active": 0,
+            "children": [
+              "project-settings"
+            ],
+            "height": 531.2000122070312,
+            "type": "panel",
+            "width": 588
+          }
+        ],
+        "type": "dock-v"
+      },
+      "panels": [
+        "project-settings"
+      ]
     }
   },
   "panels": {

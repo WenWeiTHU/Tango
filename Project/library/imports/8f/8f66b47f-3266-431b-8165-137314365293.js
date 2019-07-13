@@ -81,7 +81,6 @@ cc.Class({
 
         this.node.height = this.dir.mag();
         var collider = this.node._components[2];
-        debugger;
         collider.points[2].y = this.node.height;
         collider.points[3].y = this.node.height;
 

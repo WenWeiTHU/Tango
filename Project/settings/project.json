@@ -24,6 +24,13 @@
       false,
       true,
       false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false
     ]
   ],
   "design-resolution-height": 640,
@@ -45,7 +52,8 @@
     "default",
     "Map",
     "Enemy",
-    "Bind"
+    "Bind",
+    "Bullet"
   ],
   "last-module-event-record-time": 0,
   "simulator-orientation": false,
