@@ -12,13 +12,20 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        pickRadius: 0
+        startBtn: {
+            type: cc.Button,
+            default: null
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        cc.director.getCollisionManager().enabled = true;
+        this.startBtn.node.on('click', this.startClick, this);
+    },
+
+    startClick () {
+        cc.director.loadScene("Game");
     },
 
     start () {

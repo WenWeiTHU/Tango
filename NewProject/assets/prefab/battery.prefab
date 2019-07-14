@@ -118,6 +118,7 @@
     "Player1": null,
     "Player2": null,
     "BulletPrefab": null,
+    "shootTime": 2,
     "_id": ""
   },
   {

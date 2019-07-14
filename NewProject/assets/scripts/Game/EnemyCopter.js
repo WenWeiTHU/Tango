@@ -26,11 +26,11 @@ cc.Class({
 
     // onLoad () {},
      
-    shoot(){    
+    shoot: function(){    
         this.schedule(this.createBullet, this.shootInterval, this.shootNum - 1);
     },
 
-    createBullet() {
+    createBullet: function() {
         var dir = cc.v2(this.Player.x - this.node.x, this.Player.y - this.node.y);
         console.log(dir)
 
@@ -53,6 +53,7 @@ cc.Class({
 
     start () {
         this.angle = 0
+        this.circulateDir = 1
         console.log('shoot')
         this.schedule(this.shoot, this.shootTime);
     },

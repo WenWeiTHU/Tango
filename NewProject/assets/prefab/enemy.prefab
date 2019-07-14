@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_spin",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -52,8 +52,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 507,
-      "y": 405,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -87,7 +87,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "45f2d8d9-1400-462e-b234-277a76a69449"
+      "__uuid__": "073d7c87-00b2-4869-b4a6-69741ceee972"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -102,28 +102,6 @@
     "_isTrimmedMode": true,
     "_state": 0,
     "_atlas": null,
-    "_id": ""
-  },
-  {
-    "__type__": "dcd0abf4vtLwqUfx3B9ip15",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "accel": 0,
-    "speedX": 0,
-    "speedY": 0,
-    "rotationUpdate": 20,
-    "Player": null,
-    "maxSpeed": 400,
-    "iniAccel": 60,
-    "centerX": 0,
-    "centerY": 0,
-    "centerSpeed": 50,
-    "radius": 250,
-    "circulateUpdate": 0.5,
     "_id": ""
   },
   {
@@ -144,14 +122,28 @@
     "_id": ""
   },
   {
+    "__type__": "b218dhOI0lDRr8aXJb2J3qE",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
+    "accel": 0,
+    "speedX": 100,
+    "speedY": 100,
+    "rotationUpdate": 20,
+    "_id": ""
+  },
+  {
     "__type__": "cc.PrefabInfo",
     "root": {
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b1d206b1-2c3e-4a4a-981d-7ff6a56a9ae0"
+      "__uuid__": "25986e1e-e96d-42b3-9d3c-e8a52e699c5d"
     },
-    "fileId": "3ca0RvWO9F9LMYf/hLcvdz",
+    "fileId": "e8quXhZepB3In8KWbDXa2R",
     "sync": false
   }
 ]

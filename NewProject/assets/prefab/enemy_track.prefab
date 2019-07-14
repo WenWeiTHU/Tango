@@ -118,7 +118,7 @@
     "rotationUpdate": 20,
     "Player": null,
     "maxSpeed": 400,
-    "iniAccel": 60,
+    "iniAccel": 0.1,
     "_id": ""
   },
   {

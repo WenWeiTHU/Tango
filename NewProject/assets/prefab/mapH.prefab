@@ -12,12 +12,12 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_spin",
+    "_name": "mapUp",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 1,
+    "_level": 2,
     "_components": [
       {
         "__id__": 2
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 1080,
+      "height": 10
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -52,8 +52,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 507,
-      "y": 405,
+      "x": 0,
+      "y": 325,
       "z": 0
     },
     "_scale": {
@@ -73,7 +73,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "groupIndex": 2,
+    "groupIndex": 1,
     "_id": ""
   },
   {
@@ -87,10 +87,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "45f2d8d9-1400-462e-b234-277a76a69449"
+      "__uuid__": "7c906fc5-6a56-4121-ba02-763f731ffeb5"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -105,29 +105,7 @@
     "_id": ""
   },
   {
-    "__type__": "dcd0abf4vtLwqUfx3B9ip15",
-    "_name": "",
-    "_objFlags": 0,
-    "node": {
-      "__id__": 1
-    },
-    "_enabled": true,
-    "accel": 0,
-    "speedX": 0,
-    "speedY": 0,
-    "rotationUpdate": 20,
-    "Player": null,
-    "maxSpeed": 400,
-    "iniAccel": 60,
-    "centerX": 0,
-    "centerY": 0,
-    "centerSpeed": 50,
-    "radius": 250,
-    "circulateUpdate": 0.5,
-    "_id": ""
-  },
-  {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -140,7 +118,21 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 1080,
+      "height": 10
+    },
+    "_id": ""
+  },
+  {
+    "__type__": "ad735tfp8hJar9OkRuTB6K8",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 1
+    },
+    "_enabled": true,
     "_id": ""
   },
   {
@@ -149,9 +141,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "b1d206b1-2c3e-4a4a-981d-7ff6a56a9ae0"
+      "__id__": 0
     },
-    "fileId": "3ca0RvWO9F9LMYf/hLcvdz",
+    "fileId": "44lFpT4FlJC62wmlMnQPhy",
     "sync": false
   }
 ]

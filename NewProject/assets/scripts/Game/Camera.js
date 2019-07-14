@@ -9,41 +9,29 @@
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 cc.Class({
-    extends: require("Enemy"),
+    extends: cc.Component,
 
     properties: {
-        Player: {
+        Player1:{
             type: cc.Node,
-            default: null,
+            default: null
         },
-        maxSpeed: 400,
-        iniAccel: 60,
+        Player2:{
+            type: cc.Node,
+            default: null
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
 
-    start() {
-        cc.director.getCollisionManager().enabled = true;
+    start () {
+
     },
 
-    track: function (dt) {
-        this.dir = cc.v2(this.Player.x - this.node.x, this.Player.y - this.node.y)
-
-        this.distance = this.dir.mag()
-
-        if (Math.sqrt(Math.pow(this.speedX, 2) + Math.pow(this.speedY, 2)) <= this.maxSpeed) {
-            this.speedX += this.iniAccel * this.dir.x / this.distance * dt
-            this.speedY += this.iniAccel * this.dir.y / this.distance * dt
-        }
-
-        this.node.x += this.speedX * dt
-        this.node.y += this.speedY * dt
-    },
-
-    update(dt) {
-        this.rotate()
-        this.track(dt)
+    update (dt) {
+        this.node.x = (this.Player1.x + this.Player2.x) / 2
+        this.node.y = (this.Player1.y + this.Player2.y) / 2
     },
 });

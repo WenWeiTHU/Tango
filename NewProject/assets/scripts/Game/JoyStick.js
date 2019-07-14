@@ -99,8 +99,11 @@ cc.Class({
     },
 
     update(dt) {
-        this.newShield.x = this.Player.x
-        this.newShield.y = this.Player.y
+        if (this.newShield !== null)
+        {
+            this.newShield.x = this.Player.x
+            this.newShield.y = this.Player.y
+        }
 
         if (this.dir.mag() < 0.5) {
             return;
