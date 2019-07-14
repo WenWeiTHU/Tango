@@ -26,9 +26,11 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        // this.manager = cc.director.getCollisionManager();
-        // this.manager.enabled = true;
+        this.manager = cc.director.getCollisionManager();
+        this.manager.enabled = true;
     },
+
+    
 
     start () {
     },

@@ -9,33 +9,32 @@
 //  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
 
 cc.Class({
-    extends: require("Enemy"),
+    extends: cc.Component,
 
     properties: {
-        swingDuration: 0,
-        targetPosX: 0,
-        targetPosY: 0,
+        direction: 0,
+        speed: 0,
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
         cc.director.getCollisionManager().enabled = true;
-        
-        this.swingAction = this.setSwingAction()
-        this.node.runAction(this.swingAction)
-    },
-
-    setSwingAction: function(){
-        var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut());
-        var swingDown = cc.moveBy(this.swingDuration, cc.v2(-this.targetPosX, -this.targetPosY)).easing(cc.easeCubicActionInOut());
-        // 不断重复
-        return cc.repeatForever(cc.sequence(swingUp, swingDown));
     },
 
     start () {
-
+        if(this.direction === 0)
+            return;
+        this.directionX = this.direction.x / this.direction.mag();
+        this.directionY = this.direction.y / this.direction.mag();
     },
 
-    // update (dt) {},
+    onCollisionEnter (other, self) {
+        this.node.destroy();
+    },
+
+    update (dt) {
+        this.node.x += this.speed * this.directionX * dt;
+        this.node.y += this.speed * this.directionY * dt;
+    },
 });

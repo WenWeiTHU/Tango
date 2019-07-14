@@ -20,28 +20,33 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-        this.conlidManager = cc.director.getCollisionManager();
-        this.conlidManager.enabled = true;
+    onLoad() {
+        cc.director.getCollisionManager().enabled = true;
     },
 
     /*
      * 角色的碰撞事件
      */
-    onCollisionEnter (other, self) {
+    onCollisionEnter(other, self) {
         // 获取碰撞对象的类型
         var group = other.node.group;
         switch (group) {
             case 'Map': {
                 // 当碰到的是地图边界时
-                    this.mapCollision(other);
-                    break;
-                }
+                this.mapCollision(other);
+                break;
+            }
+            case 'Enemy': {
+                // 当碰到了敌人时
+                this.enemyCollision(other);
+                break;
+            }
+            // Others
 
-                // Others
+            // Others
         }
     },
-    
+
     /*
      * 与地图的碰撞事件
      */
@@ -67,7 +72,21 @@ cc.Class({
         }
     },
 
-    start () {
+    /*
+     * 与敌人的碰撞事件
+     */
+    enemyCollision(obj_enemy) {
+        var name = obj_enemy.node.name;
+        switch (name) {
+            case 'battery': {
+                this.speedX = -this.speedX;
+                this.speedY = -this.speedY;
+                break;
+            }
+        }
+    },
+
+    start() {
 
     },
     update(dt) {
@@ -76,17 +95,15 @@ cc.Class({
         this.node.y += this.speedY * dt;
 
         // 阻力
-        if(this.speedX > this.resistance){
+        if (this.speedX > this.resistance) {
             this.speedX -= this.speedX * 0.01;
-        }
-        else if (this.speedX < -this.resistance) {
+        } else if (this.speedX < -this.resistance) {
             this.speedX -= this.speedX * 0.01;
         }
 
-        if(this.speedY > this.resistance) {
+        if (this.speedY > this.resistance) {
             this.speedY -= this.speedY * 0.01;
-        }
-        else if (this.speedY < -this.resistance) {
+        } else if (this.speedY < -this.resistance) {
             this.speedY -= this.speedY * 0.01;
         }
     }

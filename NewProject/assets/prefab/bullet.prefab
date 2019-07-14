@@ -12,7 +12,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_track",
+    "_name": "bullet",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 4,
+      "height": 20
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -52,8 +52,8 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 346,
-      "y": 301,
+      "x": 0,
+      "y": 0,
       "z": 0
     },
     "_scale": {
@@ -73,7 +73,7 @@
     },
     "_skewX": 0,
     "_skewY": 0,
-    "groupIndex": 2,
+    "groupIndex": 4,
     "_id": ""
   },
   {
@@ -87,10 +87,10 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "068e89b8-3428-41d2-886c-00f7c7b8579f"
+      "__uuid__": "9aa83c01-35f3-4518-b383-8e6dc07bf5b9"
     },
     "_type": 0,
-    "_sizeMode": 0,
+    "_sizeMode": 1,
     "_fillType": 0,
     "_fillCenter": {
       "__type__": "cc.Vec2",
@@ -105,24 +105,19 @@
     "_id": ""
   },
   {
-    "__type__": "7c961iUFC1FSI1h+RDFBujU",
+    "__type__": "c00c3kiHjdLYINupJ4EFQ34",
     "_name": "",
     "_objFlags": 0,
     "node": {
       "__id__": 1
     },
     "_enabled": true,
-    "accel": 0,
-    "speedX": 0,
-    "speedY": 0,
-    "rotationUpdate": 20,
-    "Player": null,
-    "maxSpeed": 400,
-    "iniAccel": 60,
+    "direction": 0,
+    "speed": 20,
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -135,7 +130,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 4,
+      "height": 20
+    },
     "_id": ""
   },
   {
@@ -144,9 +143,9 @@
       "__id__": 1
     },
     "asset": {
-      "__uuid__": "1f3b5e7b-7b8a-4304-93df-548927f758e1"
+      "__uuid__": "44e9bd7e-3975-40d0-8757-30911ae6259f"
     },
-    "fileId": "69sxeFCY9D7KWjfVbuUs9j",
+    "fileId": "44YajIivBHPo1jqBWk5Pmq",
     "sync": false
   }
 ]

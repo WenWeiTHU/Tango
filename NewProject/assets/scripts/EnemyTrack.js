@@ -25,7 +25,7 @@ cc.Class({
     // onLoad () {},
 
     start() {
-
+        cc.director.getCollisionManager().enabled = true;
     },
 
     track: function (dt) {

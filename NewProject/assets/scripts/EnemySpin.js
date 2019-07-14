@@ -12,31 +12,33 @@ cc.Class({
     extends: require("EnemyTrack"),
 
     properties: {
-        Player: {
-            type: cc.Node,
-            default: null,
-            override: true
-        },
         centerX: 0,
         centerY: 0,
         centerSpeed: 50,
         radius: 100,
         circulateUpdate: 2,
+        override: true,
+        circulateDir: 1
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        cc.director.getCollisionManager().enabled = true
+    },
 
     circulate: function () {
-        this.angle += this.circulateUpdate;
+        this.angle += this.circulateUpdate
 
         this.angle = this.angle > 360 ? this.angle - 360 : this.angle
 
+        this.angle *= this.circulateDir
+
         this.node.x = this.centerX + this.radius * Math.sin(this.angle * Math.PI / 180)
-        console.log(this.angle)
         this.node.y = this.centerY + this.radius * Math.cos(this.angle * Math.PI / 180)
     },
+
+    
 
     start() {
         this.angle = 0

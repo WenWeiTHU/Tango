@@ -37,9 +37,6 @@ cc.Class({
         this.distance = this.dir.mag()
 
         var a = this.Grav * (this.distance - this.Equilibrium)
-
-        console.log('grav', this.Grav)
-
         this.acce = cc.v2(a * this.dir.x / this.distance, a * this.dir.y / this.distance)
     },
 

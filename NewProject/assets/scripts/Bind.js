@@ -25,7 +25,9 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
+    onLoad () {
+        cc.director.getCollisionManager().enabled = true;
+    },
 
     start() {
         this.dir = cc.v2(this.Player1.x - this.Player2.x, this.Player1.y - this.Player2.y)
@@ -48,6 +50,10 @@ cc.Class({
         this.node.rotation = degree;
 
         this.node.height = this.dir.mag()
+
+        var collider = this.node._components[2];
+        collider.points[2].y = this.node.height;
+        collider.points[3].y = this.node.height;
 
         this.node.x = this.Player2.x
         this.node.y = this.Player2.y
