@@ -1,67 +1,179 @@
-2019-07-13T03:30:58.405Z - normal: Load ~/.CocosCreator/settings.json
-2019-07-13T03:30:59.609Z - normal: Initializing Asset Database
-2019-07-13T03:30:59.609Z - normal: checking language setting...
-2019-07-13T03:30:59.609Z - normal: Language: zh
-2019-07-13T03:31:00.593Z - success: preview server running at http://localhost:7456
-2019-07-13T03:31:00.593Z - success: protocol editor-framework registered
-2019-07-13T03:31:00.593Z - success: protocol app registered
-2019-07-13T03:31:00.593Z - success: protocol theme registered
-2019-07-13T03:31:00.593Z - success: protocol packages registered
-2019-07-13T03:31:00.593Z - success: protocol uuid registerred
-2019-07-13T03:31:00.593Z - success: protocol db registerred
-2019-07-13T03:31:00.593Z - success: protocol thumbnail registerred
-2019-07-13T03:31:00.593Z - success: protocol unpack registerred
-2019-07-13T03:31:00.593Z - success: protocol disable-commonjs registerred
-2019-07-13T03:31:00.687Z - normal: connected!
-2019-07-13T03:31:00.687Z - normal: Check project C:\Users\lenovo\Desktop\PROB\Project
-2019-07-13T03:31:00.687Z - normal: Initializing project C:\Users\lenovo\Desktop\PROB\Project
-2019-07-13T03:31:01.390Z - normal: Initializing Cocos2d
-2019-07-13T03:31:02.359Z - normal: Initializing engine extends
-2019-07-13T03:31:02.390Z - success: asset-db-debugger loaded
-2019-07-13T03:31:02.390Z - success: baidu-adapter loaded
-2019-07-13T03:31:02.406Z - success: color-picker loaded
-2019-07-13T03:31:02.562Z - success: fb-audience-network loaded
-2019-07-13T03:31:02.703Z - success: fb-live-stream loaded
-2019-07-13T03:31:02.718Z - success: google-play-instant loaded
-2019-07-13T03:31:02.734Z - success: huawei-runtime loaded
-2019-07-13T03:31:03.156Z - success: cpk-publish loaded
-2019-07-13T03:31:03.156Z - success: jsb-adapter loaded
-2019-07-13T03:31:03.171Z - success: oppo-runtime loaded
-2019-07-13T03:31:03.171Z - success: package-manager loaded
-2019-07-13T03:31:03.374Z - success: qqplay-adapter loaded
-2019-07-13T03:31:03.374Z - success: runtime-dev-tools loaded
-2019-07-13T03:31:03.390Z - success: sdkbox loaded
-2019-07-13T03:31:03.390Z - success: tester loaded
-2019-07-13T03:31:03.406Z - success: ui-grid loaded
-2019-07-13T03:31:03.406Z - success: ui-kit-preview-extra loaded
-2019-07-13T03:31:03.406Z - success: ui-kit-preview loaded
-2019-07-13T03:31:03.406Z - success: ui-kit loaded
-2019-07-13T03:31:03.406Z - success: ui-tree loaded
-2019-07-13T03:31:03.421Z - success: vivo-runtime loaded
-2019-07-13T03:31:03.421Z - success: weapp-adapter loaded
-2019-07-13T03:31:03.421Z - success: xiaomi-adapter loaded
-2019-07-13T03:31:03.484Z - success: assets loaded
-2019-07-13T03:31:03.484Z - success: builder loaded
-2019-07-13T03:31:04.019Z - success: cocos-services loaded
-2019-07-13T03:31:04.019Z - success: console loaded
-2019-07-13T03:31:04.082Z - success: fb-instant-games loaded
-2019-07-13T03:31:04.082Z - success: google-instant-games loaded
-2019-07-13T03:31:04.097Z - success: hierarchy loaded
-2019-07-13T03:31:04.113Z - success: inspector loaded
-2019-07-13T03:31:04.113Z - success: keystore loaded
-2019-07-13T03:31:04.113Z - success: node-library loaded
-2019-07-13T03:31:04.129Z - success: package-asset loaded
-2019-07-13T03:31:04.129Z - success: preferences loaded
-2019-07-13T03:31:04.129Z - success: project-exporter loaded
-2019-07-13T03:31:04.129Z - success: project-importer loaded
-2019-07-13T03:31:04.129Z - success: project-settings loaded
-2019-07-13T03:31:04.144Z - success: scene loaded
-2019-07-13T03:31:04.144Z - success: simulator-debugger loaded
-2019-07-13T03:31:04.144Z - success: sprite-editor loaded
-2019-07-13T03:31:04.144Z - success: store loaded
-2019-07-13T03:31:04.160Z - success: timeline loaded
-2019-07-13T03:31:04.160Z - success: xiaomi-runtime loaded
-2019-07-13T03:31:05.749Z - normal: Loading packages
-2019-07-13T03:31:05.749Z - normal: Watching packages
-2019-07-13T03:31:05.952Z - info: Cocos Services load base data!
-2019-07-13T03:31:07.235Z - normal: Run Application
+2019-07-14T06:04:51.761Z - normal: Load ~/.CocosCreator/settings.json
+2019-07-14T06:04:52.949Z - normal: Initializing Asset Database
+2019-07-14T06:04:52.949Z - normal: checking language setting...
+2019-07-14T06:04:52.949Z - normal: Language: zh
+2019-07-14T06:04:54.240Z - success: preview server running at http://localhost:7456
+2019-07-14T06:04:54.256Z - success: protocol editor-framework registered
+2019-07-14T06:04:54.256Z - success: protocol app registered
+2019-07-14T06:04:54.256Z - success: protocol theme registered
+2019-07-14T06:04:54.256Z - success: protocol packages registered
+2019-07-14T06:04:54.256Z - success: protocol uuid registerred
+2019-07-14T06:04:54.256Z - success: protocol db registerred
+2019-07-14T06:04:54.256Z - success: protocol thumbnail registerred
+2019-07-14T06:04:54.256Z - success: protocol unpack registerred
+2019-07-14T06:04:54.256Z - success: protocol disable-commonjs registerred
+2019-07-14T06:04:54.396Z - normal: connected!
+2019-07-14T06:04:54.396Z - normal: Check project C:\Users\lenovo\Desktop\NewProject\NewProject
+2019-07-14T06:04:54.396Z - normal: Initializing project C:\Users\lenovo\Desktop\NewProject\NewProject
+2019-07-14T06:04:55.208Z - normal: Initializing Cocos2d
+2019-07-14T06:04:56.419Z - normal: Initializing engine extends
+2019-07-14T06:04:56.466Z - success: asset-db-debugger loaded
+2019-07-14T06:04:56.473Z - success: baidu-adapter loaded
+2019-07-14T06:04:56.479Z - success: color-picker loaded
+2019-07-14T06:04:56.667Z - success: fb-audience-network loaded
+2019-07-14T06:04:56.794Z - success: fb-live-stream loaded
+2019-07-14T06:04:56.804Z - success: google-play-instant loaded
+2019-07-14T06:04:56.814Z - success: huawei-runtime loaded
+2019-07-14T06:04:57.285Z - success: cpk-publish loaded
+2019-07-14T06:04:57.285Z - success: jsb-adapter loaded
+2019-07-14T06:04:57.301Z - success: oppo-runtime loaded
+2019-07-14T06:04:57.301Z - success: package-manager loaded
+2019-07-14T06:04:57.519Z - success: qqplay-adapter loaded
+2019-07-14T06:04:57.519Z - success: runtime-dev-tools loaded
+2019-07-14T06:04:57.535Z - success: sdkbox loaded
+2019-07-14T06:04:57.535Z - success: tester loaded
+2019-07-14T06:04:57.551Z - success: ui-grid loaded
+2019-07-14T06:04:57.551Z - success: ui-kit-preview-extra loaded
+2019-07-14T06:04:57.551Z - success: ui-kit-preview loaded
+2019-07-14T06:04:57.551Z - success: ui-kit loaded
+2019-07-14T06:04:57.566Z - success: ui-tree loaded
+2019-07-14T06:04:57.582Z - success: vivo-runtime loaded
+2019-07-14T06:04:57.582Z - success: weapp-adapter loaded
+2019-07-14T06:04:57.582Z - success: xiaomi-adapter loaded
+2019-07-14T06:04:57.644Z - success: assets loaded
+2019-07-14T06:04:57.644Z - success: builder loaded
+2019-07-14T06:04:58.129Z - success: cocos-services loaded
+2019-07-14T06:04:58.129Z - success: console loaded
+2019-07-14T06:04:58.175Z - success: fb-instant-games loaded
+2019-07-14T06:04:58.175Z - success: google-instant-games loaded
+2019-07-14T06:04:58.191Z - success: hierarchy loaded
+2019-07-14T06:04:58.191Z - success: inspector loaded
+2019-07-14T06:04:58.191Z - success: keystore loaded
+2019-07-14T06:04:58.207Z - success: node-library loaded
+2019-07-14T06:04:58.207Z - success: package-asset loaded
+2019-07-14T06:04:58.207Z - success: preferences loaded
+2019-07-14T06:04:58.207Z - success: project-exporter loaded
+2019-07-14T06:04:58.207Z - success: project-importer loaded
+2019-07-14T06:04:58.222Z - success: project-settings loaded
+2019-07-14T06:04:58.222Z - success: scene loaded
+2019-07-14T06:04:58.222Z - success: simulator-debugger loaded
+2019-07-14T06:04:58.238Z - success: sprite-editor loaded
+2019-07-14T06:04:58.238Z - success: store loaded
+2019-07-14T06:04:58.238Z - success: timeline loaded
+2019-07-14T06:04:58.254Z - success: xiaomi-runtime loaded
+2019-07-14T06:05:00.207Z - normal: Loading packages
+2019-07-14T06:05:00.223Z - normal: Watching packages
+2019-07-14T06:05:00.457Z - info: Cocos Services load base data!
+2019-07-14T06:05:02.210Z - normal: Run Application
+2019-07-14T07:25:57.764Z - success: huawei-runtime unloaded
+2019-07-14T07:25:57.767Z - success: cpk-publish unloaded
+2019-07-14T07:25:57.768Z - success: oppo-runtime unloaded
+2019-07-14T07:25:57.769Z - success: vivo-runtime unloaded
+2019-07-14T07:25:57.842Z - success: huawei-runtime loaded
+2019-07-14T07:25:57.842Z - success: cpk-publish loaded
+2019-07-14T07:25:57.842Z - success: oppo-runtime loaded
+2019-07-14T07:25:57.842Z - success: vivo-runtime loaded
+2019-07-14T07:27:00.395Z - normal: Start building with options : {
+  "actualPlatform": "wechatgame",
+  "android-instant": {
+    "REMOTE_SERVER_ROOT": "",
+    "host": "",
+    "pathPattern": "",
+    "recordPath": "",
+    "scheme": "https",
+    "skipRecord": false
+  },
+  "apiLevel": "",
+  "appABIs": [],
+  "appBundle": false,
+  "baidugame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "testappid",
+    "orientation": "portrait",
+    "subContext": ""
+  },
+  "buildPath": "C:\\Users\\lenovo\\Desktop\\NewProject\\NewProject\\build",
+  "debug": false,
+  "dest": "C:\\Users\\lenovo\\Desktop\\NewProject\\NewProject\\build\\wechatgame",
+  "embedWebDebugger": false,
+  "encryptJs": true,
+  "excludeScenes": [],
+  "excludedModules": [],
+  "fb-instant-games": {},
+  "includeSDKBox": false,
+  "inlineSpriteFrames": true,
+  "inlineSpriteFrames_native": true,
+  "md5Cache": false,
+  "mergeStartScene": false,
+  "optimizeHotUpdate": false,
+  "orientation": {
+    "landscapeLeft": true,
+    "landscapeRight": true,
+    "portrait": false,
+    "upsideDown": false
+  },
+  "packageName": "org.cocos2d.NewProject",
+  "platform": "wechatgame",
+  "previewHeight": "720",
+  "previewWidth": "1280",
+  "qqplay": {
+    "REMOTE_SERVER_ROOT": "",
+    "orientation": "portrait",
+    "zip": false
+  },
+  "scenes": [
+    "2a6b44f5-57d6-4137-9993-7a965bef67fc",
+    "c18f2ccb-72cb-478f-9038-4cabe5958b6f"
+  ],
+  "sourceMaps": false,
+  "startScene": "2a6b44f5-57d6-4137-9993-7a965bef67fc",
+  "template": "link",
+  "title": "NewProject",
+  "useDebugKeystore": true,
+  "vsVersion": "auto",
+  "webOrientation": "auto",
+  "wechatgame": {
+    "REMOTE_SERVER_ROOT": "",
+    "appid": "wx6ac3f5090a6b99c5",
+    "orientation": "landscapeRight",
+    "separate_engine": false,
+    "subContext": ""
+  },
+  "xxteaKey": "aaf6d169-41bd-42",
+  "zipCompressJs": true,
+  "project": "C:\\Users\\lenovo\\Desktop\\NewProject\\NewProject",
+  "projectName": "NewProject",
+  "debugBuildWorker": false
+}
+2019-07-14T07:27:00.398Z - normal: Building C:\Users\lenovo\Desktop\NewProject\NewProject
+2019-07-14T07:27:00.399Z - normal: Destination C:\Users\lenovo\Desktop\NewProject\NewProject\build\wechatgame
+2019-07-14T07:27:00.649Z - normal: Delete C:\Users\lenovo\Desktop\NewProject\NewProject\build\wechatgame\subpackages/**/*,C:\Users\lenovo\Desktop\NewProject\NewProject\build\wechatgame\**\*
+2019-07-14T07:27:04.547Z - normal: Start building assets
+2019-07-14T07:27:04.548Z - normal: Start spawn build-worker
+2019-07-14T07:27:05.809Z - normal: Finish spawn build-worker
+2019-07-14T07:27:05.810Z - normal: Start init build-worker
+2019-07-14T07:27:10.915Z - normal: Finish init build-worker
+2019-07-14T07:27:10.916Z - normal: Start build-assets in worker
+2019-07-14T07:27:11.710Z - normal: Finish build-assets in worker
+2019-07-14T07:27:11.723Z - normal: Finish building assets
+2019-07-14T07:27:11.755Z - normal: Start building plugin scripts
+2019-07-14T07:27:11.768Z - normal: Generating main.js from D:\Program Files\CocosCreator\resources\static\build-templates\shares\main.js
+2019-07-14T07:27:12.347Z - success: weapp-adapter unloaded
+2019-07-14T07:27:12.430Z - success: weapp-adapter loaded
+2019-07-14T07:27:12.536Z - success: weapp-adapter unloaded
+2019-07-14T07:27:12.558Z - success: weapp-adapter loaded
+2019-07-14T07:27:13.271Z - success: weapp-adapter unloaded
+2019-07-14T07:27:13.274Z - success: weapp-adapter loaded
+2019-07-14T07:27:13.949Z - normal: Built to "C:\Users\lenovo\Desktop\NewProject\NewProject\build\wechatgame" successfully
+2019-07-14T07:27:18.812Z - normal: Initializing...
+
+2019-07-14T07:27:18.823Z - normal: idePortFile: C:\Users\lenovo\AppData\Local\微信web开发者工具\User Data\Default\.ide
+
+2019-07-14T07:27:19.848Z - normal: starting ide...
+
+2019-07-14T07:27:25.802Z - normal: IDE server has started, listening on http://127.0.0.1:48720
+
+2019-07-14T07:27:25.811Z - normal: initialization finished
+
+2019-07-14T07:27:26.445Z - normal: open IDE success
+

@@ -22,23 +22,45 @@ cc.Class({
             type: cc.Node,
             default: null
         },
+        ShieldBtn: {
+            type: cc.Node,
+            default: null
+        },
+        ShieldPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         Player: {
             type: cc.Node,
             default: null
         },
         Max_r: 200,
-        Speed: 200,
-        MaxSpeed: 200
+        Speed: 600
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     // onLoad () {},
 
+    generateShield: function generateShield() {
+        this.newShield.active = true;
+
+        setTimeout(function () {
+            this.active = false;
+        }.bind(this.newShield), 3000);
+    },
+
     start: function start() {
         this.Stick.x = 0;
         this.Stick.y = 0;
         this.dir = cc.v2(0, 0);
+
+        this.newShield = cc.instantiate(this.ShieldPrefab);
+        this.node.parent.addChild(this.newShield);
+        this.newShield.x = this.Player.x;
+        this.newShield.y = this.Player.y;
+
+        this.newShield.active = false;
 
         this.Stick.on(cc.Node.EventType.TOUCH_START, function (e) {
             var w_pos = e.getLocation();
@@ -51,6 +73,10 @@ cc.Class({
                 pos.y = this.Max_r * pos.y / len;
             }
             this.Stick.setPosition(pos);
+        }, this);
+
+        this.ShieldBtn.on(cc.Node.EventType.TOUCH_START, function (e) {
+            this.generateShield();
         }, this);
 
         this.Stick.on(cc.Node.EventType.TOUCH_MOVE, function (e) {
@@ -77,18 +103,15 @@ cc.Class({
         }, this);
     },
     update: function update(dt) {
+        if (this.newShield !== null) {
+            this.newShield.x = this.Player.x;
+            this.newShield.y = this.Player.y;
+        }
+
         if (this.dir.mag() < 0.5) {
             return;
         }
 
-        // var vx = this.dir.x * this.Speed;
-        // var vy = this.dir.y * this.Speed;
-
-        // var sx = vx * dt;
-        // var sy = vy * dt;
-        // //移动
-        // this.Player.x += sx;
-        // this.Player.y += sy;
         var accelX = this.dir.x * this.Speed;
         var accelY = this.dir.y * this.Speed;
         var player = this.Player.getComponents("Player")[0];

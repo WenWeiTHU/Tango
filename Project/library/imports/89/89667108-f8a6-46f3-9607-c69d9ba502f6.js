@@ -29,7 +29,9 @@ cc.Class({
         },
 
         Equilibrium: 500,
-        Grav: 100
+        Delta: 200,
+        Grav: 1,
+        Step: 200
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -39,12 +41,25 @@ cc.Class({
     start: function start() {
         this.dir = cc.v2(this.Player1.x - this.Player2.x, this.Player1.y - this.Player2.y);
         this.distance = this.dir.mag();
-        this.r = Math.atan2(this.dir.y, this.dir.x);
-        this.Acce = this.Grav / ((this.distance - this.Equilibrium) * (this.distance - this.Equilibrium));
-        this.Vec1 = 0;
-        this.Vec2 = 0;
+
+        var a = this.Grav * (this.distance - this.Equilibrium);
+        this.acce = cc.v2(a * this.dir.x / this.distance, a * this.dir.y / this.distance);
     },
-    update: function update(dt) {}
+    update: function update(dt) {
+        this.dir = cc.v2(this.Player1.x - this.Player2.x, this.Player1.y - this.Player2.y);
+        this.distance = this.dir.mag();
+        var a = this.Grav * (this.distance - this.Equilibrium);
+        this.acce = cc.v2(a * this.dir.x / this.distance, a * this.dir.y / this.distance);
+
+        var player1 = this.Player1.getComponents("Player")[0];
+        var player2 = this.Player2.getComponents("Player")[0];
+
+        player1.speedX -= this.acce.x * dt;
+        player1.speedY -= this.acce.y * dt;
+
+        player2.speedX += this.acce.x * dt;
+        player2.speedY += this.acce.y * dt;
+    }
 });
 
 cc._RF.pop();
