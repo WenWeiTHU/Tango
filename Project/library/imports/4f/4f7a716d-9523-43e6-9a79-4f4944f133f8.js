@@ -27,8 +27,7 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad: function onLoad() {
-        this.conlidManager = cc.director.getCollisionManager();
-        this.conlidManager.enabled = true;
+        cc.director.getCollisionManager().enabled = true;
     },
 
 
@@ -45,9 +44,28 @@ cc.Class({
                     this.mapCollision(other);
                     break;
                 }
+            case 'Enemy':
+                {
+                    // 当碰到了敌人时
+                    this.enemyCollision(other);
+                    break;
+                }
+            case 'Supply':
+                {
+                    // 当碰到了补给
+                    this.supplyCollision(other);
+                }
 
             // Others
         }
+    },
+
+
+    /*
+     * 与补给的碰撞事件
+     */
+    supplyCollision: function supplyCollision(other) {
+        console.log("Supply!");
     },
 
 
@@ -77,6 +95,31 @@ cc.Class({
                     this.speedY = -this.speedY;
                     break;
                 }
+        }
+    },
+
+
+    /*
+     * 与敌人的碰撞事件
+     */
+    enemyCollision: function enemyCollision(obj_enemy) {
+        var name = obj_enemy.node.name;
+        switch (name) {
+            case 'battery':
+                {
+                    this.speedX = -this.speedX;
+                    this.speedY = -this.speedY;
+                    // TODO: 扣血
+                    break;
+                }
+            case 'enemy_spin':
+            case 'enemy_swing':
+            case 'enemy_track':
+                {
+                    // TODO: 扣血
+                    break;
+                }
+
         }
     },
     start: function start() {},

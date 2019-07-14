@@ -23,8 +23,12 @@ cc.Class({
 
     // LIFE-CYCLE CALLBACKS:
 
-    // onLoad () {},
-
+    onLoad: function onLoad() {
+        cc.director.getCollisionManager().enabled = true;
+    },
+    onCollisionEnter: function onCollisionEnter(other, self) {
+        this.node.destroy();
+    },
     start: function start() {}
 }
 
