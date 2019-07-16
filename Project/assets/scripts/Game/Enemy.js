@@ -12,12 +12,13 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        accel: 0,
-        speedX: 0,
-        speedY: 0,
-        rotationUpdate : 20
+        accel: 0,               // 敌机加速度
+        speedX: 0,              // 敌机X方向速度
+        speedY: 0,              // 敌机Y方向速度
+        rotationUpdate : 20     // 敌机自转时长
     },
 
+    // 自转
     rotate: function(){
         var newDegree = this.node.rotation + (this.rotationUpdate/Math.PI);
         this.node.rotation = newDegree > 360 ? newDegree - 360 : newDegree;
@@ -36,15 +37,27 @@ cc.Class({
     },
 
     onCollisionEnter (other, self) {
-        if (other.node.group == "Map") {
-            return;
+        // 直接回弹
+        if (other.node.group === "Map") {
+            this.speedX *= -1
+            this.speedY *= -1
+            return
         }
+        // 碰撞主角,链接,护盾则爆炸
         else {
+            // TODO爆炸动画
+            // console.log(1)
+            // var animComponent = this.getComponent(cc.Animation)
+            // console.log(animComponent)
+            // animComponent.play('blast')
+
             this.node.destroy();
         }
     },
 
+    // 位置更新
     update (dt) {
-        
+        this.node.x += this.speedX * dt
+        this.node.y += this.speedY * dt
     },
 });

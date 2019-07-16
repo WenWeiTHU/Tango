@@ -36,11 +36,11 @@
     "zip": false
   },
   "startScene": "2a6b44f5-57d6-4137-9993-7a965bef67fc",
-  "title": "NewProject",
+  "title": "PROB",
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
-    "appid": "wx6ac3f5090a6b99c5",
+    "appid": "wx7cfcca5462348f24",
     "orientation": "landscapeRight",
     "separate_engine": false,
     "subContext": ""

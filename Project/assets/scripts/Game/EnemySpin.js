@@ -31,7 +31,7 @@ cc.Class({
     },
 
     circulate: function () {
-        this.angle += this.circulateUpdate;
+        this.angle += this.circulateDir*this.circulateUpdate;
 
         this.angle = this.angle > 360 ? this.angle - 360 : this.angle
 
@@ -41,13 +41,15 @@ cc.Class({
 
     start() {
         this.angle = 0
+        this.circulateDir = 1
     },
     onCollisionEnter (other, self) {
         if (other.node.group == "Map") {
-            return;
+            this.circulateDir *= -1
+            return
         }
         else {
-            this.node.destroy();
+            this.node.destroy()
         }
     },
 

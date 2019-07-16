@@ -21,9 +21,13 @@ cc.Class({
         cc.director.getCollisionManager().enabled = true;
     },
 
+    // 碰到则消失
     onCollisionEnter (other, self) {
+        // TODO 消失动画
         this.node.destroy();
     },
+
+    // TODO 补给只能存在一定时长
 
     start () {
 

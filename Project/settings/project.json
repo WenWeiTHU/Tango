@@ -2,7 +2,7 @@
   "assets-sort-type": "name",
   "collision-matrix": [
     [
-      true,
+      false,
       true,
       true,
       true,
@@ -19,10 +19,11 @@
     [
       true,
       true,
-      false,
+      true,
       null,
       null,
       null,
+      true,
       true
     ],
     [
@@ -55,6 +56,27 @@
       true,
       false,
       true,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
       false,
       false
     ]
@@ -80,8 +102,10 @@
     "Enemy",
     "Supply",
     "Bullet",
-    "default",
-    "Shield"
+    "UI",
+    "Shield",
+    "Bind",
+    "default"
   ],
   "last-module-event-record-time": 1563031844381,
   "simulator-orientation": false,

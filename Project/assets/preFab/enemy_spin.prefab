@@ -122,8 +122,8 @@
     "centerX": 0,
     "centerY": 0,
     "centerSpeed": 50,
-    "radius": 200,
-    "circulateUpdate": 2,
+    "radius": 250,
+    "circulateUpdate": 0.5,
     "_id": ""
   },
   {

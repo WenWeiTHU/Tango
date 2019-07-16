@@ -17,7 +17,7 @@ cc.Class({
             default: null,
         },
         maxSpeed: 400,
-        iniAccel: 60,
+        iniAccel: 0.01,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,6 +26,8 @@ cc.Class({
 
     start() {
         cc.director.getCollisionManager().enabled = true;
+        this.speedX = 0
+        this.speedY = 0
     },
 
     track: function (dt) {
@@ -33,13 +35,13 @@ cc.Class({
 
         this.distance = this.dir.mag()
 
-        if (Math.sqrt(Math.pow(this.speedX, 2) + Math.pow(this.speedY, 2)) <= this.maxSpeed) {
-            this.speedX += this.iniAccel * this.dir.x / this.distance * dt
-            this.speedY += this.iniAccel * this.dir.y / this.distance * dt
+        if(Math.sqrt(Math.pow(this.speedX, 2)+ Math.pow(this.speedY, 2)) < this.maxSpeed){
+            this.speedX += this.iniAccel * dt
+            this.speedY += this.iniAccel * dt
         }
-
-        this.node.x += this.speedX * dt
-        this.node.y += this.speedY * dt
+        
+        this.node.x += this.speedX * this.dir.x / this.distance
+        this.node.y += this.speedY * this.dir.y / this.distance
     },
 
     update(dt) {

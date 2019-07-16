@@ -12,10 +12,12 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        accel: 0,
-        speedX: 0,
-        speedY: 0,
-        resistance: 0,
+        accel: 0,       // 主角加速度
+        speedX: 0,      // 主角X方向速度
+        speedY: 0,      // 主角Y方向速度
+        resistance: 0,  // 地图阻力
+        health:3,       // 主角生命
+        shield: 0       // 主角护盾数
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -43,18 +45,20 @@ cc.Class({
             }
             case 'Supply': {
                 // 当碰到了补给
-                this.supplyCollision(other);
+                this.shield++
+                break
+            }
+            case 'Bullet': {
+                // 当碰到了子弹
+                this.health--
+                break
+            }
+            default: {
+                // Others
+                break                
             }
 
-            // Others
         }
-    },
-
-    /*
-     * 与补给的碰撞事件
-     */
-    supplyCollision (other) {
-        console.log("Supply!");
     },
 
     /*
@@ -62,6 +66,7 @@ cc.Class({
      */
     mapCollision(obj_map) {
         var name = obj_map.node.name;
+        // 直接回弹
         switch (name) {
             case 'mapLeft': {
                 this.speedX = -this.speedX;
@@ -88,17 +93,21 @@ cc.Class({
     enemyCollision(obj_enemy) {
         var name = obj_enemy.node.name;
         switch (name) {
+            // 直接回弹
             case 'battery': {
-                this.speedX = -this.speedX;
-                this.speedY = -this.speedY;
-                // TODO: 扣血
-                break;
+                this.speedX = -this.speedX
+                this.speedY = -this.speedY
+                break
             }
+            // 生命减少
+            case 'enemy':
+            case 'enemy_static':
             case 'enemy_spin': 
             case 'enemy_swing':
+            case 'enemy_copter':
             case 'enemy_track': {
-                // TODO: 扣血
-                break;
+                this.health--
+                break
             }
             
         }

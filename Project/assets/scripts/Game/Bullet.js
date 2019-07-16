@@ -28,11 +28,13 @@ cc.Class({
         this.directionX = this.direction.x / this.direction.mag();
         this.directionY = this.direction.y / this.direction.mag();
     },
-
+    
+    // 直接消失
     onCollisionEnter (other, self) {
         this.node.destroy();
     },
 
+    // 位置更新
     update (dt) {
         this.node.x += this.speed * this.directionX * dt;
         this.node.y += this.speed * this.directionY * dt;

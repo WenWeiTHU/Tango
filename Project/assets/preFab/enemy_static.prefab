@@ -116,6 +116,11 @@
     "speedX": 0,
     "speedY": 0,
     "rotationUpdate": 20,
+    "shootNum": 6,
+    "BulletPrefab": {
+      "__uuid__": "44e9bd7e-3975-40d0-8757-30911ae6259f"
+    },
+    "bulletSpeed": 60,
     "_id": ""
   },
   {

@@ -114,9 +114,11 @@
     "_enabled": true,
     "rotationUpdate": 5,
     "bulletSpeed": 100,
+    "shootNum": 3,
     "Player1": null,
     "Player2": null,
     "BulletPrefab": null,
+    "shootTime": 2,
     "_id": ""
   },
   {

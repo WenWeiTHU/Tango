@@ -12,12 +12,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        
-        Player1:{
+        Player1: {
             type: cc.Node,
             default: null,
         },
-        Player2:{
+        Player2: {
             type: cc.Node,
             default: null,
         },
@@ -25,15 +24,10 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
-        MapVerPrefab: {
+        EnemyPrefab: {
             type: cc.Prefab,
             default: null
         },
-        MapHerPrefab: {
-            type: cc.Prefab,
-            default: null
-        },
-        
         StaticEnemyPrefab: {
             type: cc.Prefab,
             default: null
@@ -50,6 +44,10 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
+        CopterEnemyPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
         BatteryPrefab: {
             type: cc.Prefab,
             default: null
@@ -58,78 +56,70 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        staticEnemyNum: 0,
-        supplyTimeGap: 1,
-
+        MapVPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
+        MapHPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
+        supplyInterval: 2,
+        borderSize: 15,
     },
 
+    // TODO 避免重叠
     // LIFE-CYCLE CALLBACKS:
-    getNewPosition: function () {
-        var maxX = this.node.width / 2;
+    getRandomPosition: function () {
+        var maxX = this.node.width / 2 - this.borderSize;
         var randX = (Math.random() - 0.5) * 2 * maxX;
-        var maxY = this.node.height / 2;
+        var maxY = this.node.height / 2 - this.borderSize;
         var randY = (Math.random() - 0.5) * 2 * maxY;
 
         return cc.v2(randX, randY);
     },
 
-    generateNewStaticEnemy: function () {
-        var newEnemy = cc.instantiate(this.StaticEnemyPrefab);
-        this.node.addChild(newEnemy);
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateNewTrackEnemy: function () {
-        console.log('track')
-        var newEnemy = cc.instantiate(this.TrackEnemyPrefab);
-        this.node.addChild(newEnemy);
-
-        let random = Math.random()
-        if(random < 0.5){
-            newEnemy.getComponent('EnemyTrack').Player = this.Player1
+    generate: function (posX, posY, name) {
+        let thing
+        switch (name) {
+            case 'enemy':
+                thing = cc.instantiate(this.EnemyPrefab)
+                break
+            case 'staticEnemy':
+                thing = cc.instantiate(this.StaticEnemyPrefab)
+                break
+            case 'trackEnemy':
+                thing = cc.instantiate(this.TrackEnemyPrefab)
+                console.log(thing)
+                thing.getComponent('EnemyTrack').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                break
+            case 'spinEnemy':
+                thing = cc.instantiate(this.SpinEnemyPrefab)
+                thing.getComponent('EnemySpin').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                break
+            case 'swingEnemy':
+                thing = cc.instantiate(this.SwingEnemyPrefab)
+                thing.getComponent('EnemySwing').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                break
+            case 'copterEnemy':
+                thing = cc.instantiate(this.CopterEnemyPrefab);
+                console.log(thing)
+                thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab
+                thing.getComponent('EnemyCopter').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                console.log(thing)
+                break
+            case 'supply':
+                thing = cc.instantiate(this.SupplyPrefab)
+                break
+            case 'battery':
+                thing = cc.instantiate(this.BatteryPrefab)
+                thing.getComponent('Battery').Player1 = this.Player1
+                thing.getComponent('Battery').Player2 = this.Player2
+                thing.getComponent('Battery').BulletPrefab = this.BulletPrefab
+                break
         }
-        else{
-            newEnemy.getComponent('EnemyTrack').Player = this.Player2
-        }
-        
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateNewSpinEnemy: function () {
-        console.log('spin')
-        var newEnemy = cc.instantiate(this.SpinEnemyPrefab);
-        this.node.addChild(newEnemy);
-        var random = Math.random()
-        if(random < 0.5){
-            newEnemy.getComponent('EnemySpin').Player = this.Player1
-        }
-        else{
-            newEnemy.getComponent('EnemySpin').Player = this.Player2
-        }
-
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateNewSwingEnemy: function () {
-        var newEnemy = cc.instantiate(this.SwingEnemyPrefab);
-        this.node.addChild(newEnemy);
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateSupply: function () {
-        var newSupply = cc.instantiate(this.SupplyPrefab)
-        this.node.addChild(newSupply)
-        newSupply.setPosition(this.getNewPosition())
-        newSupply.getComponent('Supply').Game = this
-    },
-
-    generateBattery(){
-        var newBattery = cc.instantiate(this.BatteryPrefab)
-        this.node.addChild(newBattery)
-        newBattery.setPosition(this.getNewPosition())
-        newBattery.getComponent('Battery').Player1 = this.Player1
-        newBattery.getComponent('Battery').Player2 = this.Player2
-        newBattery.getComponent('Battery').BulletPrefab = this.BulletPrefab
+        this.node.addChild(thing)
+        thing.setPosition(posX, posY)
     },
 
     /*
@@ -139,7 +129,7 @@ cc.Class({
         var equipmentWidth = this.node.width
         var equipmentHeight = this.node.height
 
-        var mapUp = cc.instantiate(this.MapHerPrefab)
+        var mapUp = cc.instantiate(this.MapHPrefab)
         mapUp.y = (equipmentHeight + mapUp.height) / 2
         mapUp.x = 0
         mapUp.width = equipmentWidth + 10;
@@ -148,7 +138,7 @@ cc.Class({
         mapUp._components[1]._size.width = equipmentWidth + 10;
         
 
-        var mapDown = cc.instantiate(this.MapHerPrefab)
+        var mapDown = cc.instantiate(this.MapHPrefab)
         mapDown.y = -(equipmentHeight + mapDown.height) / 2
         mapDown.x = 0
         mapDown.name = 'mapDown'
@@ -156,14 +146,14 @@ cc.Class({
         mapDown._components[1]._size.width = equipmentWidth + 10
         
 
-        var mapLeft = cc.instantiate(this.MapVerPrefab)
+        var mapLeft = cc.instantiate(this.MapVPrefab)
         mapLeft.x = -(equipmentWidth + mapLeft.width) / 2
         mapLeft.y = 0
         mapLeft.name = 'mapLeft'
         mapLeft.height = equipmentHeight + 10
         mapLeft._components[1]._size.height = equipmentHeight + 10
 
-        var mapRight = cc.instantiate(this.MapVerPrefab)
+        var mapRight = cc.instantiate(this.MapVPrefab)
         mapRight.x = (equipmentWidth + mapRight.width) / 2
         mapRight.y = 0
         mapRight.name = 'mapRight'
@@ -175,6 +165,7 @@ cc.Class({
         this.node.addChild(mapLeft)
         this.node.addChild(mapRight)
     },
+
 
     onLoad() {
         for (var i = 0; i < this.node.children.length; ++i) {
@@ -202,19 +193,21 @@ cc.Class({
     },
 
     start() {
-       this.scheduleOnce(this.initGame, 2);
-       this.generateMap()
+        this.scheduleOnce(this.initGame, 2);
+        this.generateMap()
     },
 
-    initGame() {
-        this.generateNewStaticEnemy()
-        this.generateNewTrackEnemy()
-        this.generateNewSpinEnemy()
-        this.generateNewSwingEnemy()
-        this.generateBattery()
-        this.schedule(this.generateSupply, 2)
+    initGame: function () {
+        console.log("begin")
+        this.generate(0, 0, 'battery')
+
+        this.schedule(() => {
+            let pos = this.getRandomPosition()
+            this.generate(pos.x, pos.y, 'supply')
+        }, this.supplyInterval)
     },
 
     update(dt) {
+
     },
 });
