@@ -34,7 +34,7 @@ cc.Class({
     onLoad: function onLoad() {
         cc.director.getCollisionManager().enabled = true;
         var animComponent = this.getComponent(cc.Animation);
-        var animState = animComponent.play('bindAnim');
+        var animState = animComponent.play('bindAnim2');
         animState.wrapMode = cc.WrapMode.Loop;
     },
     start: function start() {
@@ -56,8 +56,7 @@ cc.Class({
         this.node.rotation = degree;
 
         this.node.height = this.dir.mag();
-
-        var collider = this.node._components[2];
+        var collider = this.node._components[3];
         collider.points[2].y = this.node.height;
         collider.points[3].y = this.node.height;
 

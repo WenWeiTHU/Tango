@@ -19,7 +19,7 @@
     [
       true,
       true,
-      true,
+      false,
       null,
       null,
       null,
@@ -70,6 +70,18 @@
       false
     ],
     [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    [
+      false,
       false,
       false,
       false,
@@ -105,7 +117,8 @@
     "UI",
     "Shield",
     "Bind",
-    "default"
+    "default",
+    "Audio"
   ],
   "last-module-event-record-time": 1563031844381,
   "simulator-orientation": false,

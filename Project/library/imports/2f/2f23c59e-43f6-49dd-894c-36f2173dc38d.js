@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '2f23cWeQ/ZJ3YlMNvIXPcON', 'JoyStick');
-// scripts/JoyStick.js
+// scripts/Game/JoyStick.js
 
 "use strict";
 
@@ -26,6 +26,10 @@ cc.Class({
             type: cc.Node,
             default: null
         },
+        ShieldLabel: {
+            type: cc.Label,
+            default: null
+        },
         ShieldPrefab: {
             default: null,
             type: cc.Prefab
@@ -35,7 +39,8 @@ cc.Class({
             default: null
         },
         Max_r: 200,
-        Speed: 600
+        Speed: 600,
+        ShieldDuartion: 5
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -43,14 +48,25 @@ cc.Class({
     // onLoad () {},
 
     generateShield: function generateShield() {
+        if (this.player.shield <= 0) {
+            return;
+        }
+
+        this.player.shield--;
+        this.shieldLabel.string = this.player.shield;
+
         this.newShield.active = true;
 
         setTimeout(function () {
             this.active = false;
-        }.bind(this.newShield), 3000);
+        }.bind(this.newShield), 1000 * this.ShieldDuartion);
     },
 
     start: function start() {
+        this.shieldLabel = this.ShieldLabel.getComponent(cc.Label);
+        this.player = this.Player.getComponents("Player")[0];
+        this.shieldLabel.string = this.player.shield;
+
         this.Stick.x = 0;
         this.Stick.y = 0;
         this.dir = cc.v2(0, 0);
@@ -108,17 +124,22 @@ cc.Class({
             this.newShield.y = this.Player.y;
         }
 
+        var Player = this.Player.getComponent('Player');
+
         if (this.dir.mag() < 0.5) {
+            debugger;
+            Player.move = false;
             return;
         }
+        Player.move = true;
 
         var accelX = this.dir.x * this.Speed;
         var accelY = this.dir.y * this.Speed;
-        var player = this.Player.getComponents("Player")[0];
-        if (Math.sqrt(Math.pow(player.speedX, 2) + Math.pow(player.speedY, 2)) < this.Speed) {
 
-            player.speedX += accelX * dt;
-            player.speedY += accelY * dt;
+        if (Math.sqrt(Math.pow(this.player.speedX, 2) + Math.pow(this.player.speedY, 2)) < this.Speed) {
+
+            this.player.speedX += accelX * dt;
+            this.player.speedY += accelY * dt;
         }
 
         //方向计算

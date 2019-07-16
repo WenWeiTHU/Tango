@@ -114,6 +114,9 @@
     "_enabled": true,
     "direction": 0,
     "speed": 20,
+    "BulletBreakPrefab": {
+      "__uuid__": "2aadea5e-9300-4a52-a146-797aeb45d042"
+    },
     "_id": ""
   },
   {

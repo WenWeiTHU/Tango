@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '89667EI+KZG85YHxp2bpQL2', 'Gravity');
-// scripts/Gravity.js
+// scripts/Game/Gravity.js
 
 "use strict";
 
@@ -56,9 +56,13 @@ cc.Class({
 
         player1.speedX -= this.acce.x * dt;
         player1.speedY -= this.acce.y * dt;
+        //  player1.x += this.acce.x * dt
+        //  player1.y += this.acce.y * dt
 
         player2.speedX += this.acce.x * dt;
         player2.speedY += this.acce.y * dt;
+        // player2.x += this.acce.x * dt
+        // player2.y += this.acce.y * dt
     }
 });
 

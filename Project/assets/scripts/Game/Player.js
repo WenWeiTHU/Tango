@@ -16,14 +16,42 @@ cc.Class({
         speedX: 0,      // 主角X方向速度
         speedY: 0,      // 主角Y方向速度
         resistance: 0,  // 地图阻力
-        health:3,       // 主角生命
-        shield: 0       // 主角护盾数
+        life: 3,       // 主角生命
+        shield: 3,       // 主角护盾数
+        immortalDuration: 2,
+        BlastPrefab: {
+            type:cc.Prefab,
+            default: null,
+        },
+        // 音效
+        PlayerHit:{
+            type: cc.AudioSource,
+            default: null
+        },
+        Death:{
+            type: cc.AudioSource,
+            default: null
+        },
+        Bonus:{
+            type: cc.AudioSource,
+            default: null
+        },
+        LifeLabel: {
+            type: cc.Label,
+            default: null,
+        },
+        ShieldLabel: {
+            type: cc.Label,
+            default: null,
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
-
     onLoad() {
-        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabled = true
+        this.blastName = 'blast' + this.node.name[6]
+        this.immortal = false
+        this.move = false
     },
 
     /*
@@ -45,19 +73,43 @@ cc.Class({
             }
             case 'Supply': {
                 // 当碰到了补给
-                this.shield++
+                if(other.node._name === 'supply'){
+                    this.life++
+                }
+                else if(other.node._name === 'shieldSupply'){
+                    this.shield++
+                }
+                this.Bonus.play()
                 break
             }
             case 'Bullet': {
                 // 当碰到了子弹
-                this.health--
+                var blast = cc.instantiate(this.BlastPrefab)
+                this.node.parent.addChild(blast)
+                blast.setPosition(this.node.x, this.node.y)
+                var animComponent = blast.getComponent(cc.Animation)               
+                animComponent.play(this.blastName)
+
+                this.PlayerHit.play()
+
+                this.lostLife()
                 break
             }
             default: {
                 // Others
                 break                
             }
+        }
+    },
 
+    lostLife: function(){
+        if(!this.immortal){
+            this.life--
+            console.log(this.life)
+            this.immortal = true
+            setTimeout(function () {
+                this.immortal = false
+            }.bind(this), 1000 * this.immortalDuration);
         }
     },
 
@@ -68,19 +120,11 @@ cc.Class({
         var name = obj_map.node.name;
         // 直接回弹
         switch (name) {
-            case 'mapLeft': {
+            case 'mapV': {
                 this.speedX = -this.speedX;
                 break;
             }
-            case 'mapRight': {
-                this.speedX = -this.speedX;
-                break;
-            }
-            case 'mapUp': {
-                this.speedY = -this.speedY;
-                break;
-            }
-            case 'mapDown': {
+            case 'mapH': {
                 this.speedY = -this.speedY;
                 break;
             }
@@ -106,7 +150,16 @@ cc.Class({
             case 'enemy_swing':
             case 'enemy_copter':
             case 'enemy_track': {
-                this.health--
+                var blast = cc.instantiate(this.BlastPrefab)
+                this.node.parent.addChild(blast)
+                blast.setPosition(this.node.x, this.node.y)
+    
+                var animComponent = blast.getComponent(cc.Animation)
+                animComponent.play(this.blastName)
+
+                this.PlayerHit.play()
+
+                this.lostLife()
                 break
             }
             
@@ -114,24 +167,33 @@ cc.Class({
     },
 
     start() {
-
+        this.lifeLabel = this.LifeLabel.getComponent(cc.Label)
+        this.lifeLabel.string = this.life
+        this.shieldLabel = this.ShieldLabel.getComponent(cc.Label)
+        this.shieldLabel.string = this.shield
     },
+
     update(dt) {
+        //生命值更新
+        this.lifeLabel.string = this.life
+        this.shieldLabel.string = this.shield
+
         // 运动
-        this.node.x += this.speedX * dt;
-        this.node.y += this.speedY * dt;
+        
+        this.node.x += this.speedX * dt
+        this.node.y += this.speedY * dt
 
         // 阻力
-        if (this.speedX > this.resistance) {
-            this.speedX -= this.speedX * 0.01;
-        } else if (this.speedX < -this.resistance) {
-            this.speedX -= this.speedX * 0.01;
+        if (this.speedX > this.resistance && !this.move) {
+            this.speedX -= this.speedX * 0.05;
+        } else if (this.speedX < -this.resistance && !this.move) {
+            this.speedX -= this.speedX * 0.05;
         }
 
-        if (this.speedY > this.resistance) {
-            this.speedY -= this.speedY * 0.01;
-        } else if (this.speedY < -this.resistance) {
-            this.speedY -= this.speedY * 0.01;
+        if (this.speedY > this.resistance && !this.move) {
+            this.speedY -= this.speedY * 0.05;
+        } else if (this.speedY < -this.resistance && !this.move) {
+            this.speedY -= this.speedY * 0.05;
         }
     }
 });

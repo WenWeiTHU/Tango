@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 70,
+      "height": 70
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -87,7 +87,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "068e89b8-3428-41d2-886c-00f7c7b8579f"
+      "__uuid__": "8eb6bf19-fb44-4e47-9f38-48fd4b434045"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -116,6 +116,10 @@
     "speedX": 0,
     "speedY": 0,
     "rotationUpdate": 20,
+    "BlastPrefab": {
+      "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
+    },
+    "Explode": null,
     "Player": null,
     "maxSpeed": 400,
     "iniAccel": 0.1,
@@ -135,7 +139,7 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "_radius": 32,
     "_id": ""
   },
   {
