@@ -20,6 +20,10 @@ cc.Class({
             type: cc.Node,
             default: null,
         },
+        ShieldLabel: {
+            type: cc.Label,
+            default: null,
+        },
         ShieldPrefab: {
             default: null,
             type: cc.Prefab
@@ -30,6 +34,7 @@ cc.Class({
         },
         Max_r: 200,
         Speed: 600,
+        ShieldDuartion: 5
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -37,14 +42,26 @@ cc.Class({
     // onLoad () {},
 
     generateShield: function () {
+        if(this.player.shield <= 0){
+            return
+        }
+
+        this.player.shield--
+        this.shieldLabel.string = this.player.shield
+
         this.newShield.active = true
 
         setTimeout(function () {
             this.active = false
-        }.bind(this.newShield), 3000);
+        }.bind(this.newShield), 1000 * this.ShieldDuartion);
     },
 
     start() {
+        this.shieldLabel = this.ShieldLabel.getComponent(cc.Label)
+        this.player = this.Player.getComponents("Player")[0]
+        this.shieldLabel.string = this.player.shield
+
+        
         this.Stick.x = 0;
         this.Stick.y = 0;
         this.dir = cc.v2(0, 0);
@@ -55,7 +72,6 @@ cc.Class({
         this.newShield.y = this.Player.y
 
         this.newShield.active = false
-
 
         this.Stick.on(cc.Node.EventType.TOUCH_START, function (e) {
             var w_pos = e.getLocation();
@@ -106,18 +122,18 @@ cc.Class({
         }
 
         if (this.dir.mag() < 0.5) {
-            return;
+            return
         }
 
+        var accelX = this.dir.x * this.Speed
+        var accelY = this.dir.y * this.Speed
 
-        var accelX = this.dir.x * this.Speed;
-        var accelY = this.dir.y * this.Speed;
-        var player = this.Player.getComponents("Player")[0];
-        if(Math.sqrt(Math.pow(player.speedX, 2) + Math.pow(player.speedY, 2)) < this.Speed)
+
+        if(Math.sqrt(Math.pow(this.player.speedX, 2) + Math.pow(this.player.speedY, 2)) < this.Speed)
         {
            
-            player.speedX += accelX * dt;
-            player.speedY += accelY * dt;
+            this.player.speedX += accelX * dt;
+            this.player.speedY += accelY * dt;
         }
         
         //方向计算

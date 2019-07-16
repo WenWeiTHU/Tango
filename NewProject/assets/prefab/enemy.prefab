@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 70,
+      "height": 70
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -87,7 +87,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "073d7c87-00b2-4869-b4a6-69741ceee972"
+      "__uuid__": "859a0ada-0519-49b7-8cea-a689b5a549bf"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -118,7 +118,7 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "_radius": 30,
     "_id": ""
   },
   {
@@ -133,6 +133,10 @@
     "speedX": 100,
     "speedY": 100,
     "rotationUpdate": 20,
+    "BlastPrefab": {
+      "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
+    },
+    "Explode": null,
     "_id": ""
   },
   {

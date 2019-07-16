@@ -26,7 +26,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabled = true
+        var animComponent = this.getComponent(cc.Animation)
+        var animState = animComponent.play('bindAnim2')
+        animState.wrapMode = cc.WrapMode.Loop
     },
 
     start() {

@@ -14,6 +14,10 @@ cc.Class({
     properties: {
         direction: 0,
         speed: 0,
+        BulletBreakPrefab: {
+            type:cc.Prefab,
+            default: null,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -31,6 +35,14 @@ cc.Class({
     
     // 直接消失
     onCollisionEnter (other, self) {
+        var blast = cc.instantiate(this.BulletBreakPrefab)
+
+        this.node.parent.addChild(blast)
+        blast.setPosition(this.node.x, this.node.y)
+
+        var animComponent = blast.getComponent(cc.Animation)
+        animComponent.play('bulletBreak')
+     
         this.node.destroy();
     },
 

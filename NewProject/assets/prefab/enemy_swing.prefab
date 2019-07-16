@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 90,
+      "height": 90
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -87,7 +87,7 @@
     "_srcBlendFactor": 770,
     "_dstBlendFactor": 771,
     "_spriteFrame": {
-      "__uuid__": "88cd1a0c-8737-4b91-8627-130131919fff"
+      "__uuid__": "934d385e-5bc6-4b6e-9048-c28492119d2a"
     },
     "_type": 0,
     "_sizeMode": 0,
@@ -115,14 +115,19 @@
     "accel": 0,
     "speedX": 0,
     "speedY": 0,
-    "rotationUpdate": 20,
+    "rotationUpdate": 0,
+    "BlastPrefab": {
+      "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
+    },
+    "Explode": null,
     "swingDuration": 2,
+    "rotateDuration": 1,
     "targetPosX": 200,
     "targetPosY": 200,
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.PolygonCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -135,7 +140,28 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "points": [
+      {
+        "__type__": "cc.Vec2",
+        "x": 0,
+        "y": 36
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": -36,
+        "y": -37
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 0,
+        "y": -15
+      },
+      {
+        "__type__": "cc.Vec2",
+        "x": 36,
+        "y": -37
+      }
+    ],
     "_id": ""
   },
   {

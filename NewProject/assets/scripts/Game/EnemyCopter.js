@@ -12,14 +12,23 @@ cc.Class({
     extends: require("EnemySpin"),
 
     properties: {
-        shootTime: 3,
-        shootInterval: 0.3,
-        shootNum: 3,
         BulletPrefab: {
             type: cc.Prefab,
             default: null,
         },
+        Body: {
+            type: cc.Node,
+            default: null,
+        },
+        Fly: {
+            type: cc.Node,
+            default: null,
+        },
+        shootTime: 3,
+        shootInterval: 0.3,
+        shootNum: 3,
         bulletSpeed: 100,
+        flyRotationUpdate: 15,
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,7 +41,6 @@ cc.Class({
 
     createBullet: function() {
         var dir = cc.v2(this.Player.x - this.node.x, this.Player.y - this.node.y);
-        console.log(dir)
 
         // 构造新子弹，并设置参数
         var newBullet = cc.instantiate(this.BulletPrefab);
@@ -51,21 +59,34 @@ cc.Class({
         this.node.parent.sortAllChildren();
     },
 
+
     start () {
         this.angle = 0
         this.circulateDir = 1
-        console.log('shoot')
+        this.flyDegree = 0
         this.schedule(this.shoot, this.shootTime);
     },
 
-    update (dt) {
-        this.rotate()
+    face: function () {
+        this.angle += this.circulateDir*this.circulateUpdate;
+        this.angle = this.angle > 360 ? this.angle - 360 : this.angle
 
+        this.node.rotation = this.angle + 180
+
+        this.node.x = this.centerX + this.radius * Math.sin(this.angle * Math.PI / 180)
+        this.node.y = this.centerY + this.radius * Math.cos(this.angle * Math.PI / 180)
+    },
+
+    update (dt) {
+        this.flyDegree += this.circulateDir*this.flyRotationUpdate/Math.PI
+        this.flyDegree = this.flyDegree > 360 ? this.flyDegree - 360 : this.flyDegree
+        this.Fly.rotation = this.flyDegree
+        
         this.dir = cc.v2(this.Player.x - this.centerX, this.Player.y - this.centerY)
         this.distance = this.dir.mag()
 
         this.centerX += this.dir.x / this.distance * this.centerSpeed * dt
         this.centerY += this.dir.y / this.distance * this.centerSpeed * dt
-        this.circulate()
+        this.face()
     },
 });

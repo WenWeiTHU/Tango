@@ -27,6 +27,10 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
+        Orbit:{
+            type: cc.AudioSource,
+            default: null
+        },
         shootTime: 2
     },
 
@@ -45,6 +49,8 @@ cc.Class({
      * 产生新子弹的函数
      */
     createBullet() {
+        this.Orbit.play()
+        
         // 从炮台到目标位置的向量
         var dir = cc.v2(this.target.x - this.node.x, this.target.y - this.node.y);
 
@@ -56,8 +62,8 @@ cc.Class({
         var degree = r * 180 / (Math.PI);
         newBullet.rotation = 450 - degree;
 
-        newBullet.x = this.node.x;
-        newBullet.y = this.node.y;
+        newBullet.x = this.node.x
+        newBullet.y = this.node.y
         newBullet.zIndex = -1;
         bulletSetting.direction = dir;
         bulletSetting.speed = this.bulletSpeed;
@@ -69,8 +75,8 @@ cc.Class({
             let r = Math.atan2(this.dir.y, this.dir.x);
             let degree = r * 180 / (Math.PI) + 5 * i;
             newBullet.rotation = 450 - degree;
-            newBullet.x = this.node.x;
-            newBullet.y = this.node.y;
+            newBullet.x = this.node.x
+            newBullet.y = this.node.y
             newBullet.zIndex = -1;
 
             bulletSetting.direction = cc.v2(Math.cos(degree*Math.PI/180), Math.sin(degree*Math.PI/180));
@@ -84,8 +90,8 @@ cc.Class({
             let r = Math.atan2(this.dir.y, this.dir.x);
             let degree = r * 180 / (Math.PI) - 5 * i;
             newBullet.rotation = 450 - degree;
-            newBullet.x = this.node.x;
-            newBullet.y = this.node.y;
+            newBullet.x = this.node.x
+            newBullet.y = this.node.y
             newBullet.zIndex = -1;
 
             bulletSetting.direction = cc.v2(Math.cos(degree*Math.PI/180), Math.sin(degree*Math.PI/180));

@@ -43,12 +43,22 @@ cc.Class({
         this.angle = 0
         this.circulateDir = 1
     },
+    
     onCollisionEnter (other, self) {
         if (other.node.group == "Map") {
             this.circulateDir *= -1
             return
         }
         else {
+            this.Explode.play()
+            var blast = cc.instantiate(this.BlastPrefab)
+
+            this.node.parent.addChild(blast)
+            blast.setPosition(this.node.x, this.node.y)
+
+            var animComponent = blast.getComponent(cc.Animation)
+            animComponent.play('blast3')
+
             this.node.destroy()
         }
     },

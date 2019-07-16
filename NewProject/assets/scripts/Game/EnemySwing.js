@@ -13,6 +13,7 @@ cc.Class({
 
     properties: {
         swingDuration: 0,
+        rotateDuration: 0,
         targetPosX: 0,
         targetPosY: 0,
     },
@@ -27,10 +28,14 @@ cc.Class({
     },
 
     setSwingAction: function(){
-        var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut());
-        var swingDown = cc.moveBy(this.swingDuration, cc.v2(-this.targetPosX, -this.targetPosY)).easing(cc.easeCubicActionInOut());
+        this.node.rotation = 180 * Math.atan(this.targetPosY / this.targetPosY) / Math.PI
+
+        var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut()); 
+        var rotate = cc.rotateBy(this.rotateDuration, 180)
+        var swingDown = cc.moveBy(this.swingDuration, cc.v2(-this.targetPosX, -this.targetPosY)).easing(cc.easeCubicActionInOut())
+        var rotate = cc.rotateBy(this.rotateDuration, 180)
         // 不断重复
-        return cc.repeatForever(cc.sequence(swingUp, swingDown));
+        return cc.repeatForever(cc.sequence(swingUp, rotate, swingDown, rotate));
     },
 
     start () {
