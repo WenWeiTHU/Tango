@@ -28,6 +28,7 @@ cc.Class({
 
     onCollisionEnter(other, self) {
         if (other.node.group == "Bind") {
+            debugger;
             this.Explode.play()
             for (let i = 0; i < 360; i += 360 / this.shootNum) {
                 // 构造新子弹，并设置参数

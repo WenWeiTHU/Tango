@@ -149,6 +149,7 @@ cc.Class({
                 break;
             }
             case 'mapH': {
+                debugger;
                 if(obj_map.node.y < this.node.y){
                     this.node.y = this.node.y + this.speed + 1
                 }

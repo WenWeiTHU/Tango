@@ -114,6 +114,8 @@ cc.Class({
                 thing = cc.instantiate(this.SpinEnemyPrefab)
                 thing.getComponent('EnemySpin').Explode = this.Explode2
                 thing.getComponent('EnemySpin').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                thing.getComponent('EnemySpin').centerX = posX
+                thing.getComponent('EnemySpin').centerY = posY                
                 break
             case 'swingEnemy':
                 thing = cc.instantiate(this.SwingEnemyPrefab)
@@ -125,6 +127,8 @@ cc.Class({
                 thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab
                 thing.getComponent('EnemyCopter').Explode = this.Explode2
                 thing.getComponent('EnemyCopter').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
+                thing.getComponent('EnemyCopter').centerX = posX
+                thing.getComponent('EnemyCopter').centerY = posY
                 break
             case 'supply':
                 thing = cc.instantiate(this.SupplyPrefab)
@@ -141,6 +145,7 @@ cc.Class({
         }
         this.node.addChild(thing)
         thing.setPosition(posX, posY)
+        return thing
     },
 
     /*

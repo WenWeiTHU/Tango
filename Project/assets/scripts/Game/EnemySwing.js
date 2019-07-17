@@ -21,14 +21,13 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        cc.director.getCollisionManager().enabled = true;
-        
-        this.swingAction = this.setSwingAction()
-        this.node.runAction(this.swingAction)
     },
 
     setSwingAction: function(){
-        this.node.rotation = 180 * Math.atan(this.targetPosY / this.targetPosY) / Math.PI
+        if(this.targetPosX === 0){
+            this.targetPosX = 1
+        }
+        this.node.rotation = 90 - 180 * Math.atan(this.targetPosY / this.targetPosX) / Math.PI
 
         var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut()); 
         var rotate = cc.rotateBy(this.rotateDuration, 180)
@@ -39,7 +38,10 @@ cc.Class({
     },
 
     start () {
-
+        cc.director.getCollisionManager().enabled = true;
+        
+        this.swingAction = this.setSwingAction()
+        this.node.runAction(this.swingAction)
     },
 
     // update (dt) {},
