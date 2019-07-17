@@ -3677,7 +3677,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "e8FZnXzdpJIqbBG5hQgQIM"
   },
   {
@@ -3819,7 +3821,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "6eHZZdB3FKZI52IL4e6OfH"
   },
   {
@@ -3961,7 +3965,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "0eir2CYaNHlZGK0tkWYVCz"
   },
   {
@@ -4103,7 +4109,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "50Kqs8Nk1GjbmURhhmW6XP"
   },
   {
@@ -4245,7 +4253,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "65SbxAW/NLkYhJthEkgBQu"
   },
   {
@@ -4387,7 +4397,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "0anhx34mVHkJnGRrKzJ8ky"
   },
   {
@@ -4529,7 +4541,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "05XcrEAT1N6r/r+BASvmg3"
   },
   {
@@ -4671,7 +4685,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "66u6GCl9RDYrNbPG30P6ex"
   },
   {
@@ -4813,7 +4829,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "32Sp5O5bxB061PU5FljXy6"
   },
   {
@@ -4955,7 +4973,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "76We/xcZlEg5F74UWinxhg"
   },
   {
@@ -5097,7 +5117,9 @@
     "BlastPrefab": {
       "__uuid__": "2bb4c66a-ac4b-4069-9b35-1e8357edea23"
     },
-    "Explode": null,
+    "Explode": {
+      "__id__": 10
+    },
     "_id": "a1KLaA6XdGuZAyBnZ5zLxm"
   },
   {
