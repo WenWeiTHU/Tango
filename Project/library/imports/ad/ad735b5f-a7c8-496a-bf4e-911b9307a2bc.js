@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'ad735tfp8hJar9OkRuTB6K8', 'Map');
-// scripts/Map.js
+// scripts/Game/Map.js
 
 "use strict";
 
