@@ -24,6 +24,10 @@ cc.Class({
             type: cc.Button,
             default: null
         },
+        helpBtn: {
+            type: cc.Button,
+            default: null
+        },
         bindR: {
             type: cc.Node,
             default: null
@@ -41,11 +45,19 @@ cc.Class({
             default: null
         },
         BlastPrefab1: {
-            type:cc.Prefab,
+            type: cc.Prefab,
             default: null,
         },
         BlastPrefab2: {
-            type:cc.Prefab,
+            type: cc.Prefab,
+            default: null,
+        },
+        enemySwing1: {
+            type: cc.Node,
+            default: null,
+        },
+        enemySwing2: {
+            type: cc.Node,
             default: null,
         },
     },
@@ -53,7 +65,8 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
-        this.startBtn.node.on('click', this.startClick, this)
+        this.startBtn.node.on('click', () => { cc.director.loadScene("Game") }, this)
+        this.helpBtn.node.on('click', () => { cc.director.loadScene("Help") }, this)
         this.spinDegree = 0
 
         var bindAnimComponent = this.bindR.getComponent(cc.Animation)
@@ -64,11 +77,15 @@ cc.Class({
         var bindAnimState2 = bindAnimComponent2.play('bindAnim2')
         bindAnimState2.wrapMode = cc.WrapMode.Loop
 
-        this.schedule(this.explosion, 3);
-    },
+        var swingRight = cc.moveBy(2.0, cc.v2(this.enemySwing2.x - this.enemySwing1.x, 0)).easing(cc.easeCubicActionInOut());
+        var rotate1 = cc.rotateBy(1.0 , 180)
+        var rotate2 = cc.rotateBy(1.0 , -180)
+        var swingLeft = cc.moveBy(2.0, cc.v2(this.enemySwing1.x - this.enemySwing2.x, 0)).easing(cc.easeCubicActionInOut())
+        // 不断重复
+        this.enemySwing1.runAction(cc.repeatForever(cc.sequence(swingRight, rotate1, swingLeft, rotate2)))
+        this.enemySwing2.runAction(cc.repeatForever(cc.sequence(swingLeft, rotate2, swingRight, rotate1)))
 
-    startClick() {
-        cc.director.loadScene("Game");
+        this.schedule(this.explosion, 3);
     },
 
     explosion: function () {
@@ -86,7 +103,6 @@ cc.Class({
     },
 
     start() {
-
     },
 
     update(dt) {
@@ -96,7 +112,7 @@ cc.Class({
 
         this.spinDegree += 0.3
         this.spinDegree = this.spinDegree > 360 ? this.spinDegree - 360 : this.spinDegree
-        this.enemySpin.x = 815 + 120 * Math.sin(this.spinDegree * Math.PI / 180)
-        this.enemySpin.y = 220 + 120 * Math.cos(this.spinDegree * Math.PI / 180)
+        this.enemySpin.x = this.enemyStatic.x + 135 * Math.sin(this.spinDegree * Math.PI / 180)
+        this.enemySpin.y = this.enemyStatic.y + 135 * Math.cos(this.spinDegree * Math.PI / 180)
     },
 });

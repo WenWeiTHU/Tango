@@ -68,7 +68,7 @@ cc.Class({
     },
 
     face: function () {
-        this.angle += this.circulateDir*this.circulateUpdate;
+        this.angle += this.circulateDir * this.circulateUpdate;
         this.angle = this.angle > 360 ? this.angle - 360 : this.angle
 
         this.node.rotation = this.angle + 180
@@ -78,7 +78,7 @@ cc.Class({
     },
 
     update (dt) {
-        this.flyDegree += this.circulateDir*this.flyRotationUpdate/Math.PI
+        this.flyDegree += this.circulateDir * this.flyRotationUpdate/Math.PI
         this.flyDegree = this.flyDegree > 360 ? this.flyDegree - 360 : this.flyDegree
         this.Fly.rotation = this.flyDegree
         

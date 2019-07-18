@@ -15,40 +15,40 @@ cc.Class({
             event: cc.EventListener.KEYBOARD,
             onKeyPressed: function (keyCode, event) {
                 switch (keyCode) {
-                    case cc.KEY.a:
-                    case cc.KEY.left:
+                    case cc.macro.KEY.a:
+                    case cc.macro.KEY.left:
                         self.toWhereX = -10;
                         break;
-                    case cc.KEY.d:
-                    case cc.KEY.right:
+                    case cc.macro.KEY.d:
+                    case cc.macro.KEY.right:
                         self.goToWhereX = 10;
                         break;
-                    case cc.KEY.w:
-                    case cc.KEY.up:
+                    case cc.macro.KEY.w:
+                    case cc.macro.KEY.up:
                         self.goToWhereY = 10;
                         break;
-                    case cc.KEY.s:
-                    case cc.KEY.down:
+                    case cc.macro.KEY.s:
+                    case cc.macro.KEY.down:
                         self.toWhereY = -10;
                         break;
                 }
             },
             onKeyReleased: function (keyCode, event) {
                 switch (keyCode) {
-                    case cc.KEY.a:
-                    case cc.KEY.left:
+                    case cc.macro.KEY.a:
+                    case cc.macro.KEY.left:
                         self.toWhereX = 0;
                         break;
-                    case cc.KEY.d:
-                    case cc.KEY.right:
+                    case cc.macro.KEY.d:
+                    case cc.macro.KEY.right:
                         self.goToWhereX = 0;
                         break;
-                    case cc.KEY.w:
-                    case cc.KEY.up:
+                    case cc.macro.KEY.w:
+                    case cc.macro.KEY.up:
                         self.goToWhereY = 0;
                         break;
-                    case cc.KEY.s:
-                    case cc.KEY.down:
+                    case cc.macro.KEY.s:
+                    case cc.macro.KEY.down:
                         self.toWhereY = 0;
                         break;
                 }
@@ -57,34 +57,22 @@ cc.Class({
     },
 
     goToLeft: function () {
-        if (this.node.x <= (-this.node.parent.width / 2.0 + 100)) {
-            return;
-        }
-        this.node.runAction(cc.moveBy(0.25, cc.p(this.toWhereX, 0)));
+        this.node.runAction(cc.moveBy(0.25, cc.v2(this.toWhereX, 0)));
         // this.node.x -=100;
     },
 
     goToRigth: function () {
-        if (this.node.x >= (this.node.parent.width / 2.0 - 100)) {
-            return;
-        }
-        this.node.runAction(cc.moveBy(0.25, cc.p(this.goToWhereX, 0)))
+        this.node.runAction(cc.moveBy(0.25, cc.v2(this.goToWhereX, 0)))
         // this.node.x +=100;
     },
 
     goToUp: function () {
-        if (this.node.y >= (this.node.parent.height / 2.0 - 100)) {
-            return;
-        }
-        this.node.runAction(cc.moveBy(0.25, cc.p(0, this.goToWhereY)));
+        this.node.runAction(cc.moveBy(0.25, cc.v2(0, this.goToWhereY)));
 
     },
 
     goToBottom: function () {
-        if (this.node.y <= (-this.node.parent.height / 2.0 + 100)) {
-            return;
-        }
-        this.node.runAction(cc.moveBy(0.25, cc.p(0, this.toWhereY)));
+        this.node.runAction(cc.moveBy(0.25, cc.v2(0, this.toWhereY)));
     },
     // called every frame, uncomment this function to activate update callback
     update: function (dt) {

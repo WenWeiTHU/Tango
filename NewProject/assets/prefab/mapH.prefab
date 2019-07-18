@@ -12,12 +12,12 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "mapUp",
+    "_name": "mapH",
     "_objFlags": 0,
     "_parent": null,
     "_children": [],
     "_active": true,
-    "_level": 2,
+    "_level": 1,
     "_components": [
       {
         "__id__": 2
@@ -141,7 +141,7 @@
       "__id__": 1
     },
     "asset": {
-      "__id__": 0
+      "__uuid__": "33ba179d-5904-42d5-9f39-8d0bb2f458ec"
     },
     "fileId": "44lFpT4FlJC62wmlMnQPhy",
     "sync": false

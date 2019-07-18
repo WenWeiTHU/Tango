@@ -68,30 +68,32 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        Explode1:{
+        Explode1: {
             type: cc.AudioSource,
             default: null
         },
-        Explode2:{
+        Explode2: {
             type: cc.AudioSource,
             default: null
         },
-        Explode3:{
+        Explode3: {
             type: cc.AudioSource,
             default: null
         },
+        Width: 2500,
+        Height: 2500,
         borderSize: 35,
     },
 
     // TODO 避免重叠
     // LIFE-CYCLE CALLBACKS:
     getRandomPosition: function () {
-        var maxX = this.node.width / 2 - this.borderSize;
-        var randX = (Math.random() - 0.5) * 2 * maxX;
-        var maxY = this.node.height / 2 - this.borderSize;
-        var randY = (Math.random() - 0.5) * 2 * maxY;
+        var maxX = this.Width / 2 - this.borderSize;
+        var randX = (Math.random() - 0.5) * 2 * maxX
+        var maxY = this.Height / 2 - this.borderSize
+        var randY = (Math.random() - 0.5) * 2 * maxY
 
-        return cc.v2(randX, randY);
+        return cc.v2(randX, randY)
     },
 
     generate: function (posX, posY, name) {
@@ -113,17 +115,23 @@ cc.Class({
             case 'spinEnemy':
                 thing = cc.instantiate(this.SpinEnemyPrefab)
                 thing.getComponent('EnemySpin').Explode = this.Explode2
+                thing.getComponent('EnemySpin').centerX = posX
+                thing.getComponent('EnemySpin').centerY = posY
+
                 thing.getComponent('EnemySpin').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
                 break
             case 'swingEnemy':
                 thing = cc.instantiate(this.SwingEnemyPrefab)
                 thing.getComponent('EnemySwing').Explode = this.Explode1
-                thing.getComponent('EnemySwing').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
                 break
             case 'copterEnemy':
                 thing = cc.instantiate(this.CopterEnemyPrefab);
                 thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab
                 thing.getComponent('EnemyCopter').Explode = this.Explode2
+
+                thing.getComponent('EnemySpin').centerX = posX
+                thing.getComponent('EnemySpin').centerY = posY
+
                 thing.getComponent('EnemyCopter').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
                 break
             case 'supply':
@@ -141,50 +149,7 @@ cc.Class({
         }
         this.node.addChild(thing)
         thing.setPosition(posX, posY)
-    },
-
-    /*
-     * 根据设备分辨率生成地图边界
-     */
-    generateMap () {
-        var equipmentWidth = this.node.width
-        var equipmentHeight = this.node.height
-
-        var mapUp = cc.instantiate(this.MapHPrefab)
-        mapUp.y = (equipmentHeight + mapUp.height) / 2
-        mapUp.x = 0
-        mapUp.width = equipmentWidth + 10;
-        mapUp.name = 'mapUp'
-        
-        mapUp._components[1]._size.width = equipmentWidth + 10;
-        
-
-        var mapDown = cc.instantiate(this.MapHPrefab)
-        mapDown.y = -(equipmentHeight + mapDown.height) / 2
-        mapDown.x = 0
-        mapDown.name = 'mapDown'
-        mapDown.width = equipmentWidth + 10
-        mapDown._components[1]._size.width = equipmentWidth + 10
-        
-
-        var mapLeft = cc.instantiate(this.MapVPrefab)
-        mapLeft.x = -(equipmentWidth + mapLeft.width) / 2
-        mapLeft.y = 0
-        mapLeft.name = 'mapLeft'
-        mapLeft.height = equipmentHeight + 10
-        mapLeft._components[1]._size.height = equipmentHeight + 10
-
-        var mapRight = cc.instantiate(this.MapVPrefab)
-        mapRight.x = (equipmentWidth + mapRight.width) / 2
-        mapRight.y = 0
-        mapRight.name = 'mapRight'
-        mapRight.height = equipmentHeight + 10
-        mapRight._components[1]._size.height = equipmentHeight + 10
-
-        this.node.addChild(mapUp)
-        this.node.addChild(mapDown)
-        this.node.addChild(mapLeft)
-        this.node.addChild(mapRight)
+        return thing
     },
 
 
@@ -215,26 +180,159 @@ cc.Class({
 
     start() {
         this.scheduleOnce(this.initGame, 0);
-        this.generateMap()
+        // this.generateMap()
     },
 
     initGame: function () {
-        this.generate(0, 0, 'enemy')
-        this.generate(200, 200, 'staticEnemy')
-        this.generate(-200, 200, 'copterEnemy')
-        this.generate(200, -200, 'spinEnemy')
-        this.generate(300, 300, 'swingEnemy')
-        this.generate(500, 500, 'trackEnemy')
-        this.generate(-400, 400, 'battery')
-        this.generate(-400, -400, 'shieldSupply')
-        this.generate(-300, -400, 'supply')
+        this.generate(-500, 500, 'enemy')
+        this.generate(500, 500, 'enemy')
+        this.generate(500, -500, 'enemy')
+        this.generate(-500, -500, 'enemy')
 
+        this.generate(0, 0, 'supply')
 
+        this.SupplyHelp(20)
 
-        // this.schedule(() => {
-        //     let pos = this.getRandomPosition()
-        //     this.generate(pos.x, pos.y, 'supply')
-        // }, this.supplyInterval)
+        this.EnemyAttack(8)
+
+        this.scheduleOnce(() => {
+            this.StaticEnemyAttack(15)
+        }, 2)
+
+        this.scheduleOnce(() => {
+            this.TrackEnemyAttack(9)
+        }, 15)
+        
+        this.scheduleOnce(() => {
+            this.SpinEnemyAttack(13)
+        }, 32)
+
+        this.scheduleOnce(() => {
+            this.BatteryPowerUp(0, 0, 30)
+        }, 60)
+
+        this.scheduleOnce(() => {
+            this.CopterEnemyAttack(15)
+        }, 70)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 2200, 0, 10 , 6)
+        }, 120)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', 0, 2200 ,10 , 6)
+        }, 180)
+
+        this.scheduleOnce(() => {
+            this.BatteryAdd(60)
+        }, 150)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 1100, 1100 ,20 , 6)
+        }, 600)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', -1100, 1100 ,20 , 6)
+        }, 630)
+    },
+
+    EnemyAttack: function (time) {
+        this.schedule(() => {
+            for (let i = 0; i < 3; i++) {
+                let pos = this.getRandomPosition()
+                let thing = this.generate(pos.x, pos.y, 'enemy').getComponent('Enemy')
+                thing.speedX = 400 * (Math.random() - 0.5)
+                thing.speedY = 400 * (Math.random() - 0.5)
+            }
+        }, time)
+    },
+
+    StaticEnemyAttack: function (time) {
+        this.schedule(() => {
+            let pos = this.getRandomPosition()
+            this.generate(pos.x, pos.y, 'staticEnemy')
+        }, time)
+    },
+
+    TrackEnemyAttack: function (time) {
+        this.schedule(() => {
+            for (let i = 0; i < 3; i++) {
+                let pos = this.getRandomPosition()
+                this.generate(pos.x, pos.y, 'trackEnemy')
+            }
+        }, time)
+    },
+
+    SpinEnemyAttack: function (time) {
+        this.schedule(() => {
+            this.generate(this.Player1.x, this.Player1.y, 'spinEnemy')
+            this.generate(this.Player2.x, this.Player2.y, 'spinEnemy')
+        }, time)
+    },
+
+    CopterEnemyAttack: function (time) {
+        this.schedule(() => {
+            this.generate(this.Player1.x, this.Player1.y, 'copterEnemy')
+            this.generate(this.Player2.x, this.Player2.y, 'copterEnemy')
+        }, time)
+    },
+
+    SwingEnemyAttack(dir, targetposX, targetposY, num, duration){
+        this.scheduleOnce(() => {
+            for (let i = -1100; i < 1100; i += 2200 / (num  - 1)) {
+                let thing
+                if(dir === 'x'){
+                    thing = this.generate(-1100, i, 'swingEnemy').getComponent('EnemySwing')
+                }
+                else if(dir === 'y'){
+                    thing = this.generate(i, -1100, 'swingEnemy').getComponent('EnemySwing')
+                }
+                
+                thing.targetPosX = targetposX
+                thing.targetPosY = targetposY
+                thing.swingDuration = duration
+            }
+        }, 0)
+    },
+
+    SupplyHelp: function (time) {
+        this.schedule(() => {
+            let pos = this.getRandomPosition()
+            let num = Math.random()
+            if (num > 0.5) {
+                this.generate(pos.x, pos.y, 'shieldSupply')
+            } else {
+                this.generate(pos.x, pos.y, 'supply')
+            }
+        }, time)
+    },
+
+    BatteryAdd: function (time) {
+        this.scheduleOnce(() => {
+            this.generate(1100, 1100, 'battery')
+            this.scheduleOnce(() => {
+                this.generate(1100, -1100, 'battery')
+                this.scheduleOnce(() => {
+                    this.generate(-1100, -1100, 'battery')
+                }, time)
+            }, time)
+        }, time)
+    },
+
+    BatteryPowerUp: function (posx, posy, time) {
+        this.scheduleOnce(() => {
+            var Battery = this.generate(posx, posy, 'battery').getComponent('Battery')
+            Battery.shootNum = 1
+            this.scheduleOnce(() => {
+                Battery.shootNum = 2
+                this.scheduleOnce(() => {
+                    Battery.shootNum = 3
+                    this.scheduleOnce(() => {
+                        Battery.shootNum = 4
+                    }, time)
+                }, time)
+            }, time)
+        }, time)
     },
 
     update(dt) {
