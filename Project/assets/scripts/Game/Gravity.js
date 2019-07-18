@@ -47,8 +47,6 @@ cc.Class({
     },
 
     update (dt) {
-        console.log(this.Player1.x)
-        console.log(this.Player2.x)
 
         this.dir = cc.v2(this.Player1.x - this.Player2.x, this.Player1.y - this.Player2.y)
         this.distance = this.dir.mag()

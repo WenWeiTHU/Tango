@@ -179,7 +179,160 @@ cc.Class({
     },
 
     start() {
+        this.scheduleOnce(this.initGame, 0);
         // this.generateMap()
+    },
+
+    initGame: function () {
+        this.generate(-500, 500, 'enemy')
+        this.generate(500, 500, 'enemy')
+        this.generate(500, -500, 'enemy')
+        this.generate(-500, -500, 'enemy')
+
+        this.generate(0, 0, 'supply')
+
+        this.SupplyHelp(20)
+
+        this.EnemyAttack(8)
+
+        this.scheduleOnce(() => {
+            this.StaticEnemyAttack(15)
+        }, 2)
+
+        this.scheduleOnce(() => {
+            this.TrackEnemyAttack(9)
+        }, 15)
+        
+        this.scheduleOnce(() => {
+            this.SpinEnemyAttack(13)
+        }, 32)
+
+        this.scheduleOnce(() => {
+            this.BatteryPowerUp(0, 0, 30)
+        }, 60)
+
+        this.scheduleOnce(() => {
+            this.CopterEnemyAttack(15)
+        }, 70)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 2200, 0, 10 , 6)
+        }, 120)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', 0, 2200 ,10 , 6)
+        }, 180)
+
+        this.scheduleOnce(() => {
+            this.BatteryAdd(60)
+        }, 150)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 1100, 1100 ,20 , 6)
+        }, 600)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', -1100, 1100 ,20 , 6)
+        }, 630)
+    },
+
+    EnemyAttack: function (time) {
+        this.schedule(() => {
+            for (let i = 0; i < 3; i++) {
+                let pos = this.getRandomPosition()
+                let thing = this.generate(pos.x, pos.y, 'enemy').getComponent('Enemy')
+                thing.speedX = 400 * (Math.random() - 0.5)
+                thing.speedY = 400 * (Math.random() - 0.5)
+            }
+        }, time)
+    },
+
+    StaticEnemyAttack: function (time) {
+        this.schedule(() => {
+            let pos = this.getRandomPosition()
+            this.generate(pos.x, pos.y, 'staticEnemy')
+        }, time)
+    },
+
+    TrackEnemyAttack: function (time) {
+        this.schedule(() => {
+            for (let i = 0; i < 3; i++) {
+                let pos = this.getRandomPosition()
+                this.generate(pos.x, pos.y, 'trackEnemy')
+            }
+        }, time)
+    },
+
+    SpinEnemyAttack: function (time) {
+        this.schedule(() => {
+            this.generate(this.Player1.x, this.Player1.y, 'spinEnemy')
+            this.generate(this.Player2.x, this.Player2.y, 'spinEnemy')
+        }, time)
+    },
+
+    CopterEnemyAttack: function (time) {
+        this.schedule(() => {
+            this.generate(this.Player1.x, this.Player1.y, 'copterEnemy')
+            this.generate(this.Player2.x, this.Player2.y, 'copterEnemy')
+        }, time)
+    },
+
+    SwingEnemyAttack(dir, targetposX, targetposY, num, duration){
+        this.scheduleOnce(() => {
+            for (let i = -1100; i < 1100; i += 2200 / (num  - 1)) {
+                let thing
+                if(dir === 'x'){
+                    thing = this.generate(-1100, i, 'swingEnemy').getComponent('EnemySwing')
+                }
+                else if(dir === 'y'){
+                    thing = this.generate(i, -1100, 'swingEnemy').getComponent('EnemySwing')
+                }
+                
+                thing.targetPosX = targetposX
+                thing.targetPosY = targetposY
+                thing.swingDuration = duration
+            }
+        }, 0)
+    },
+
+    SupplyHelp: function (time) {
+        this.schedule(() => {
+            let pos = this.getRandomPosition()
+            let num = Math.random()
+            if (num > 0.5) {
+                this.generate(pos.x, pos.y, 'shieldSupply')
+            } else {
+                this.generate(pos.x, pos.y, 'supply')
+            }
+        }, time)
+    },
+
+    BatteryAdd: function (time) {
+        this.scheduleOnce(() => {
+            this.generate(1100, 1100, 'battery')
+            this.scheduleOnce(() => {
+                this.generate(1100, -1100, 'battery')
+                this.scheduleOnce(() => {
+                    this.generate(-1100, -1100, 'battery')
+                }, time)
+            }, time)
+        }, time)
+    },
+
+    BatteryPowerUp: function (posx, posy, time) {
+        this.scheduleOnce(() => {
+            var Battery = this.generate(posx, posy, 'battery').getComponent('Battery')
+            Battery.shootNum = 1
+            this.scheduleOnce(() => {
+                Battery.shootNum = 2
+                this.scheduleOnce(() => {
+                    Battery.shootNum = 3
+                    this.scheduleOnce(() => {
+                        Battery.shootNum = 4
+                    }, time)
+                }, time)
+            }, time)
+        }, time)
     },
 
     update(dt) {

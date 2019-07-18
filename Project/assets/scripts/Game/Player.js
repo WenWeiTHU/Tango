@@ -121,7 +121,6 @@ cc.Class({
     lostLife: function(){
         if(!this.immortal){
             this.life--
-            console.log(this.life)
             this.immortal = true
             setTimeout(function () {
                 this.immortal = false
@@ -133,8 +132,6 @@ cc.Class({
      * 与地图的碰撞事件
      */
     mapCollision(obj_map) {
-        console.log(obj_map.node)
-        console.log(this.node.x)
         var name = obj_map.node._name
         // 直接回弹
         switch (name) {
@@ -149,7 +146,6 @@ cc.Class({
                 break;
             }
             case 'mapH': {
-                debugger;
                 if(obj_map.node.y < this.node.y){
                     this.node.y = this.node.y + this.speed + 1
                 }

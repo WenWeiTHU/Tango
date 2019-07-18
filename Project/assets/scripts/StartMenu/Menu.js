@@ -86,7 +86,7 @@ cc.Class({
     },
 
     startClick() {
-        cc.director.loadScene("Game");
+        cc.director.loadScene("Selection");
     },
 
     explosion: function () {
