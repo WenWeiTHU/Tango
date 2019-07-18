@@ -61,6 +61,12 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        if(cc.sys.localStorage.getItem("Stage1") === null) {
+            cc.sys.localStorage.setItem("Stage1", true)
+            for(var i = 2; i < 11; ++i) {
+                cc.sys.localStorage.setItem("Stage" + String(i), false)
+            }
+        }
         this.startBtn.node.on('click', this.startClick, this)
         this.spinDegree = 0
 

@@ -1,0 +1,93 @@
+2019-07-18T11:11:10.963Z - normal: Load ~/.CocosCreator/settings.json
+2019-07-18T11:11:12.269Z - normal: Initializing Asset Database
+2019-07-18T11:11:12.275Z - normal: checking language setting...
+2019-07-18T11:11:12.275Z - normal: Language: zh
+2019-07-18T11:11:13.626Z - success: preview server running at http://localhost:7457
+2019-07-18T11:11:13.626Z - success: protocol editor-framework registered
+2019-07-18T11:11:13.626Z - success: protocol app registered
+2019-07-18T11:11:13.626Z - success: protocol theme registered
+2019-07-18T11:11:13.627Z - success: protocol packages registered
+2019-07-18T11:11:13.627Z - success: protocol uuid registerred
+2019-07-18T11:11:13.627Z - success: protocol db registerred
+2019-07-18T11:11:13.627Z - success: protocol thumbnail registerred
+2019-07-18T11:11:13.627Z - success: protocol unpack registerred
+2019-07-18T11:11:13.627Z - success: protocol disable-commonjs registerred
+2019-07-18T11:11:13.734Z - normal: connected!
+2019-07-18T11:11:13.735Z - normal: Check project C:\Users\lenovo\Desktop\Tango-map\Project
+2019-07-18T11:11:13.739Z - normal: Initializing project C:\Users\lenovo\Desktop\Tango-map\Project
+2019-07-18T11:11:14.561Z - normal: Initializing Cocos2d
+2019-07-18T11:11:15.898Z - normal: Initializing engine extends
+2019-07-18T11:11:15.966Z - success: asset-db-debugger loaded
+2019-07-18T11:11:15.972Z - success: baidu-adapter loaded
+2019-07-18T11:11:15.982Z - success: color-picker loaded
+2019-07-18T11:11:16.385Z - success: fb-audience-network loaded
+2019-07-18T11:11:16.613Z - success: fb-live-stream loaded
+2019-07-18T11:11:16.627Z - success: google-play-instant loaded
+2019-07-18T11:11:16.645Z - success: huawei-runtime loaded
+2019-07-18T11:11:17.498Z - success: cpk-publish loaded
+2019-07-18T11:11:17.499Z - success: jsb-adapter loaded
+2019-07-18T11:11:17.510Z - success: oppo-runtime loaded
+2019-07-18T11:11:17.521Z - success: package-manager loaded
+2019-07-18T11:11:17.823Z - success: qqplay-adapter loaded
+2019-07-18T11:11:17.828Z - success: runtime-dev-tools loaded
+2019-07-18T11:11:17.836Z - success: sdkbox loaded
+2019-07-18T11:11:17.845Z - success: tester loaded
+2019-07-18T11:11:17.850Z - success: ui-grid loaded
+2019-07-18T11:11:17.854Z - success: ui-kit-preview-extra loaded
+2019-07-18T11:11:17.859Z - success: ui-kit-preview loaded
+2019-07-18T11:11:17.863Z - success: ui-kit loaded
+2019-07-18T11:11:17.867Z - success: ui-tree loaded
+2019-07-18T11:11:17.883Z - success: vivo-runtime loaded
+2019-07-18T11:11:17.885Z - success: weapp-adapter loaded
+2019-07-18T11:11:17.886Z - success: xiaomi-adapter loaded
+2019-07-18T11:11:17.971Z - success: assets loaded
+2019-07-18T11:11:17.974Z - success: builder loaded
+2019-07-18T11:11:18.916Z - success: cocos-services loaded
+2019-07-18T11:11:18.925Z - success: console loaded
+2019-07-18T11:11:18.992Z - success: fb-instant-games loaded
+2019-07-18T11:11:18.995Z - success: google-instant-games loaded
+2019-07-18T11:11:19.006Z - success: hierarchy loaded
+2019-07-18T11:11:19.011Z - success: inspector loaded
+2019-07-18T11:11:19.014Z - success: keystore loaded
+2019-07-18T11:11:19.022Z - success: node-library loaded
+2019-07-18T11:11:19.024Z - success: package-asset loaded
+2019-07-18T11:11:19.027Z - success: preferences loaded
+2019-07-18T11:11:19.034Z - success: project-exporter loaded
+2019-07-18T11:11:19.039Z - success: project-importer loaded
+2019-07-18T11:11:19.043Z - success: project-settings loaded
+2019-07-18T11:11:19.050Z - success: scene loaded
+2019-07-18T11:11:19.053Z - success: simulator-debugger loaded
+2019-07-18T11:11:19.055Z - success: sprite-editor loaded
+2019-07-18T11:11:19.060Z - success: store loaded
+2019-07-18T11:11:19.066Z - success: timeline loaded
+2019-07-18T11:11:19.078Z - success: xiaomi-runtime loaded
+2019-07-18T11:11:20.682Z - info: Cocos Services load base data!
+2019-07-18T11:11:24.707Z - normal: Loading packages
+2019-07-18T11:11:24.720Z - normal: Watching packages
+2019-07-18T11:11:26.597Z - normal: Run Application
+2019-07-18T12:16:48.638Z - failed: [db-task][sync-changes] Failed to import asset C:\Users\lenovo\Desktop\Tango-map\Project\assets\scripts\Game\Game.js, message: Compile error: SyntaxError: C:/Users/lenovo/Desktop/Tango-map/Project/assets/scripts/Game/Game.js: Unexpected token (204:12)
+  202 |                 case 'UI':
+  203 |                 case 
+> 204 |             }
+      |             ^
+  205 |         }
+  206 |         this.pause = this.pause ? false : true
+  207 |     }
+    at Parser.pp$5.raise (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:4454:13)
+    at Parser.pp.unexpected (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:1761:8)
+    at Parser.pp$3.parseExprAtom (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3750:12)
+    at Parser.pp$3.parseExprSubscripts (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3494:19)
+    at Parser.pp$3.parseMaybeUnary (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3474:19)
+    at Parser.pp$3.parseExprOps (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3404:19)
+    at Parser.pp$3.parseMaybeConditional (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3381:19)
+    at Parser.pp$3.parseMaybeAssign (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3344:19)
+    at Parser.pp$3.parseExpression (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:3306:19)
+    at Parser.pp$1.parseSwitchStatement (D:\Program Files\CocosCreator\resources\app.asar\node_modules\babylon\lib\index.js:2105:25)
+2019-07-18T12:25:51.210Z - warn: The Asset used by component "cc.Camera" is missing. Detailed information:
+Node path: "Canvas/UI Camera"
+Missing uuid: "bca9682a-0b12-4107-a2a4-6ad006e18f70"
+
+2019-07-18T12:25:51.213Z - warn: The Asset used by component "cc.Camera" is missing. Detailed information:
+Node path: "Canvas/UI Camera"
+Missing uuid: "bca9682a-0b12-4107-a2a4-6ad006e18f70"
+

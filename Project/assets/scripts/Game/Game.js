@@ -28,6 +28,10 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        PauseMenuPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         EnemyPrefab: {
             type: cc.Prefab,
             default: null
@@ -78,6 +82,10 @@ cc.Class({
         },
         Explode3: {
             type: cc.AudioSource,
+            default: null
+        },
+        pauseBtn: {
+            type: cc.Button,
             default: null
         },
         Width: 2500,
@@ -154,6 +162,7 @@ cc.Class({
 
 
     onLoad() {
+        this.pauseBtn.node.on("click", this.pauseScene, this)
         for (var i = 0; i < this.node.children.length; ++i) {
             switch (this.node.children[i].name) {
                 case 'player1': {
@@ -185,4 +194,33 @@ cc.Class({
     update(dt) {
 
     },
+    pauseScene () {
+        for (var child of this.node.children) {
+            switch (child.name) {
+                case 'Enemy':
+                case 'Map':
+                case 'player1':
+                case 'player2':
+                case 'bind':
+                case 'target': {
+                    child.active = this.pause
+                }
+                case 'UI': {
+                    for (var grandSon of child.children) {
+                        grandSon.active = false
+                    }
+                }
+            }
+        }
+        this.pause = this.pause ? false : true
+        if (this.pause) {
+            var Menu = cc.instantiate(this.PauseMenuPrefab)
+            Menu.x = 0
+            Menu.y = 0
+            Menu.group = 'UI'
+            debugger;
+            this.node.getChildByName('UI').active = true
+            this.node.getChildByName("UI").addChild(Menu)
+        }
+    }
 });
