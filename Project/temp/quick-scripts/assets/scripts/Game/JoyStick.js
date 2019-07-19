@@ -2,7 +2,7 @@
 cc._RF.push(module, '2f23cWeQ/ZJ3YlMNvIXPcON', 'JoyStick', __filename);
 // scripts/Game/JoyStick.js
 
-"use strict";
+'use strict';
 
 // Learn cc.Class:
 //  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
@@ -75,6 +75,12 @@ cc.Class({
         this.node.parent.addChild(this.newShield);
         this.newShield.x = this.Player.x;
         this.newShield.y = this.Player.y;
+
+        if (this.node.name === 'stickLeft') {
+            this.newShield.name = 'shieldLeft';
+        } else {
+            this.newShield.name = 'shieldRight';
+        }
 
         this.newShield.active = false;
 

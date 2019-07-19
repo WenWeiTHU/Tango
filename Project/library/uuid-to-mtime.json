@@ -1105,7 +1105,7 @@
     "relativePath": "log\\log.txt"
   },
   "7b5932eb-5571-404f-bdbf-2c9afc7d686e": {
-    "asset": 1563436613000,
+    "asset": 1563455606865,
     "meta": 1563436613000,
     "relativePath": "prefab"
   },
@@ -1215,8 +1215,8 @@
     "relativePath": "resource\\img\\beginMenu"
   },
   "3f9de2aa-9d30-44c9-946e-784bc4da5d9a": {
-    "asset": 1563436613000,
-    "meta": 1563439375993,
+    "asset": 1563516560310,
+    "meta": 1563516560358,
     "relativePath": "prefab\\target.prefab"
   },
   "d17da46a-fb5b-46d9-8378-a30a82858a20": {
@@ -1235,7 +1235,7 @@
     "relativePath": "resource\\img\\beginMenu\\playBtn.png"
   },
   "768b6b17-c4ee-4592-b7a5-4f99612d9484": {
-    "asset": 1563436613000,
+    "asset": 1563452597120,
     "meta": 1563436613000,
     "relativePath": "resource\\img\\Game"
   },
@@ -1365,7 +1365,7 @@
     "relativePath": "resource\\img\\Game\\track.png"
   },
   "1a0bcdcb-46ee-4dab-afe3-23ec2d2e0fa0": {
-    "asset": 1563442537035,
+    "asset": 1563523367353,
     "meta": 1563436613000,
     "relativePath": "resource\\img\\Selection"
   },
@@ -1390,13 +1390,13 @@
     "relativePath": "resource\\img\\Selection\\continue.png"
   },
   "e95b089d-b6cf-4abb-bfee-00ba6a00c64c": {
-    "asset": 1563443163647,
+    "asset": 1563516264134,
     "meta": 1563436613000,
     "relativePath": "scene"
   },
   "c18f2ccb-72cb-478f-9038-4cabe5958b6f": {
-    "asset": 1563436613000,
-    "meta": 1563439376731,
+    "asset": 1563536685740,
+    "meta": 1563536685826,
     "relativePath": "scene\\beginMenu.fire"
   },
   "2a6b44f5-57d6-4137-9993-7a965bef67fc": {
@@ -1405,8 +1405,8 @@
     "relativePath": "scene\\Game.fire"
   },
   "a6ebbf4b-3aee-42ce-ac55-89da6fcf6e52": {
-    "asset": 1563436613000,
-    "meta": 1563439376751,
+    "asset": 1563539660295,
+    "meta": 1563539660332,
     "relativePath": "scene\\Infinity War.fire"
   },
   "eec0a7a9-0d73-4a6e-9739-af7133dc305c": {
@@ -1415,8 +1415,8 @@
     "relativePath": "scene\\Selection.fire"
   },
   "09d6663a-bb9c-4c10-af11-caadbf48a6cd": {
-    "asset": 1563455518959,
-    "meta": 1563455519001,
+    "asset": 1563533864610,
+    "meta": 1563533864646,
     "relativePath": "scene\\Stage1.fire"
   },
   "a92d99ff-781b-4d00-bb45-b87d795a0b10": {
@@ -1425,37 +1425,37 @@
     "relativePath": "resource\\img\\Selection\\suvive.png"
   },
   "809cdf9c-070c-49c3-9af1-da1bce60ff57": {
-    "asset": 1563455660802,
-    "meta": 1563455660874,
+    "asset": 1563528603598,
+    "meta": 1563528603646,
     "relativePath": "scene\\Stage2.fire"
   },
   "4fc64cd1-b9a8-4f31-b048-710ac7bfa7ab": {
-    "asset": 1563436613000,
-    "meta": 1563439376800,
+    "asset": 1563529081762,
+    "meta": 1563529081813,
     "relativePath": "scene\\Stage3.fire"
   },
   "cd823700-393a-4f0f-91e4-c8cbe951f061": {
-    "asset": 1563436613000,
-    "meta": 1563439376813,
+    "asset": 1563529243236,
+    "meta": 1563529243314,
     "relativePath": "scene\\Stage4.fire"
   },
   "739e20a6-d8c3-4e86-a610-3e677a116ae2": {
-    "asset": 1563436613000,
-    "meta": 1563439376826,
+    "asset": 1563529374116,
+    "meta": 1563529374223,
     "relativePath": "scene\\Stage5.fire"
   },
   "f6f7ad04-7a53-413d-977a-5f903777750c": {
-    "asset": 1563436613000,
-    "meta": 1563439376837,
+    "asset": 1563529717245,
+    "meta": 1563529717319,
     "relativePath": "scene\\Stage6.fire"
   },
   "c84023ab-d342-433d-afca-e00d9be7d72e": {
-    "asset": 1563442931432,
+    "asset": 1563516104026,
     "meta": 1563436613000,
     "relativePath": "scripts"
   },
   "be290017-1503-40c8-8d8b-fe27e3cb0154": {
-    "asset": 1563442925759,
+    "asset": 1563524572421,
     "meta": 1563436613000,
     "relativePath": "scripts\\Game"
   },
@@ -1534,25 +1534,10 @@
     "meta": 1563439377946,
     "relativePath": "scripts\\Game\\Gravity.js"
   },
-  "0312d836-632b-4831-9405-b547574c4150": {
-    "asset": 1563436613000,
-    "meta": 1563439377999,
-    "relativePath": "scripts\\Game\\InfinityWar.js"
-  },
-  "2f23c59e-43f6-49dd-894c-36f2173dc38d": {
-    "asset": 1563436613000,
-    "meta": 1563439378008,
-    "relativePath": "scripts\\Game\\JoyStick.js"
-  },
   "ad735b5f-a7c8-496a-bf4e-911b9307a2bc": {
     "asset": 1563436613000,
     "meta": 1563439378103,
     "relativePath": "scripts\\Game\\Map.js"
-  },
-  "4f7a716d-9523-43e6-9a79-4f4944f133f8": {
-    "asset": 1563436613000,
-    "meta": 1563439378117,
-    "relativePath": "scripts\\Game\\Player.js"
   },
   "78ffbc04-5b2f-476a-82b9-38147792b9c6": {
     "asset": 1563436613000,
@@ -1564,20 +1549,10 @@
     "meta": 1563439378154,
     "relativePath": "scripts\\Game\\Shield.js"
   },
-  "296b5c31-2f30-440a-939a-cd85deb1c389": {
-    "asset": 1563436613000,
-    "meta": 1563439378182,
-    "relativePath": "scripts\\Game\\StageControl.js"
-  },
   "52490e2d-3a5d-4c92-9671-261d2006c6cd": {
     "asset": 1563436613000,
     "meta": 1563439378202,
     "relativePath": "scripts\\Game\\Supply.js"
-  },
-  "e58f5333-0f73-4559-84f4-9723ceb88dbf": {
-    "asset": 1563436613000,
-    "meta": 1563439378245,
-    "relativePath": "scripts\\Game\\Transition.js"
   },
   "15bace04-c988-4d1c-af32-c95461078a89": {
     "asset": 1563436613000,
@@ -1595,34 +1570,9 @@
     "relativePath": "ttf\\Cornerstone.ttf"
   },
   "8379f729-6624-4d0f-b591-34e397c94e4c": {
-    "asset": 1563448116287,
-    "meta": 1563448116348,
+    "asset": 1563524602548,
+    "meta": 1563524602596,
     "relativePath": "scene\\StageSelect.fire"
-  },
-  "36244763-d900-4b1b-b973-b6dca542da09": {
-    "asset": 1563436757580,
-    "meta": 1563439536672,
-    "relativePath": "resource\\img\\Selection\\Stage2.png"
-  },
-  "159e96f7-49a5-4ac4-b94a-0dc839e309c1": {
-    "asset": 1563436726406,
-    "meta": 1563439536682,
-    "relativePath": "resource\\img\\Selection\\Stage1.png"
-  },
-  "7039f526-b568-4880-a4fa-d156a95759e3": {
-    "asset": 1563436835410,
-    "meta": 1563439536716,
-    "relativePath": "resource\\img\\Selection\\Stage3.png"
-  },
-  "e338d6bd-d507-4b08-9c23-f4d594cf945d": {
-    "asset": 1563448017485,
-    "meta": 1563448019331,
-    "relativePath": "scripts\\Game\\Target.js"
-  },
-  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
-    "asset": 1563450207531,
-    "meta": 1563450218264,
-    "relativePath": "scripts\\StartMenu\\Menu.js"
   },
   "ad84611a-2632-46a0-9935-f28b00428e47": {
     "asset": 1563450449313,
@@ -1634,11 +1584,6 @@
     "meta": 1563452597223,
     "relativePath": "resource\\img\\Game\\pauseMenu.png"
   },
-  "c9754eee-df44-4838-a1a3-2b3c626218cf": {
-    "asset": 1563454965048,
-    "meta": 1563454966489,
-    "relativePath": "scripts\\Game\\PauseMenu.js"
-  },
   "c4398ffc-1e03-4465-b939-97d451920e46": {
     "asset": 1563454989244,
     "meta": 1563454989257,
@@ -1649,19 +1594,169 @@
     "meta": 1563455517575,
     "relativePath": "prefab\\pauseMenu.prefab"
   },
-  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
-    "asset": 1563455494773,
-    "meta": 1563455496580,
-    "relativePath": "scripts\\Game\\Game.js"
-  },
-  "d7c65c31-0840-40a3-ba20-f960b3a8a558": {
-    "asset": 1563455552716,
-    "meta": 1563455554347,
-    "relativePath": "scripts\\Game\\StageSelect.js"
-  },
   "a1f0f8e0-d8fd-47d7-8b1c-0545d2d4b947": {
     "asset": 1563455606848,
     "meta": 1563455606865,
     "relativePath": "prefab\\pauseBtn.prefab"
+  },
+  "c9754eee-df44-4838-a1a3-2b3c626218cf": {
+    "asset": 1563457696318,
+    "meta": 1563457698579,
+    "relativePath": "scripts\\Game\\PauseMenu.js"
+  },
+  "b16727f5-de14-4d05-b81e-20744d628ee6": {
+    "asset": 1563533124176,
+    "meta": 1563533124255,
+    "relativePath": "scene\\Stage10.fire"
+  },
+  "66d56a3b-2887-4fbe-a0d1-b7fc4b4f02b3": {
+    "asset": 1563533285034,
+    "meta": 1563533285111,
+    "relativePath": "scene\\Stage11.fire"
+  },
+  "105ccdd3-aab5-4982-be8f-a6acaba140be": {
+    "asset": 1563533577461,
+    "meta": 1563533577528,
+    "relativePath": "scene\\Stage12.fire"
+  },
+  "d5d3f6d6-f8af-4d3f-952f-b332186cb787": {
+    "asset": 1563531889564,
+    "meta": 1563531889647,
+    "relativePath": "scene\\Stage7.fire"
+  },
+  "8065b209-ff33-4e65-a53e-2d5382f48b0b": {
+    "asset": 1563532071673,
+    "meta": 1563532071786,
+    "relativePath": "scene\\Stage8.fire"
+  },
+  "9180fdef-017b-4afb-b552-48aec5a3ee57": {
+    "asset": 1563532899944,
+    "meta": 1563532900015,
+    "relativePath": "scene\\Stage9.fire"
+  },
+  "4c6bbf42-d87d-4a0f-9df3-63104e14f83e": {
+    "asset": 1563516113150,
+    "meta": 1563516101187,
+    "relativePath": "scripts\\Help"
+  },
+  "029f9968-5d68-43b6-9076-d7d08af0d828": {
+    "asset": 1563516962962,
+    "meta": 1563516963037,
+    "relativePath": "scene\\Help.fire"
+  },
+  "114a2e61-5b9c-4919-a345-69658b25473f": {
+    "asset": 1563517079936,
+    "meta": 1563517082350,
+    "relativePath": "scripts\\Help\\Help.js"
+  },
+  "e338d6bd-d507-4b08-9c23-f4d594cf945d": {
+    "asset": 1563520902535,
+    "meta": 1563520911490,
+    "relativePath": "scripts\\Game\\Target.js"
+  },
+  "36244763-d900-4b1b-b973-b6dca542da09": {
+    "asset": 1563522233618,
+    "meta": 1563523367567,
+    "relativePath": "resource\\img\\Selection\\Stage2.png"
+  },
+  "159e96f7-49a5-4ac4-b94a-0dc839e309c1": {
+    "asset": 1563522438524,
+    "meta": 1563523367576,
+    "relativePath": "resource\\img\\Selection\\Stage1.png"
+  },
+  "b1f49ae3-2836-490c-909b-173f292e5ab0": {
+    "asset": 1563523222060,
+    "meta": 1563523367613,
+    "relativePath": "resource\\img\\Selection\\Stage10.png"
+  },
+  "7039f526-b568-4880-a4fa-d156a95759e3": {
+    "asset": 1563522554299,
+    "meta": 1563523367621,
+    "relativePath": "resource\\img\\Selection\\Stage3.png"
+  },
+  "e0a60695-7840-4473-b3b5-8659ee826c9b": {
+    "asset": 1563523282952,
+    "meta": 1563523367655,
+    "relativePath": "resource\\img\\Selection\\Stage11.png"
+  },
+  "9819008e-d7d1-402b-8a32-10d22328e5b2": {
+    "asset": 1563523346552,
+    "meta": 1563523367663,
+    "relativePath": "resource\\img\\Selection\\Stage12.png"
+  },
+  "f8afa66a-61b3-498a-bfd4-9f9ed74e577e": {
+    "asset": 1563522628684,
+    "meta": 1563523367696,
+    "relativePath": "resource\\img\\Selection\\Stage4.png"
+  },
+  "4833e46f-f8dc-4aad-8d2f-71f94302ed2b": {
+    "asset": 1563522754018,
+    "meta": 1563523367705,
+    "relativePath": "resource\\img\\Selection\\Stage5.png"
+  },
+  "cbd7bfd8-77f6-40ac-b2a5-6d645dd8c45b": {
+    "asset": 1563522870329,
+    "meta": 1563523367750,
+    "relativePath": "resource\\img\\Selection\\Stage6.png"
+  },
+  "a8f0f679-dc51-44fa-9440-6d3a747228cd": {
+    "asset": 1563522948150,
+    "meta": 1563523367760,
+    "relativePath": "resource\\img\\Selection\\Stage7.png"
+  },
+  "9de48231-a23c-4c46-81d2-5d9fd4d0d742": {
+    "asset": 1563523119528,
+    "meta": 1563523367795,
+    "relativePath": "resource\\img\\Selection\\Stage8.png"
+  },
+  "11836446-f368-453a-89bb-9732df0a21d9": {
+    "asset": 1563523166487,
+    "meta": 1563523367802,
+    "relativePath": "resource\\img\\Selection\\Stage9.png"
+  },
+  "d7c65c31-0840-40a3-ba20-f960b3a8a558": {
+    "asset": 1563524378180,
+    "meta": 1563524381068,
+    "relativePath": "scripts\\Game\\StageSelect.js"
+  },
+  "f53b7667-746a-4f0e-8b4e-07cc2cc08437": {
+    "asset": 1563526341416,
+    "meta": 1563526345527,
+    "relativePath": "scripts\\Game\\StageCamera.js"
+  },
+  "4f7a716d-9523-43e6-9a79-4f4944f133f8": {
+    "asset": 1563533858544,
+    "meta": 1563533859734,
+    "relativePath": "scripts\\Game\\Player.js"
+  },
+  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
+    "asset": 1563536436075,
+    "meta": 1563536437448,
+    "relativePath": "scripts\\StartMenu\\Menu.js"
+  },
+  "e58f5333-0f73-4559-84f4-9723ceb88dbf": {
+    "asset": 1563536720022,
+    "meta": 1563536721300,
+    "relativePath": "scripts\\Game\\Transition.js"
+  },
+  "296b5c31-2f30-440a-939a-cd85deb1c389": {
+    "asset": 1563540092991,
+    "meta": 1563540546273,
+    "relativePath": "scripts\\Game\\StageControl.js"
+  },
+  "0312d836-632b-4831-9405-b547574c4150": {
+    "asset": 1563540622641,
+    "meta": 1563540648694,
+    "relativePath": "scripts\\Game\\InfinityWar.js"
+  },
+  "2f23c59e-43f6-49dd-894c-36f2173dc38d": {
+    "asset": 1563541309554,
+    "meta": 1563541310994,
+    "relativePath": "scripts\\Game\\JoyStick.js"
+  },
+  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
+    "asset": 1563541871641,
+    "meta": 1563541913769,
+    "relativePath": "scripts\\Game\\Game.js"
   }
 }

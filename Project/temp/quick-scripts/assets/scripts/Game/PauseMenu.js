@@ -37,11 +37,16 @@ cc.Class({
         this.HomeBtn.node.on('click', function () {
             cc.director.loadScene('beginMenu');
         }, this);
+    },
+    Continue: function Continue() {
+        var s = this.node.parent.parent;
+        s._components[1].stateChange = true;
+        this.node.destroy();
     }
-}
 
-// update (dt) {},
-);
+    // update (dt) {},
+
+});
 
 cc._RF.pop();
         }

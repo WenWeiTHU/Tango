@@ -30,6 +30,10 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
+        PauseMenuPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
         ShieldSupplyPrefab: {
             default: null,
             type: cc.Prefab
@@ -86,9 +90,14 @@ cc.Class({
             type: cc.AudioSource,
             default: null
         },
+        pauseBtn: {
+            type: cc.Button,
+            default: null
+        },
         Width: 2500,
         Height: 2500,
-        borderSize: 35
+        borderSize: 35,
+        stateChange: false
     },
 
     // TODO 避免重叠
@@ -153,7 +162,11 @@ cc.Class({
                 thing.getComponent('Battery').BulletPrefab = this.BulletPrefab;
                 break;
         }
-        this.node.addChild(thing);
+        if (name == 'battery') {
+            this.node.getChildByName('Map').addChild(thing);
+        } else {
+            this.node.getChildByName('Enemy').addChild(thing);
+        }
         thing.setPosition(posX, posY);
         return thing;
     },
@@ -185,10 +198,105 @@ cc.Class({
             }
         }
         this.node.sortAllChildren();
+        this.pauseBtn.node.on('click', this.pauseScene, this);
     },
     start: function start() {
         this.scheduleOnce(this.initGame, 0);
         // this.generateMap()
+    },
+    pauseScene: function pauseScene() {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = this.node.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var child = _step.value;
+
+                switch (child.name) {
+                    case 'Enemy':
+                    case 'Map':
+                    case 'player1':
+                    case 'player2':
+                    case 'bind':
+                    case 'target':
+                        {
+                            child.active = this.pause;
+                        }
+                    case 'UI':
+                        {
+                            var _iteratorNormalCompletion2 = true;
+                            var _didIteratorError2 = false;
+                            var _iteratorError2 = undefined;
+
+                            try {
+                                for (var _iterator2 = child.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    var grandSon = _step2.value;
+
+                                    if (grandSon.name != 'shield') {
+                                        grandSon.active = this.pause;
+                                    } else {
+                                        debugger;
+                                        if (!this.pause) {
+                                            grandSon.exist = grandSon.active;
+                                            grandSon.active = false;
+                                            if (grandSon.timeID) {
+                                                clearTimeout(grandSon.timeID);
+                                            }
+                                        } else {
+                                            grandSon.active = grandSon.exist;
+                                            grandSon.exist = false;
+                                            if (grandSon.active) {
+                                                grandSon.timeID = setTimeout(function (child) {
+                                                    grandSon.active = false;
+                                                }, 2500);
+                                            }
+                                        }
+                                    }
+                                }
+                            } catch (err) {
+                                _didIteratorError2 = true;
+                                _iteratorError2 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                        _iterator2.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError2) {
+                                        throw _iteratorError2;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        this.pause = this.pause ? false : true;
+        if (this.pause) {
+            var Menu = cc.instantiate(this.PauseMenuPrefab);
+            Menu.x = 0;
+            Menu.y = 0;
+            Menu.group = 'UI';
+            this.node.getChildByName('UI').active = true;
+            this.node.getChildByName("UI").addChild(Menu);
+        }
     },
 
 
@@ -364,7 +472,12 @@ cc.Class({
         }, time);
     },
 
-    update: function update(dt) {}
+    update: function update(dt) {
+        if (this.stateChange) {
+            this.pauseScene();
+            this.stateChange = false;
+        }
+    }
 });
 
 cc._RF.pop();

@@ -88,9 +88,20 @@ cc.Class({
             type: cc.Button,
             default: null
         },
+        MapCamera: {
+            type: cc.Camera,
+            default: null
+        },
+        srcX: 0,
+        srcY: 0,
+        dstX: 0,
+        dstY: 0,
+        cameraSpeed: 0,
+        ratio: 0,
         Width: 2500,
         Height: 2500,
         borderSize: 35,
+        stateChange: false,
     },
 
     // TODO 避免重叠
@@ -188,11 +199,16 @@ cc.Class({
     },
 
     start() {
-        // this.generateMap()
+        this.stateChange = false
+        console.log(this.ratio)
+        this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio)
     },
 
     update(dt) {
-
+        if (this.stateChange) {
+            this.pauseScene()
+            this.stateChange = false
+        }
     },
     pauseScene () {
         for (var child of this.node.children) {
@@ -207,8 +223,35 @@ cc.Class({
                 }
                 case 'UI': {
                     for (var grandSon of child.children) {
-                        grandSon.active = false
+                        if (grandSon.group != 'Shield') {
+                            grandSon.active = this.pause
+                        } else {
+                            if (!this.pause) {
+                                grandSon.exist = grandSon.active
+                                grandSon.active = false
+                                if (grandSon.timeID) {
+                                    clearTimeout(grandSon.timeID)
+                                    grandSon.timeID = undefined
+                                }
+                            } else {
+                                grandSon.active = grandSon.exist
+                                grandSon.exist = false
+                                if (grandSon.active) {
+                                    if (grandSon.name == 'shieldLeft') {
+                                        grandSon.timeID = setTimeout(function(){
+                                            this.active = false
+                                        }.bind(this.node.getChildByName('UI').getChildByName('shieldLeft')), 2500)
+                                    }
+                                    else {
+                                        grandSon.timeID = setTimeout(function(){
+                                            this.active = false
+                                        }.bind(this.node.getChildByName('UI').getChildByName('shieldRight')), 2500)
+                                    }
+                                }
+                            }
+                        }
                     }
+                    break
                 }
             }
         }
@@ -218,9 +261,28 @@ cc.Class({
             Menu.x = 0
             Menu.y = 0
             Menu.group = 'UI'
-            debugger;
             this.node.getChildByName('UI').active = true
             this.node.getChildByName("UI").addChild(Menu)
         }
+    },
+    cameraMove: function(srcx, srcy, dstx, dsty, initRatio){
+        this.MapCamera.node.x = srcx
+        this.MapCamera.node.y = srcy
+
+        var x = dstx - srcx
+        var y = dsty - srcy
+
+        this.scheduleOnce(function(){
+            this.schedule(function(){
+                if(this.MapCamera.zoomRatio > 1){
+                    this.MapCamera.node.active = false
+                }
+                else{    
+                    this.MapCamera.zoomRatio += this.cameraSpeed
+                    this.MapCamera.node.x += x * this.cameraSpeed / (1 - initRatio)
+                    this.MapCamera.node.y += y * this.cameraSpeed / (1 - initRatio)
+                }
+            }, 0.0001)
+        }, 0.8)
     }
 });

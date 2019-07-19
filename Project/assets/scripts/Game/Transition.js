@@ -34,10 +34,12 @@ cc.Class({
     },
 
     loadContinue () {
+        debugger;
         var s = cc.sys.localStorage.getItem("lastStage");
         s = JSON.parse(s)
-        var sceneID = Number(s.Stage[s.Stage.length - 1])
-        sceneID += 1
+        var temp = Number(s.Stage.slice(s.Stage.length - 2))
+        var sceneID = isNaN(temp) ? Number(s.Stage[s.Stage.length - 1]) : temp
+        sceneID = s.Win ? sceneID + 1 : sceneID
         var newSceneName = 'Stage' + String(sceneID)
         cc.director.loadScene(newSceneName)
     },

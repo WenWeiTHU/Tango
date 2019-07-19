@@ -72,6 +72,12 @@ cc.Class({
         this.newShield.x = this.Player.x
         this.newShield.y = this.Player.y
 
+        if (this.node.name === 'stickLeft') {
+            this.newShield.name = 'shieldLeft'
+        } else {
+            this.newShield.name = 'shieldRight'
+        }
+
         this.newShield.active = false
 
         this.Stick.on(cc.Node.EventType.TOUCH_START, function (e) {

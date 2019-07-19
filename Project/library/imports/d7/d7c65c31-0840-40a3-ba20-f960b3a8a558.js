@@ -29,6 +29,42 @@ cc.Class({
         Stage3Btn: {
             type: cc.Button,
             default: null
+        },
+        Stage4Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage5Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage6Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage7Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage8Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage9Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage10Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage11Btn: {
+            type: cc.Button,
+            default: null
+        },
+        Stage12Btn: {
+            type: cc.Button,
+            default: null
         }
     },
 
@@ -37,12 +73,12 @@ cc.Class({
     // onLoad () {},
 
     start: function start() {
-        for (var j = 1; j < 4; j++) {
+        for (var j = 1; j < 13; j++) {
             var cmd = "this.Stage" + String(j) + "Btn.node.on('click', this.loadScene(j), this)";
             eval(cmd);
         }
         var i;
-        for (i = 1; i < 4; ++i) {
+        for (i = 1; i < 13; ++i) {
             debugger;
             var key = "Stage" + String(i);
             var result = JSON.parse(cc.sys.localStorage.getItem(key));

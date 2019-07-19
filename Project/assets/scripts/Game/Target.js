@@ -41,8 +41,8 @@ cc.Class({
     onCollisionEnter (other, self) {
         if (other.node.group == "Player") {
             //TODO: 加载场景
-           cc.director.loadScene("Transition")
-           this.writeResult()
+            this.writeResult()
+            cc.director.loadScene("Transition")
         }
     },
 
@@ -53,7 +53,8 @@ cc.Class({
             "Win" : true
         }
         cc.sys.localStorage.setItem('lastStage', JSON.stringify(data))
-        var number = Number(sceneName[sceneName.length - 1]) + 1
+        var temp = Number(sceneName.slice(sceneName.length - 2))
+        var number = isNaN(temp) ? Number(sceneName[sceneName.length - 1]) + 1 : temp + 1
         sceneName = 'Stage' + String(number)
         cc.sys.localStorage.setItem(sceneName, true)
     }

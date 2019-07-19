@@ -122,10 +122,24 @@ cc.Class({
         if(!this.immortal){
             this.life--
             this.immortal = true
+            if (this.life < 0) {
+                this.GameOver()
+                return
+            }
             setTimeout(function () {
                 this.immortal = false
             }.bind(this), 1000 * this.immortalDuration);
         }
+    },
+
+    GameOver: function() {
+        var sceneName = cc.director.getScene().name
+        var data = {
+            "Stage" : sceneName,
+            "Win" : false
+        }
+        cc.sys.localStorage.setItem('lastStage', JSON.stringify(data))
+        cc.director.loadScene('Transition')
     },
 
     /*

@@ -30,6 +30,10 @@ cc.Class({
             type: cc.Button,
             default: null
         },
+        helpBtn: {
+            type: cc.Button,
+            default: null
+        },
         bindR: {
             type: cc.Node,
             default: null
@@ -69,11 +73,14 @@ cc.Class({
     onLoad: function onLoad() {
         if (cc.sys.localStorage.getItem("Stage1") === null) {
             cc.sys.localStorage.setItem("Stage1", true);
-            for (var i = 2; i < 11; ++i) {
+            for (var i = 2; i < 13; ++i) {
                 cc.sys.localStorage.setItem("Stage" + String(i), false);
             }
         }
         this.startBtn.node.on('click', this.startClick, this);
+        this.helpBtn.node.on('click', function () {
+            cc.director.loadScene('Help');
+        }, this);
         this.spinDegree = 0;
 
         var bindAnimComponent = this.bindR.getComponent(cc.Animation);

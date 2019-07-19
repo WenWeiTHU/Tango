@@ -30,7 +30,7 @@ cc.Class({
     },
 
     update (dt) {
-        if (!this.showTarget) {
+        if (this.node.children.length == 0 && !this.showTarget) {
             this.target.active = true
             this.showTarget = true
         }

@@ -19,7 +19,7 @@ cc.Class({
         HomeBtn: {
             type: cc.Button,
             default: null
-        }
+        },
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -32,6 +32,12 @@ cc.Class({
             cc.director.loadScene('beginMenu')
         }, this)
     },
+
+    Continue () {
+        var s = this.node.parent.parent
+        s._components[1].stateChange = true
+        this.node.destroy()
+    }
 
     // update (dt) {},
 });
