@@ -14,6 +14,10 @@ cc.Class({
     properties: {
         direction: 0,
         speed: 0,
+        BulletBreakPrefab: {
+            type:cc.Prefab,
+            default: null,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -28,11 +32,21 @@ cc.Class({
         this.directionX = this.direction.x / this.direction.mag();
         this.directionY = this.direction.y / this.direction.mag();
     },
-
+    
+    // 直接消失
     onCollisionEnter (other, self) {
+        var blast = cc.instantiate(this.BulletBreakPrefab)
+
+        this.node.parent.addChild(blast)
+        blast.setPosition(this.node.x, this.node.y)
+
+        var animComponent = blast.getComponent(cc.Animation)
+        animComponent.play('bulletBreak')
+     
         this.node.destroy();
     },
 
+    // 位置更新
     update (dt) {
         this.node.x += this.speed * this.directionX * dt;
         this.node.y += this.speed * this.directionY * dt;

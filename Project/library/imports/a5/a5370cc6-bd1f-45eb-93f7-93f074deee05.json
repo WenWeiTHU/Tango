@@ -42,8 +42,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 30,
-      "height": 30
+      "width": 80,
+      "height": 80
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -112,11 +112,10 @@
       "__id__": 1
     },
     "_enabled": true,
-    "pickRadius": 0,
     "_id": ""
   },
   {
-    "__type__": "cc.CircleCollider",
+    "__type__": "cc.BoxCollider",
     "_name": "",
     "_objFlags": 0,
     "node": {
@@ -129,7 +128,11 @@
       "x": 0,
       "y": 0
     },
-    "_radius": 15,
+    "_size": {
+      "__type__": "cc.Size",
+      "width": 70,
+      "height": 70
+    },
     "_id": ""
   },
   {

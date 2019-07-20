@@ -20,7 +20,7 @@
   "includeSDKBox": false,
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
-  "md5Cache": false,
+  "md5Cache": true,
   "mergeStartScene": false,
   "optimizeHotUpdate": false,
   "orientation": {
@@ -36,11 +36,11 @@
     "zip": false
   },
   "startScene": "2a6b44f5-57d6-4137-9993-7a965bef67fc",
-  "title": "NewProject",
+  "title": "Tango",
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
-    "appid": "wx6ac3f5090a6b99c5",
+    "appid": "",
     "orientation": "landscapeRight",
     "separate_engine": false,
     "subContext": ""

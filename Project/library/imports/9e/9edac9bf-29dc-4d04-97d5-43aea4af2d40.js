@@ -18,7 +18,6 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-
         Player1: {
             type: cc.Node,
             default: null
@@ -31,15 +30,18 @@ cc.Class({
             default: null,
             type: cc.Prefab
         },
-        MapVerPrefab: {
+        ShieldSupplyPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        PauseMenuPrefab: {
+            default: null,
+            type: cc.Prefab
+        },
+        EnemyPrefab: {
             type: cc.Prefab,
             default: null
         },
-        MapHerPrefab: {
-            type: cc.Prefab,
-            default: null
-        },
-
         StaticEnemyPrefab: {
             type: cc.Prefab,
             default: null
@@ -56,6 +58,10 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
+        CopterEnemyPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
         BatteryPrefab: {
             type: cc.Prefab,
             default: null
@@ -64,121 +70,111 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        staticEnemyNum: 0,
-        supplyTimeGap: 1
-
+        MapVPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
+        MapHPrefab: {
+            type: cc.Prefab,
+            default: null
+        },
+        Explode1: {
+            type: cc.AudioSource,
+            default: null
+        },
+        pauseBtn: {
+            type: cc.Button,
+            default: null
+        },
+        MapCamera: {
+            type: cc.Camera,
+            default: null
+        },
+        MainCamera: {
+            type: cc.Camera,
+            default: null
+        },
+        srcX: 0,
+        srcY: 0,
+        dstX: 0,
+        dstY: 0,
+        cameraSpeed: 0,
+        ratio: 0,
+        Width: 2500,
+        Height: 2500,
+        borderSize: 35,
+        stateChange: false
     },
 
+    // TODO 避免重叠
     // LIFE-CYCLE CALLBACKS:
-    getNewPosition: function getNewPosition() {
-        var maxX = this.node.width / 2;
+    getRandomPosition: function getRandomPosition() {
+        var maxX = this.Width / 2 - this.borderSize;
         var randX = (Math.random() - 0.5) * 2 * maxX;
-        var maxY = this.node.height / 2;
+        var maxY = this.Height / 2 - this.borderSize;
         var randY = (Math.random() - 0.5) * 2 * maxY;
 
         return cc.v2(randX, randY);
     },
 
-    generateNewStaticEnemy: function generateNewStaticEnemy() {
-        var newEnemy = cc.instantiate(this.StaticEnemyPrefab);
-        this.node.addChild(newEnemy);
-        newEnemy.setPosition(0, 0);
-    },
+    generate: function generate(posX, posY, name) {
+        var thing = void 0;
+        switch (name) {
+            case 'enemy':
+                thing = cc.instantiate(this.EnemyPrefab);
+                thing.getComponent('Enemy').Explode = this.Explode1;
+                break;
+            case 'staticEnemy':
+                thing = cc.instantiate(this.StaticEnemyPrefab);
+                thing.getComponent('EnemyStatic').Explode = this.Explode3;
+                break;
+            case 'trackEnemy':
+                thing = cc.instantiate(this.TrackEnemyPrefab);
+                thing.getComponent('EnemyTrack').Explode = this.Explode1;
+                thing.getComponent('EnemyTrack').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
+                break;
+            case 'spinEnemy':
+                thing = cc.instantiate(this.SpinEnemyPrefab);
+                thing.getComponent('EnemySpin').Explode = this.Explode2;
+                thing.getComponent('EnemySpin').centerX = posX;
+                thing.getComponent('EnemySpin').centerY = posY;
 
-    generateNewTrackEnemy: function generateNewTrackEnemy() {
-        console.log('track');
-        var newEnemy = cc.instantiate(this.TrackEnemyPrefab);
-        this.node.addChild(newEnemy);
+                thing.getComponent('EnemySpin').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
+                break;
+            case 'swingEnemy':
+                thing = cc.instantiate(this.SwingEnemyPrefab);
+                thing.getComponent('EnemySwing').Explode = this.Explode1;
+                break;
+            case 'copterEnemy':
+                thing = cc.instantiate(this.CopterEnemyPrefab);
+                thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab;
+                thing.getComponent('EnemyCopter').Explode = this.Explode2;
 
-        var random = Math.random();
-        if (random < 0.5) {
-            newEnemy.getComponent('EnemyTrack').Player = this.Player1;
-        } else {
-            newEnemy.getComponent('EnemyTrack').Player = this.Player2;
+                thing.getComponent('EnemySpin').centerX = posX;
+                thing.getComponent('EnemySpin').centerY = posY;
+
+                thing.getComponent('EnemyCopter').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
+                break;
+            case 'supply':
+                thing = cc.instantiate(this.SupplyPrefab);
+                break;
+            case 'shieldSupply':
+                thing = cc.instantiate(this.ShieldSupplyPrefab);
+                break;
+            case 'battery':
+                thing = cc.instantiate(this.BatteryPrefab);
+                thing.getComponent('Battery').Player1 = this.Player1;
+                thing.getComponent('Battery').Player2 = this.Player2;
+                thing.getComponent('Battery').BulletPrefab = this.BulletPrefab;
+                break;
         }
-
-        newEnemy.setPosition(0, 0);
+        this.node.addChild(thing);
+        thing.setPosition(posX, posY);
+        return thing;
     },
 
-    generateNewSpinEnemy: function generateNewSpinEnemy() {
-        console.log('spin');
-        var newEnemy = cc.instantiate(this.SpinEnemyPrefab);
-        this.node.addChild(newEnemy);
-        var random = Math.random();
-        if (random < 0.5) {
-            newEnemy.getComponent('EnemySpin').Player = this.Player1;
-        } else {
-            newEnemy.getComponent('EnemySpin').Player = this.Player2;
-        }
-
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateNewSwingEnemy: function generateNewSwingEnemy() {
-        var newEnemy = cc.instantiate(this.SwingEnemyPrefab);
-        this.node.addChild(newEnemy);
-        newEnemy.setPosition(0, 0);
-    },
-
-    generateSupply: function generateSupply() {
-        var newSupply = cc.instantiate(this.SupplyPrefab);
-        this.node.addChild(newSupply);
-        newSupply.setPosition(this.getNewPosition());
-        newSupply.getComponent('Supply').Game = this;
-    },
-
-    generateBattery: function generateBattery() {
-        var newBattery = cc.instantiate(this.BatteryPrefab);
-        this.node.addChild(newBattery);
-        newBattery.setPosition(this.getNewPosition());
-        newBattery.getComponent('Battery').Player1 = this.Player1;
-        newBattery.getComponent('Battery').Player2 = this.Player2;
-        newBattery.getComponent('Battery').BulletPrefab = this.BulletPrefab;
-    },
-
-
-    /*
-     * 根据设备分辨率生成地图边界
-     */
-    generateMap: function generateMap() {
-        var equipmentWidth = this.node.width;
-        var equipmentHeight = this.node.height;
-
-        var mapUp = cc.instantiate(this.MapHerPrefab);
-        mapUp.y = (equipmentHeight + mapUp.height) / 2;
-        mapUp.x = 0;
-        mapUp.width = equipmentWidth + 10;
-        mapUp.name = 'mapUp';
-
-        mapUp._components[1]._size.width = equipmentWidth + 10;
-
-        var mapDown = cc.instantiate(this.MapHerPrefab);
-        mapDown.y = -(equipmentHeight + mapDown.height) / 2;
-        mapDown.x = 0;
-        mapDown.name = 'mapDown';
-        mapDown.width = equipmentWidth + 10;
-        mapDown._components[1]._size.width = equipmentWidth + 10;
-
-        var mapLeft = cc.instantiate(this.MapVerPrefab);
-        mapLeft.x = -(equipmentWidth + mapLeft.width) / 2;
-        mapLeft.y = 0;
-        mapLeft.name = 'mapLeft';
-        mapLeft.height = equipmentHeight + 10;
-        mapLeft._components[1]._size.height = equipmentHeight + 10;
-
-        var mapRight = cc.instantiate(this.MapVerPrefab);
-        mapRight.x = (equipmentWidth + mapRight.width) / 2;
-        mapRight.y = 0;
-        mapRight.name = 'mapRight';
-        mapRight.height = equipmentHeight + 10;
-        mapRight._components[1]._size.height = equipmentHeight + 10;
-
-        this.node.addChild(mapUp);
-        this.node.addChild(mapDown);
-        this.node.addChild(mapLeft);
-        this.node.addChild(mapRight);
-    },
     onLoad: function onLoad() {
+        this.pauseBtn.node.on("click", this.pauseScene, this);
         for (var i = 0; i < this.node.children.length; ++i) {
             switch (this.node.children[i].name) {
                 case 'player1':
@@ -207,18 +203,155 @@ cc.Class({
         this.node.sortAllChildren();
     },
     start: function start() {
-        this.scheduleOnce(this.initGame, 2);
-        this.generateMap();
+        this.stateChange = false;
+        this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio);
     },
-    initGame: function initGame() {
-        this.generateNewStaticEnemy();
-        this.generateNewTrackEnemy();
-        this.generateNewSpinEnemy();
-        this.generateNewSwingEnemy();
-        this.generateBattery();
-        this.schedule(this.generateSupply, 2);
+    update: function update(dt) {
+        var _this = this;
+
+        if (this.stateChange) {
+            this.pauseScene();
+            this.stateChange = false;
+        }
+        if (this.Player1.getComponent('Player').Dead) {
+            this.schedule(function () {
+                _this.MainCamera.zoomRatio -= 0.0003;
+            }, 0.05);
+
+            this.scheduleOnce(function () {
+                cc.director.loadScene("Transition");
+            }, 2);
+        }
+        if (this.Player2.getComponent('Player').Dead) {
+            this.schedule(function () {
+                _this.MainCamera.zoomRatio -= 0.0003;
+            }, 0.05);
+
+            this.scheduleOnce(function () {
+                cc.director.loadScene("Transition");
+            }, 2);
+        }
     },
-    update: function update(dt) {}
+    pauseScene: function pauseScene() {
+        var _iteratorNormalCompletion = true;
+        var _didIteratorError = false;
+        var _iteratorError = undefined;
+
+        try {
+            for (var _iterator = this.node.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                var child = _step.value;
+
+                switch (child.name) {
+                    case 'Enemy':
+                    case 'Map':
+                    case 'player1':
+                    case 'player2':
+                    case 'bind':
+                    case 'target':
+                        {
+                            child.active = this.pause;
+                        }
+                    case 'UI':
+                        {
+                            var _iteratorNormalCompletion2 = true;
+                            var _didIteratorError2 = false;
+                            var _iteratorError2 = undefined;
+
+                            try {
+                                for (var _iterator2 = child.children[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+                                    var grandSon = _step2.value;
+
+                                    if (grandSon.group != 'Shield') {
+                                        grandSon.active = this.pause;
+                                    } else {
+                                        if (!this.pause) {
+                                            grandSon.exist = grandSon.active;
+                                            grandSon.active = false;
+                                            if (grandSon.timeID) {
+                                                clearTimeout(grandSon.timeID);
+                                                grandSon.timeID = undefined;
+                                            }
+                                        } else {
+                                            grandSon.active = grandSon.exist;
+                                            grandSon.exist = false;
+                                            if (grandSon.active) {
+                                                if (grandSon.name == 'shieldLeft') {
+                                                    grandSon.timeID = setTimeout(function () {
+                                                        this.active = false;
+                                                    }.bind(this.node.getChildByName('UI').getChildByName('shieldLeft')), 2500);
+                                                } else {
+                                                    grandSon.timeID = setTimeout(function () {
+                                                        this.active = false;
+                                                    }.bind(this.node.getChildByName('UI').getChildByName('shieldRight')), 2500);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            } catch (err) {
+                                _didIteratorError2 = true;
+                                _iteratorError2 = err;
+                            } finally {
+                                try {
+                                    if (!_iteratorNormalCompletion2 && _iterator2.return) {
+                                        _iterator2.return();
+                                    }
+                                } finally {
+                                    if (_didIteratorError2) {
+                                        throw _iteratorError2;
+                                    }
+                                }
+                            }
+
+                            break;
+                        }
+                }
+            }
+        } catch (err) {
+            _didIteratorError = true;
+            _iteratorError = err;
+        } finally {
+            try {
+                if (!_iteratorNormalCompletion && _iterator.return) {
+                    _iterator.return();
+                }
+            } finally {
+                if (_didIteratorError) {
+                    throw _iteratorError;
+                }
+            }
+        }
+
+        this.pause = this.pause ? false : true;
+        if (this.pause) {
+            var Menu = cc.instantiate(this.PauseMenuPrefab);
+            Menu.x = 0;
+            Menu.y = 0;
+            Menu.group = 'UI';
+            this.node.getChildByName('UI').active = true;
+            this.node.getChildByName("UI").addChild(Menu);
+        }
+    },
+
+    cameraMove: function cameraMove(srcx, srcy, dstx, dsty, initRatio) {
+        this.MapCamera.node.x = srcx;
+        this.MapCamera.node.y = srcy;
+
+        var x = dstx - srcx;
+        var y = dsty - srcy;
+
+        this.scheduleOnce(function () {
+            this.schedule(function () {
+                if (this.MapCamera.zoomRatio > 1) {
+                    this.MapCamera.node.active = false;
+                } else {
+                    this.MapCamera.zoomRatio += this.cameraSpeed;
+                    this.MapCamera.node.x += x * this.cameraSpeed / (1 - initRatio);
+                    this.MapCamera.node.y += y * this.cameraSpeed / (1 - initRatio);
+                }
+            }, 0.0001);
+        }, 0.8);
+    }
 });
 
 cc._RF.pop();

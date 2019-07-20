@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, '524904tOl1MkpZxJh0gBsbN', 'Supply');
-// scripts/Supply.js
+// scripts/Game/Supply.js
 
 "use strict";
 
@@ -18,7 +18,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        pickRadius: 0
+        existTime: 5
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -26,10 +26,26 @@ cc.Class({
     onLoad: function onLoad() {
         cc.director.getCollisionManager().enabled = true;
     },
+
+
+    // 碰到则消失
     onCollisionEnter: function onCollisionEnter(other, self) {
+        // TODO 消失动画
         this.node.destroy();
     },
-    start: function start() {}
+
+
+    // TODO 补给只能存在一定时长
+
+    start: function start() {
+        var _this = this;
+
+        setTimeout(function () {
+            _this.node.destroy();
+        }, this.existTime * 1000);
+
+        this.node.runAction(cc.fadeOut(this.existTime));
+    }
 }
 
 // update (dt) {},

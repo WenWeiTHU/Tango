@@ -24,6 +24,7 @@ cc.Class({
     onCollisionEnter(other, self)
     {
     },
+    
     start () {
         
     },

@@ -12,9 +12,9 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        rotationUpdate : 0,
-        bulletSpeed:0,
-        shootNum: 1,
+        rotationUpdate: 0,
+        bulletSpeed: 0,
+        shootNum: 2,
         Player1: {
             type: cc.Node,
             default: null
@@ -27,48 +27,86 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
+        Orbit:{
+            type: cc.AudioSource,
+            default: null
+        },
+        shootTime: 2
     },
 
     // LIFE-CYCLE CALLBACKS:
 
-     onLoad () {
+    onLoad() {
         cc.director.getCollisionManager().enabled = true;
-     },
+    },
 
-    start () {
+    start() {
         this.target = Math.random() > 0.5 ? this.Player1 : this.Player2;
-        this.schedule(this.createBullet, 2);
+        this.schedule(this.createBullet, this.shootTime);
     },
 
     /*
      * 产生新子弹的函数
      */
-    createBullet () {
+    createBullet() {
+        this.Orbit.play()
+        
         // 从炮台到目标位置的向量
         var dir = cc.v2(this.target.x - this.node.x, this.target.y - this.node.y);
 
         // 构造新子弹，并设置参数
         var newBullet = cc.instantiate(this.BulletPrefab);
         var bulletSetting = newBullet.getComponent("Bullet");
-        
+
         var r = Math.atan2(this.dir.y, this.dir.x);
         var degree = r * 180 / (Math.PI);
         newBullet.rotation = 450 - degree;
 
-        newBullet.x = this.node.x;
-        newBullet.y = this.node.y;
+        newBullet.x = this.node.x
+        newBullet.y = this.node.y
         newBullet.zIndex = -1;
         bulletSetting.direction = dir;
         bulletSetting.speed = this.bulletSpeed;
         this.node.parent.addChild(newBullet);
+
+        for (let i = 1; i < this.shootNum; i++) {
+            let newBullet = cc.instantiate(this.BulletPrefab)
+            let bulletSetting = newBullet.getComponent("Bullet")
+            let r = Math.atan2(this.dir.y, this.dir.x);
+            let degree = r * 180 / (Math.PI) + 5 * i;
+            newBullet.rotation = 450 - degree;
+            newBullet.x = this.node.x
+            newBullet.y = this.node.y
+            newBullet.zIndex = -1;
+
+            bulletSetting.direction = cc.v2(Math.cos(degree*Math.PI/180), Math.sin(degree*Math.PI/180));
+            bulletSetting.speed = this.bulletSpeed;
+            this.node.parent.addChild(newBullet);
+        }
+
+        for (let i = 1; i < this.shootNum; i++) {
+            let newBullet = cc.instantiate(this.BulletPrefab)
+            let bulletSetting = newBullet.getComponent("Bullet")
+            let r = Math.atan2(this.dir.y, this.dir.x);
+            let degree = r * 180 / (Math.PI) - 5 * i;
+            newBullet.rotation = 450 - degree;
+            newBullet.x = this.node.x
+            newBullet.y = this.node.y
+            newBullet.zIndex = -1;
+
+            bulletSetting.direction = cc.v2(Math.cos(degree*Math.PI/180), Math.sin(degree*Math.PI/180));
+            bulletSetting.speed = this.bulletSpeed;
+            this.node.parent.addChild(newBullet);
+        }
+
         this.node.parent.sortAllChildren();
     },
 
-     update (dt) {
+    update(dt) {
         this.dir = cc.v2(this.target.x - this.node.x, this.target.y - this.node.y);
         var r = Math.atan2(this.dir.y, this.dir.x);
         var degree = r * 180 / (Math.PI);
         degree = 360 - degree + 90;
         this.node.rotation = degree;
-     },
+    },
 });

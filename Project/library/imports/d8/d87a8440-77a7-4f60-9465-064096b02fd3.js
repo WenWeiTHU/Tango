@@ -1,6 +1,6 @@
 "use strict";
 cc._RF.push(module, 'd87a8RAd6dPYJRlBkCWsC/T', 'Shield');
-// scripts/Shield.js
+// scripts/Game/Shield.js
 
 "use strict";
 

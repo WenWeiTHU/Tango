@@ -26,7 +26,10 @@ cc.Class({
     // LIFE-CYCLE CALLBACKS:
 
     onLoad () {
-        cc.director.getCollisionManager().enabled = true;
+        cc.director.getCollisionManager().enabled = true
+        var animComponent = this.getComponent(cc.Animation)
+        var animState = animComponent.play('bindAnim2')
+        animState.wrapMode = cc.WrapMode.Loop
     },
 
     start() {
@@ -51,7 +54,7 @@ cc.Class({
 
         this.node.height = this.dir.mag()
 
-        var collider = this.node._components[2];
+        var collider = this.node._components[3];
         collider.points[2].y = this.node.height;
         collider.points[3].y = this.node.height;
 
