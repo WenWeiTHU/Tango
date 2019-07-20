@@ -17,7 +17,9 @@ cc._RF.push(module, '524904tOl1MkpZxJh0gBsbN', 'Supply', __filename);
 cc.Class({
     extends: cc.Component,
 
-    properties: {},
+    properties: {
+        existTime: 5
+    },
 
     // LIFE-CYCLE CALLBACKS:
 
@@ -29,13 +31,21 @@ cc.Class({
     // 碰到则消失
     onCollisionEnter: function onCollisionEnter(other, self) {
         // TODO 消失动画
-        this.node.destroy();
+        this.node.active = false;
     },
 
 
     // TODO 补给只能存在一定时长
 
-    start: function start() {}
+    start: function start() {
+        var _this = this;
+
+        setTimeout(function () {
+            _this.node.destroy();
+        }, this.existTime * 1000);
+
+        this.node.runAction(cc.fadeOut(this.existTime));
+    }
 }
 
 // update (dt) {},

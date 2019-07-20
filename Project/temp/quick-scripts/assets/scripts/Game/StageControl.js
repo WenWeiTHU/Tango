@@ -39,6 +39,10 @@ cc.Class({
             this.target.active = true;
             this.showTarget = true;
         }
+        // if(!this.showTarget) {
+        //     this.target.active = true
+        //     this.showTarget = true
+        // }
     }
 });
 

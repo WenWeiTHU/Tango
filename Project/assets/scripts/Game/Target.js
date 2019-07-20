@@ -12,21 +12,11 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
-        // foo: {
-        //     // ATTRIBUTES:
-        //     default: null,        // The default value will be used only when the component attaching
-        //                           // to a node for the first time
-        //     type: cc.SpriteFrame, // optional, default is typeof default
-        //     serializable: true,   // optional, default is true
-        // },
-        // bar: {
-        //     get () {
-        //         return this._bar;
-        //     },
-        //     set (value) {
-        //         this._bar = value;
-        //     }
-        // },
+        bonus:{
+            type: cc.AudioSource,
+            default: null
+        },
+        win: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -40,9 +30,10 @@ cc.Class({
     },
     onCollisionEnter (other, self) {
         if (other.node.group == "Player") {
+            this.bonus.play()
             //TODO: 加载场景
             this.writeResult()
-            cc.director.loadScene("Transition")
+            this.win = true
         }
     },
 
@@ -57,6 +48,8 @@ cc.Class({
         var number = isNaN(temp) ? Number(sceneName[sceneName.length - 1]) + 1 : temp + 1
         sceneName = 'Stage' + String(number)
         cc.sys.localStorage.setItem(sceneName, true)
-    }
-    // update (dt) {},
+    },
+    update (dt) {
+        this.node.rotation += 1
+    },
 });

@@ -127,7 +127,7 @@
     "centerY": 0,
     "centerSpeed": 50,
     "radius": 250,
-    "circulateUpdate": 0.5,
+    "circulateUpdate": 0.8,
     "_id": ""
   },
   {

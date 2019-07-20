@@ -88,8 +88,12 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        Explode1:{
+        Explode:{
             type: cc.AudioSource,
+            default: null
+        },
+        MainCamera:{
+            type: cc.Camera,
             default: null
         }
     },
@@ -119,7 +123,7 @@ cc.Class({
  
         let thing = cc.instantiate(this.Enemy)
 
-        thing.getComponent('Enemy').Explode = this.Explode1
+        thing.getComponent('Enemy').Explode = this.Explode
         thing.getComponent('Enemy').speedX = 0
         thing.getComponent('Enemy').speedY = 0
         this.node.addChild(thing)
@@ -157,7 +161,7 @@ cc.Class({
         this.stage = 8
 
         let thing = cc.instantiate(this.Enemy)
-        thing.getComponent('Enemy').Explode = this.Explode1
+        thing.getComponent('Enemy').Explode = this.Explode
         this.node.addChild(thing)
         thing.setPosition(0, 300)
     },
@@ -187,7 +191,13 @@ cc.Class({
         }
 
         if(this.stage === 8 && this.node.children[11] && this.node.children[11]._name != 'enemy'){
-            cc.director.loadScene("beginMenu")
+            this.schedule(() => {
+                this.MainCamera.zoomRatio -= 0.0003
+            }, 0.05)
+            
+            this.scheduleOnce(()=>{
+                cc.director.loadScene("beginMenu")
+            }, 2) 
         }
 
         

@@ -48,7 +48,6 @@ cc.Class({
         this.player.shield--
         this.shieldLabel.string = this.player.shield
 
-
         this.newShield.active = true
 
         setTimeout(function () {
@@ -62,7 +61,6 @@ cc.Class({
         this.Speed = this.player.speed
         this.shieldLabel.string = this.player.shield
 
-        
         this.Stick.x = 0;
         this.Stick.y = 0;
         this.dir = cc.v2(0, 0);

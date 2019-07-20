@@ -71,9 +71,17 @@ cc.Class({
                 cc.sys.localStorage.setItem("Stage" + String(i), false)
             }
         }
-        this.startBtn.node.on('click', this.startClick, this)
+        this.startBtn.node.on('click', function(){
+            var sceneName = cc.director._loadingScene
+            if (sceneName != 'Selection') {
+                cc.director.loadScene('Selection')
+            }
+        }, this)
         this.helpBtn.node.on('click', function(){
-            cc.director.loadScene('Help')
+            var sceneName = cc.director._loadingScene
+            if (sceneName != 'Help') {
+                cc.director.loadScene('Help')
+            }
         }, this)
         this.spinDegree = 0
 
@@ -85,8 +93,6 @@ cc.Class({
         var bindAnimState2 = bindAnimComponent2.play('bindAnim2')
         bindAnimState2.wrapMode = cc.WrapMode.Loop
 
-        console.log(this.enemyStatic.x)
-        console.log(this.enemySwing2.x)
         var swingRight = cc.moveBy(2.0, cc.v2(this.enemySwing2.x - this.enemySwing1.x, 0)).easing(cc.easeCubicActionInOut());
         var rotate1 = cc.rotateBy(1.0 , 180)
         var rotate2 = cc.rotateBy(1.0 , -180)
@@ -99,7 +105,11 @@ cc.Class({
     },
 
     startClick() {
-        cc.director.loadScene("Selection");
+        var sceneName = cc.director.getScene().name
+        debugger;
+        if (sceneName != 'Selection') {
+            cc.director.loadScene('Selection')
+        }
     },
 
     explosion: function () {

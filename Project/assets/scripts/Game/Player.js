@@ -45,6 +45,7 @@ cc.Class({
             default: null,
         },
         speed: 5,
+        Dead: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -139,8 +140,8 @@ cc.Class({
             "Win" : false
         }
         cc.sys.localStorage.setItem('lastStage', JSON.stringify(data))
-        cc.director.loadScene('Transition')
-    },
+        this.Dead = true
+    }, 
 
     /*
      * 与地图的碰撞事件

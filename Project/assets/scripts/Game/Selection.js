@@ -37,15 +37,24 @@ cc.Class({
     },
 
     loadSurviveScene () {
-        cc.director.loadScene("Infinity War")
+        var sceneName = cc.director._loadingScene
+        if (sceneName != "Infinity War") {
+            cc.director.loadScene("Infinity War")
+        }
     },
 
     loadStageSelectScene () {
-        cc.director.loadScene("StageSelect")
+        var sceneName = cc.director._loadingScene
+        if (sceneName != "StageSelect") {
+            cc.director.loadScene("StageSelect")
+        }
     },
 
     loadHomeScene () {
-        cc.director.loadScene("beginMenu")
+        var sceneName = cc.director._loadingScene
+        if (sceneName != "beginMenu") {
+            cc.director.loadScene("beginMenu")
+        }
     }
     // update (dt) {},
 });

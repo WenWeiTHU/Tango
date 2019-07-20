@@ -29,7 +29,10 @@ cc.Class({
     start () {
         this.ContinueBtn.node.on('click', this.Continue, this)
         this.HomeBtn.node.on('click', function(){
-            cc.director.loadScene('beginMenu')
+            var sceneName = cc.director._loadingScene
+            if (sceneName != 'beginMenu') {
+                cc.director.loadScene('beginMenu')
+            }
         }, this)
     },
 

@@ -94,8 +94,12 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        Explode1: {
+        Explode: {
             type: cc.AudioSource,
+            default: null
+        },
+        MainCamera: {
+            type: cc.Camera,
             default: null
         }
     },
@@ -126,7 +130,7 @@ cc.Class({
 
         var thing = cc.instantiate(this.Enemy);
 
-        thing.getComponent('Enemy').Explode = this.Explode1;
+        thing.getComponent('Enemy').Explode = this.Explode;
         thing.getComponent('Enemy').speedX = 0;
         thing.getComponent('Enemy').speedY = 0;
         this.node.addChild(thing);
@@ -164,12 +168,14 @@ cc.Class({
         this.stage = 8;
 
         var thing = cc.instantiate(this.Enemy);
-        thing.getComponent('Enemy').Explode = this.Explode1;
+        thing.getComponent('Enemy').Explode = this.Explode;
         this.node.addChild(thing);
         thing.setPosition(0, 300);
     },
 
     update: function update(dt) {
+        var _this = this;
+
         if (this.stage === 1 && cc.v2(this.Target.x - this.Player1.x, this.Target.y - this.Player1.y).mag() < 40) {
             this.stage = 2;
             this.Target.active = false;
@@ -194,7 +200,13 @@ cc.Class({
         }
 
         if (this.stage === 8 && this.node.children[11] && this.node.children[11]._name != 'enemy') {
-            cc.director.loadScene("beginMenu");
+            this.schedule(function () {
+                _this.MainCamera.zoomRatio -= 0.0003;
+            }, 0.05);
+
+            this.scheduleOnce(function () {
+                cc.director.loadScene("beginMenu");
+            }, 2);
         }
 
         this.newDegree = this.newDegree + 2;

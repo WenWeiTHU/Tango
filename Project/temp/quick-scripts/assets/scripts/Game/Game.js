@@ -82,20 +82,20 @@ cc.Class({
             type: cc.AudioSource,
             default: null
         },
-        Explode2: {
-            type: cc.AudioSource,
-            default: null
-        },
-        Explode3: {
-            type: cc.AudioSource,
-            default: null
-        },
         pauseBtn: {
             type: cc.Button,
             default: null
         },
         MapCamera: {
             type: cc.Camera,
+            default: null
+        },
+        MainCamera: {
+            type: cc.Camera,
+            default: null
+        },
+        Target: {
+            type: cc.Node,
             default: null
         },
         srcX: 0,
@@ -177,6 +177,18 @@ cc.Class({
         return thing;
     },
 
+    GameOver: function GameOver() {
+        var _this = this;
+
+        this.schedule(function () {
+            _this.MainCamera.zoomRatio -= 0.0003;
+        }, 0.05);
+
+        this.scheduleOnce(function () {
+            cc.director.loadScene("Transition");
+        }, 2);
+    },
+
     onLoad: function onLoad() {
         this.pauseBtn.node.on("click", this.pauseScene, this);
         for (var i = 0; i < this.node.children.length; ++i) {
@@ -208,13 +220,23 @@ cc.Class({
     },
     start: function start() {
         this.stateChange = false;
-        console.log(this.ratio);
         this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio);
     },
     update: function update(dt) {
         if (this.stateChange) {
             this.pauseScene();
             this.stateChange = false;
+        }
+        if (this.Player1.getComponent('Player').Dead) {
+            this.GameOver();
+        }
+        if (this.Player2.getComponent('Player').Dead) {
+            this.GameOver();
+        }
+        debugger;
+        var temp = this.Target.getComponent('Target').win;
+        if (this.Target.getComponent('Target').win) {
+            this.GameOver();
         }
     },
     pauseScene: function pauseScene() {

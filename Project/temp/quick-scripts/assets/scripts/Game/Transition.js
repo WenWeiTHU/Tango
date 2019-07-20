@@ -33,19 +33,32 @@ cc.Class({
     onLoad: function onLoad() {
         this.homeBtn.node.on("click", this.loadBeginMenu, this);
         this.continueBtn.node.on("click", this.loadContinue, this);
+        var sceneName = cc.director.getScene().name;
+        debugger;
+        if (sceneName == 'Transition_INF') {
+            var score = cc.sys.localStorage.getItem('SurviveScore');
+            this.node.getChildByName('Score').getComponent(cc.Label).string = 'SurvivalTime: ' + score + 's';
+        }
     },
     loadBeginMenu: function loadBeginMenu() {
         cc.director.loadScene("beginMenu");
     },
     loadContinue: function loadContinue() {
-        debugger;
         var s = cc.sys.localStorage.getItem("lastStage");
         s = JSON.parse(s);
+        debugger;
+        if (s.Stage == 'Infinity War') {
+            cc.director.loadScene('Infinity War');
+            return;
+        }
         var temp = Number(s.Stage.slice(s.Stage.length - 2));
         var sceneID = isNaN(temp) ? Number(s.Stage[s.Stage.length - 1]) : temp;
         sceneID = s.Win ? sceneID + 1 : sceneID;
         var newSceneName = 'Stage' + String(sceneID);
-        cc.director.loadScene(newSceneName);
+        var sceneName = cc.director._loadingScene;
+        if (sceneName != newSceneName) {
+            cc.director.loadScene(newSceneName);
+        }
     },
     start: function start() {}
 }

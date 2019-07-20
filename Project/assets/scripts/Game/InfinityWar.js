@@ -72,26 +72,26 @@ cc.Class({
             type: cc.Prefab,
             default: null
         },
-        Explode1: {
+        Explode:{
             type: cc.AudioSource,
             default: null
         },
-        Explode2: {
-            type: cc.AudioSource,
-            default: null
-        },
-        Explode3: {
-            type: cc.AudioSource,
+        TimeLabel:{
+            type: cc.Label, 
             default: null
         },
         pauseBtn: {
             type: cc.Button,
             default: null
         },
+        MainCamera:{
+            type: cc.Camera,
+            default: null
+        },
         Width: 2500,
         Height: 2500,
-        borderSize: 35,
-        stateChange: false
+        borderSize: 45,
+        stateChange: false,
     },
 
     // TODO 避免重叠
@@ -110,20 +110,20 @@ cc.Class({
         switch (name) {
             case 'enemy':
                 thing = cc.instantiate(this.EnemyPrefab)
-                thing.getComponent('Enemy').Explode = this.Explode1
+                thing.getComponent('Enemy').Explode = this.Explode
                 break
             case 'staticEnemy':
                 thing = cc.instantiate(this.StaticEnemyPrefab)
-                thing.getComponent('EnemyStatic').Explode = this.Explode3
+                thing.getComponent('EnemyStatic').Explode = this.Explode
                 break
             case 'trackEnemy':
                 thing = cc.instantiate(this.TrackEnemyPrefab)
-                thing.getComponent('EnemyTrack').Explode = this.Explode1
+                thing.getComponent('EnemyTrack').Explode = this.Explode
                 thing.getComponent('EnemyTrack').Player = Math.random() < 0.5 ? this.Player1 : this.Player2
                 break
             case 'spinEnemy':
                 thing = cc.instantiate(this.SpinEnemyPrefab)
-                thing.getComponent('EnemySpin').Explode = this.Explode2
+                thing.getComponent('EnemySpin').Explode = this.Explode
                 thing.getComponent('EnemySpin').centerX = posX
                 thing.getComponent('EnemySpin').centerY = posY
 
@@ -131,12 +131,12 @@ cc.Class({
                 break
             case 'swingEnemy':
                 thing = cc.instantiate(this.SwingEnemyPrefab)
-                thing.getComponent('EnemySwing').Explode = this.Explode1
+                thing.getComponent('EnemySwing').Explode = this.Explode
                 break
             case 'copterEnemy':
                 thing = cc.instantiate(this.CopterEnemyPrefab);
                 thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab
-                thing.getComponent('EnemyCopter').Explode = this.Explode2
+                thing.getComponent('EnemyCopter').Explode = this.Explode
 
                 thing.getComponent('EnemySpin').centerX = posX
                 thing.getComponent('EnemySpin').centerY = posY
@@ -188,17 +188,80 @@ cc.Class({
                 }
             }
         }
-        this.node.sortAllChildren();
+        this.node.sortAllChildren()
         this.pauseBtn.node.on('click', this.pauseScene, this)
     },
 
     start() {
-        this.scheduleOnce(this.initGame, 0);
-        // this.generateMap()
+        this.time = 0
+        this.scheduleOnce(this.initGame, 0)
+        this.schedule(this.updateTime, 1)
+    },
+
+    updateTime: function(){
+        if (this.pause) {
+            return
+        }
+        this.time += 1
+        this.TimeLabel.string = 'Time: ' + this.time + 's'
+    },
+
+    initGame: function () {
+        this.generate(-500, 500, 'enemy')
+        this.generate(500, 500, 'enemy')
+        this.generate(500, -500, 'enemy')
+        this.generate(-500, -500, 'enemy')
+
+        this.generate(0, 0, 'supply')
+
+        this.SupplyHelp(20)
+
+        this.EnemyAttack(8)
+
+        this.scheduleOnce(() => {
+            this.StaticEnemyAttack(20)
+        }, 2)
+
+        this.scheduleOnce(() => {
+            this.TrackEnemyAttack(12)
+        }, 10)
+        
+        this.scheduleOnce(() => {
+            this.SpinEnemyAttack(13)
+        }, 20)
+
+        this.scheduleOnce(() => {
+            this.BatteryPowerUp(0, 0, 30)
+        }, 45)
+
+        this.scheduleOnce(() => {
+            this.CopterEnemyAttack(15)
+        }, 60)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 2200, 0, 10 , 6)
+        }, 80)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', 0, 2200 ,10 , 6)
+        }, 100)
+
+        this.scheduleOnce(() => {
+            this.BatteryAdd(60)
+        }, 120)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('x', 1100, 1100 ,20 , 6)
+        }, 300)
+
+        this.scheduleOnce(() => {
+            this.SwingEnemyAttack('y', -1100, 1100 ,20 , 6)
+        }, 330)
     },
 
     pauseScene () {
         for (var child of this.node.children) {
+            debugger;
             switch (child.name) {
                 case 'Enemy':
                 case 'Map':
@@ -210,23 +273,30 @@ cc.Class({
                 }
                 case 'UI': {
                     for (var grandSon of child.children) {
-                        if (grandSon.name != 'shield') {
+                        if (grandSon.group != 'Shield') {
                             grandSon.active = this.pause
                         } else {
-                            debugger;
                             if (!this.pause) {
                                 grandSon.exist = grandSon.active
                                 grandSon.active = false
                                 if (grandSon.timeID) {
                                     clearTimeout(grandSon.timeID)
+                                    grandSon.timeID = undefined
                                 }
                             } else {
                                 grandSon.active = grandSon.exist
                                 grandSon.exist = false
                                 if (grandSon.active) {
-                                    grandSon.timeID = setTimeout(child=>{
-                                            grandSon.active = false
-                                    }, 2500)
+                                    if (grandSon.name == 'shieldLeft') {
+                                        grandSon.timeID = setTimeout(function(){
+                                            this.active = false
+                                        }.bind(this.node.getChildByName('UI').getChildByName('shieldLeft')), 2500)
+                                    }
+                                    else {
+                                        grandSon.timeID = setTimeout(function(){
+                                            this.active = false
+                                        }.bind(this.node.getChildByName('UI').getChildByName('shieldRight')), 2500)
+                                    }
                                 }
                             }
                         }
@@ -246,62 +316,9 @@ cc.Class({
         }
     },
 
-    initGame: function () {
-        this.generate(-500, 500, 'enemy')
-        this.generate(500, 500, 'enemy')
-        this.generate(500, -500, 'enemy')
-        this.generate(-500, -500, 'enemy')
-
-        this.generate(0, 0, 'supply')
-
-        this.SupplyHelp(20)
-
-        this.EnemyAttack(8)
-
-        this.scheduleOnce(() => {
-            this.StaticEnemyAttack(15)
-        }, 2)
-
-        this.scheduleOnce(() => {
-            this.TrackEnemyAttack(9)
-        }, 15)
-        
-        this.scheduleOnce(() => {
-            this.SpinEnemyAttack(13)
-        }, 32)
-
-        this.scheduleOnce(() => {
-            this.BatteryPowerUp(0, 0, 30)
-        }, 60)
-
-        this.scheduleOnce(() => {
-            this.CopterEnemyAttack(15)
-        }, 70)
-
-        this.scheduleOnce(() => {
-            this.SwingEnemyAttack('x', 2200, 0, 10 , 6)
-        }, 120)
-
-        this.scheduleOnce(() => {
-            this.SwingEnemyAttack('y', 0, 2200 ,10 , 6)
-        }, 180)
-
-        this.scheduleOnce(() => {
-            this.BatteryAdd(60)
-        }, 150)
-
-        this.scheduleOnce(() => {
-            this.SwingEnemyAttack('x', 1100, 1100 ,20 , 6)
-        }, 600)
-
-        this.scheduleOnce(() => {
-            this.SwingEnemyAttack('y', -1100, 1100 ,20 , 6)
-        }, 630)
-    },
-
     EnemyAttack: function (time) {
         this.schedule(() => {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 2; i++) {
                 let pos = this.getRandomPosition()
                 let thing = this.generate(pos.x, pos.y, 'enemy').getComponent('Enemy')
                 thing.speedX = 400 * (Math.random() - 0.5)
@@ -319,7 +336,7 @@ cc.Class({
 
     TrackEnemyAttack: function (time) {
         this.schedule(() => {
-            for (let i = 0; i < 3; i++) {
+            for (let i = 0; i < 2; i++) {
                 let pos = this.getRandomPosition()
                 this.generate(pos.x, pos.y, 'trackEnemy')
             }
@@ -402,6 +419,36 @@ cc.Class({
         if (this.stateChange) {
             this.pauseScene()
             this.stateChange = false
+        }
+
+        if (this.Player1.getComponent('Player').Dead) {
+            cc.sys.localStorage.setItem('SurviveScore', String(this.time))
+            this.schedule(() => {
+                this.MainCamera.zoomRatio -= 0.0003
+            }, 0.05)
+            
+            this.scheduleOnce(()=>{
+                var sceneName = cc.director._loadingScene
+                if (sceneName != 'Transition_INF') {
+                    cc.director.loadScene("Transition_INF")
+                }
+            }, 2) 
+            return
+        }
+        if (this.Player2.getComponent('Player').Dead) {
+            debugger;
+            cc.sys.localStorage.setItem('SurviveScore', String(this.time))
+            this.schedule(() => {
+                this.MainCamera.zoomRatio -= 0.0003
+            }, 0.05)
+            
+            this.scheduleOnce(()=>{
+                var sceneName = cc.director._loadingScene
+                if (sceneName != 'Transition_INF') {
+                    cc.director.loadScene("Transition_INF")
+                }
+            }, 2) 
+            return
         }
     },
 });

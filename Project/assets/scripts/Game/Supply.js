@@ -12,6 +12,7 @@ cc.Class({
     extends: cc.Component,
 
     properties: {
+        existTime: 5
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -23,13 +24,17 @@ cc.Class({
     // 碰到则消失
     onCollisionEnter (other, self) {
         // TODO 消失动画
-        this.node.destroy();
+        this.node.active = false
     },
 
     // TODO 补给只能存在一定时长
 
     start () {
+        setTimeout(() => {
+            this.node.destroy()
+        }, this.existTime * 1000)
 
+        this.node.runAction(cc.fadeOut(this.existTime))
     },
 
     // update (dt) {},

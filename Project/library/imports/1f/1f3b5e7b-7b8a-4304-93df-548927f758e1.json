@@ -121,8 +121,8 @@
     },
     "Explode": null,
     "Player": null,
-    "maxSpeed": 400,
-    "iniAccel": 0.1,
+    "maxSpeed": 450,
+    "iniAccel": 0.2,
     "_id": ""
   },
   {
