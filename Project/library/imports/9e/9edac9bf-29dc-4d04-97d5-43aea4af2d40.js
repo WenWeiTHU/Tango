@@ -94,6 +94,10 @@ cc.Class({
             type: cc.Camera,
             default: null
         },
+        Target: {
+            type: cc.Node,
+            default: null
+        },
         srcX: 0,
         srcY: 0,
         dstX: 0,
@@ -173,6 +177,18 @@ cc.Class({
         return thing;
     },
 
+    GameOver: function GameOver() {
+        var _this = this;
+
+        this.schedule(function () {
+            _this.MainCamera.zoomRatio -= 0.0003;
+        }, 0.05);
+
+        this.scheduleOnce(function () {
+            cc.director.loadScene("Transition");
+        }, 2);
+    },
+
     onLoad: function onLoad() {
         this.pauseBtn.node.on("click", this.pauseScene, this);
         for (var i = 0; i < this.node.children.length; ++i) {
@@ -207,29 +223,20 @@ cc.Class({
         this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio);
     },
     update: function update(dt) {
-        var _this = this;
-
         if (this.stateChange) {
             this.pauseScene();
             this.stateChange = false;
         }
         if (this.Player1.getComponent('Player').Dead) {
-            this.schedule(function () {
-                _this.MainCamera.zoomRatio -= 0.0003;
-            }, 0.05);
-
-            this.scheduleOnce(function () {
-                cc.director.loadScene("Transition");
-            }, 2);
+            this.GameOver();
         }
         if (this.Player2.getComponent('Player').Dead) {
-            this.schedule(function () {
-                _this.MainCamera.zoomRatio -= 0.0003;
-            }, 0.05);
-
-            this.scheduleOnce(function () {
-                cc.director.loadScene("Transition");
-            }, 2);
+            this.GameOver();
+        }
+        debugger;
+        var temp = this.Target.getComponent('Target').win;
+        if (this.Target.getComponent('Target').win) {
+            this.GameOver();
         }
     },
     pauseScene: function pauseScene() {

@@ -31,7 +31,7 @@ cc.Class({
     // 碰到则消失
     onCollisionEnter: function onCollisionEnter(other, self) {
         // TODO 消失动画
-        this.node.destroy();
+        this.node.active = false;
     },
 
 

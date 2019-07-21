@@ -18,23 +18,23 @@
                 "children": [
                   "hierarchy"
                 ],
-                "height": 370.046875,
+                "height": 300.421875,
                 "type": "panel",
-                "width": 310.359375
+                "width": 247.515625
               },
               {
                 "active": 0,
                 "children": [
                   "assets"
                 ],
-                "height": 564.953125,
+                "height": 457.578125,
                 "type": "panel",
-                "width": 310.359375
+                "width": 247.515625
               }
             ],
-            "height": 937,
+            "height": 760,
             "type": "dock-v",
-            "width": 310.359375
+            "width": 247.515625
           },
           {
             "children": [
@@ -43,9 +43,9 @@
                 "children": [
                   "scene"
                 ],
-                "height": 523.015625,
+                "height": 423.75,
                 "type": "panel",
-                "width": 986.15625
+                "width": 788.453125
               },
               {
                 "active": 0,
@@ -53,14 +53,14 @@
                   "console",
                   "timeline"
                 ],
-                "height": 411.984375,
+                "height": 334.234375,
                 "type": "panel",
-                "width": 986.15625
+                "width": 788.453125
               }
             ],
-            "height": 937,
+            "height": 760,
             "type": "dock-v",
-            "width": 986.15625
+            "width": 788.453125
           },
           {
             "active": 0,
@@ -68,9 +68,9 @@
               "inspector",
               "cocos-services"
             ],
-            "height": 937,
+            "height": 760,
             "type": "panel",
-            "width": 619.484375
+            "width": 495.03125
           }
         ],
         "type": "dock-h"
@@ -90,7 +90,7 @@
     "builder": {
       "x": 436,
       "y": 52,
-      "width": 668,
+      "width": 670,
       "height": 736
     }
   }

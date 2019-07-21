@@ -65,6 +65,10 @@ cc.Class({
         Stage12Btn: {
             type: cc.Button,
             default: null
+        },
+        BackBtn: {
+            type: cc.Button,
+            default: null
         }
     },
 
@@ -85,6 +89,9 @@ cc.Class({
         this.Stage10Btn.node.on('click', this.loadScene(10), this);
         this.Stage11Btn.node.on('click', this.loadScene(11), this);
         this.Stage12Btn.node.on('click', this.loadScene(12), this);
+        this.BackBtn.node.on('click', function () {
+            cc.director.loadScene('beginMenu');
+        }, this);
 
         var i;
         for (i = 1; i < 13; ++i) {

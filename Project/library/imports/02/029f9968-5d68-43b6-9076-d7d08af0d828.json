@@ -48,8 +48,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.3150289464879919,
-      "y": 0.3150289464879919,
+      "x": 0.4046296296296296,
+      "y": 0.4046296296296296,
       "z": 1
     },
     "_quat": {
@@ -854,6 +854,7 @@
       "__id__": 31
     },
     "speed": 10,
+    "Dead": false,
     "_id": "38r7LzdI9KlZFukQjqC9Vl"
   },
   {
@@ -2068,6 +2069,7 @@
       "__id__": 41
     },
     "speed": 10,
+    "Dead": false,
     "_id": "c0jXB9hkRP9qMJ/OoN6Ne2"
   },
   {
@@ -2593,8 +2595,8 @@
     },
     "_enabled": true,
     "_useOriginalSize": false,
-    "_string": "Of course, in this hame you will face many silly enemies!",
-    "_N$string": "Of course, in this hame you will face many silly enemies!",
+    "_string": "Of course, in this game you will face many silly enemies!",
+    "_N$string": "Of course, in this game you will face many silly enemies!",
     "_fontSize": 40,
     "_lineHeight": 40,
     "_enableWrapText": true,

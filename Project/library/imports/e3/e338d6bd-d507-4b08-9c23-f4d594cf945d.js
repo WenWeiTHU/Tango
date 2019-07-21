@@ -21,7 +21,8 @@ cc.Class({
         bonus: {
             type: cc.AudioSource,
             default: null
-        }
+        },
+        win: false
     },
 
     // LIFE-CYCLE CALLBACKS:
@@ -35,7 +36,7 @@ cc.Class({
             this.bonus.play();
             //TODO: 加载场景
             this.writeResult();
-            cc.director.loadScene("Transition");
+            this.win = true;
         }
     },
     writeResult: function writeResult() {

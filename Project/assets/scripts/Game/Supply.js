@@ -24,7 +24,7 @@ cc.Class({
     // 碰到则消失
     onCollisionEnter (other, self) {
         // TODO 消失动画
-        this.node.destroy();
+        this.node.active = false
     },
 
     // TODO 补给只能存在一定时长

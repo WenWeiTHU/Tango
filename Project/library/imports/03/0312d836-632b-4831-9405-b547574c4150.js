@@ -499,29 +499,33 @@ cc.Class({
         }
 
         if (this.Player1.getComponent('Player').Dead) {
-            window.Global = {
-                time: this.time
-            };
-
+            cc.sys.localStorage.setItem('SurviveScore', String(this.time));
             this.schedule(function () {
                 _this11.MainCamera.zoomRatio -= 0.0003;
             }, 0.05);
 
             this.scheduleOnce(function () {
-                cc.director.loadScene("Transition");
+                var sceneName = cc.director._loadingScene;
+                if (sceneName != 'Transition_INF') {
+                    cc.director.loadScene("Transition_INF");
+                }
             }, 2);
+            return;
         }
         if (this.Player2.getComponent('Player').Dead) {
-            window.Global = {
-                time: this.time
-            };
+            debugger;
+            cc.sys.localStorage.setItem('SurviveScore', String(this.time));
             this.schedule(function () {
                 _this11.MainCamera.zoomRatio -= 0.0003;
             }, 0.05);
 
             this.scheduleOnce(function () {
-                cc.director.loadScene("Transition");
+                var sceneName = cc.director._loadingScene;
+                if (sceneName != 'Transition_INF') {
+                    cc.director.loadScene("Transition_INF");
+                }
             }, 2);
+            return;
         }
     }
 });

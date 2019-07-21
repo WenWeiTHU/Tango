@@ -88,6 +88,10 @@ cc.Class({
             type: cc.Camera,
             default: null
         },
+        Target: {
+            type: cc.Node,
+            default: null
+        },
         srcX: 0,
         srcY: 0,
         dstX: 0,
@@ -167,6 +171,15 @@ cc.Class({
         return thing
     },
 
+    GameOver: function() {
+        this.schedule(() => {
+            this.MainCamera.zoomRatio -= 0.0003
+        }, 0.05)
+        
+        this.scheduleOnce(()=>{
+            cc.director.loadScene("Transition")
+        }, 2) 
+    },
 
     onLoad() {
         this.pauseBtn.node.on("click", this.pauseScene, this)
@@ -205,22 +218,15 @@ cc.Class({
             this.stateChange = false
         }
         if (this.Player1.getComponent('Player').Dead) {
-            this.schedule(() => {
-                this.MainCamera.zoomRatio -= 0.0003
-            }, 0.05)
-            
-            this.scheduleOnce(()=>{
-                cc.director.loadScene("Transition")
-            }, 2) 
+            this.GameOver()
         }
         if (this.Player2.getComponent('Player').Dead) {
-            this.schedule(() => {
-                this.MainCamera.zoomRatio -= 0.0003
-            }, 0.05)
-            
-            this.scheduleOnce(()=>{
-                cc.director.loadScene("Transition")
-            }, 2) 
+            this.GameOver()
+        }
+        debugger
+        var temp = this.Target.getComponent('Target').win
+        if (this.Target.getComponent('Target').win) {
+            this.GameOver()
         }
     },
     pauseScene () {
