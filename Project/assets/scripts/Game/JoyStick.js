@@ -16,6 +16,10 @@ cc.Class({
             type: cc.Node,
             default: null,
         },
+        Ring:{
+            type: cc.Node,
+            default: null,
+        },
         ShieldBtn: {
             type: cc.Node,
             default: null,
@@ -32,7 +36,7 @@ cc.Class({
             type: cc.Node,
             default: null,
         },
-        Max_r: 200,
+        Max_r: 100,
         ShieldDuartion: 5,
     },
 
@@ -78,7 +82,7 @@ cc.Class({
 
         this.newShield.active = false
 
-        this.Stick.on(cc.Node.EventType.TOUCH_START, function (e) {
+        this.Ring.on(cc.Node.EventType.TOUCH_START, function (e) {
             var w_pos = e.getLocation();
             this.pos = this.node.convertToNodeSpaceAR(w_pos);
             var len = this.pos.mag(); //获取向量长度
@@ -95,7 +99,7 @@ cc.Class({
             this.generateShield()
         }, this);
 
-        this.Stick.on(cc.Node.EventType.TOUCH_MOVE, function (e) {
+        this.Ring.on(cc.Node.EventType.TOUCH_MOVE, function (e) {
             var w_pos = e.getLocation();
             this.pos = this.node.convertToNodeSpaceAR(w_pos);
             var len = this.pos.mag();
@@ -108,12 +112,12 @@ cc.Class({
             this.Stick.setPosition(this.pos);
         }, this);
 
-        this.Stick.on(cc.Node.EventType.TOUCH_END, function (e) {
+        this.Ring.on(cc.Node.EventType.TOUCH_END, function (e) {
             this.Stick.setPosition(cc.v2(0, 0));
             this.dir = cc.v2(0, 0);
         }, this);
 
-        this.Stick.on(cc.Node.EventType.TOUCH_CANCEL, function (e) {
+        this.Ring.on(cc.Node.EventType.TOUCH_CANCEL, function (e) {
             this.Stick.setPosition(cc.v2(0, 0));
             this.dir = cc.v2(0, 0);
         }, this);

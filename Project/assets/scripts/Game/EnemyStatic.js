@@ -28,7 +28,7 @@ cc.Class({
 
     onCollisionEnter(other, self) {
         if (other.node.group == "Bind") {
-            this.Explode.play()
+
             for (let i = 0; i < 360; i += 360 / this.shootNum) {
                 // 构造新子弹，并设置参数
                 let newBullet = cc.instantiate(this.BulletPrefab)
@@ -43,20 +43,20 @@ cc.Class({
 
                 this.node.parent.addChild(newBullet)
             }
-            
-            var blast = cc.instantiate(this.BlastPrefab)
 
-            this.node.parent.addChild(blast)
-            blast.setPosition(this.node.x, this.node.y)
-
-            var animComponent = blast.getComponent(cc.Animation)
-            animComponent.play('blast3')
-
-            this.node.destroy();
-            this.node.parent.sortAllChildren()
-        } else {
-            return
         }
+        
+        this.Explode.play()
+        var blast = cc.instantiate(this.BlastPrefab)
+
+        this.node.parent.addChild(blast)
+        blast.setPosition(this.node.x, this.node.y)
+
+        var animComponent = blast.getComponent(cc.Animation)
+        animComponent.play('blast3')
+
+        this.node.destroy()
+        this.node.parent.sortAllChildren()
     },
 
     start() {},

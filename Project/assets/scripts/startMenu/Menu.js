@@ -60,11 +60,20 @@ cc.Class({
             type: cc.Node,
             default: null,
         },
+        bgm:{
+            type: cc.AudioClip,
+            default: null,
+        }
     },
 
     // LIFE-CYCLE CALLBACKS:
 
     onLoad() {
+        if(!cc.audioEngine.isMusicPlaying()){
+            console.log(1)
+            cc.audioEngine.playMusic(this.bgm, true)
+        }
+
         if(cc.sys.localStorage.getItem("Stage1") === null) {
             cc.sys.localStorage.setItem("Stage1", true)
             for(var i = 2; i < 13; ++i) {
