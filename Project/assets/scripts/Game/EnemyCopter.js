@@ -55,7 +55,7 @@ cc.Class({
         bulletSetting.direction = dir;
         bulletSetting.speed = this.bulletSpeed;
 
-        this.node.parent.addChild(newBullet)
+        this.node.parent.parent.addChild(newBullet)
         this.node.parent.sortAllChildren();
     },
 

@@ -1,6 +1,6 @@
-(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/Game/load.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
-cc._RF.push(module, '52d80sgBtBOJrfnG4jrFhvu', 'load', __filename);
-// scripts/Game/load.js
+(function() {"use strict";var __module = CC_EDITOR ? module : {exports:{}};var __filename = 'preview-scripts/assets/scripts/Game/Load.js';var __require = CC_EDITOR ? function (request) {return cc.require(request, require);} : function (request) {return cc.require(request, __filename);};function __define (exports, require, module) {"use strict";
+cc._RF.push(module, '52d80sgBtBOJrfnG4jrFhvu', 'Load', __filename);
+// scripts/Game/Load.js
 
 "use strict";
 
@@ -47,5 +47,5 @@ cc._RF.pop();
             });
         }
         })();
-        //# sourceMappingURL=load.js.map
+        //# sourceMappingURL=Load.js.map
         

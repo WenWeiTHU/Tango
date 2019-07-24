@@ -223,9 +223,13 @@ cc.Class({
         if (this.Player2.getComponent('Player').Dead) {
             this.GameOver()
         }
-        debugger
-        var temp = this.Target.getComponent('Target').win
-        if (this.Target.getComponent('Target').win) {
+
+        if(this.Target.getComponent('Target').win){
+            var stageName = cc.director.getScene().name
+            if(stageName === 'Stage12'){
+                cc.director.loadScene('End')
+                return
+            }
             this.GameOver()
         }
     },

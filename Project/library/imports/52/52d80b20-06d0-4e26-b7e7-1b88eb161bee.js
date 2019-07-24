@@ -1,6 +1,6 @@
 "use strict";
-cc._RF.push(module, '52d80sgBtBOJrfnG4jrFhvu', 'load');
-// scripts/Game/load.js
+cc._RF.push(module, '52d80sgBtBOJrfnG4jrFhvu', 'Load');
+// scripts/Game/Load.js
 
 "use strict";
 

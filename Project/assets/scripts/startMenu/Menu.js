@@ -70,11 +70,10 @@ cc.Class({
 
     onLoad() {
         if(!cc.audioEngine.isMusicPlaying()){
-            console.log(1)
             cc.audioEngine.playMusic(this.bgm, true)
         }
 
-        if(cc.sys.localStorage.getItem("Stage1") === null) {
+        if( cc.sys.localStorage.length <= 1) {
             cc.sys.localStorage.setItem("Stage1", true)
             for(var i = 2; i < 13; ++i) {
                 cc.sys.localStorage.setItem("Stage" + String(i), false)

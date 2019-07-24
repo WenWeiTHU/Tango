@@ -60,7 +60,7 @@
     "relativePath": "resource\\anim\\bulletBreak.anim"
   },
   "2978a4a4-8042-407a-a23e-266bd5169d09": {
-    "asset": 1563722407951,
+    "asset": 1563722638275,
     "meta": 1563608858000,
     "relativePath": "resource\\audio"
   },
@@ -85,7 +85,7 @@
     "relativePath": "resource\\audio\\orbit1.wav"
   },
   "4821e37e-8d1f-4b54-9ea2-87238ff1edd5": {
-    "asset": 1563608858000,
+    "asset": 1563982668688,
     "meta": 1563608858000,
     "relativePath": "resource\\frames"
   },
@@ -955,8 +955,8 @@
     "relativePath": "prefab\\supply.prefab"
   },
   "878d52ca-8b06-4c39-981d-5a7ed8a2e50e": {
-    "asset": 1563717568059,
-    "meta": 1563717694486,
+    "asset": 1563982668688,
+    "meta": 1563988361978,
     "relativePath": "resource"
   },
   "31ce76d8-9301-4a48-82d5-2fc868f4a8f5": {
@@ -985,7 +985,7 @@
     "relativePath": "resource\\img\\beginMenu\\playBtn.png"
   },
   "768b6b17-c4ee-4592-b7a5-4f99612d9484": {
-    "asset": 1563612482980,
+    "asset": 1563987132264,
     "meta": 1563608858000,
     "relativePath": "resource\\img\\Game"
   },
@@ -1043,16 +1043,6 @@
     "asset": 1563608858000,
     "meta": 1563609974581,
     "relativePath": "resource\\img\\Game\\playBtn.png"
-  },
-  "d9035a3f-9c27-485b-8530-7431b2e772da": {
-    "asset": 1563608858000,
-    "meta": 1563609974609,
-    "relativePath": "resource\\img\\Game\\player1.png"
-  },
-  "7db1d010-315c-4add-97da-9adea3c5e542": {
-    "asset": 1563608858000,
-    "meta": 1563609974614,
-    "relativePath": "resource\\img\\Game\\player2.png"
   },
   "6250ef52-47bd-4fe5-9a87-c18ee857a41e": {
     "asset": 1563608858000,
@@ -1120,7 +1110,7 @@
     "relativePath": "resource\\img\\Selection\\continue.png"
   },
   "e95b089d-b6cf-4abb-bfee-00ba6a00c64c": {
-    "asset": 1563715785120,
+    "asset": 1563981143651,
     "meta": 1563608858000,
     "relativePath": "scene"
   },
@@ -1130,8 +1120,8 @@
     "relativePath": "scene\\beginMenu.fire"
   },
   "a6ebbf4b-3aee-42ce-ac55-89da6fcf6e52": {
-    "asset": 1563725077200,
-    "meta": 1563725077222,
+    "asset": 1563990753457,
+    "meta": 1563990753470,
     "relativePath": "scene\\Infinity War.fire"
   },
   "eec0a7a9-0d73-4a6e-9739-af7133dc305c": {
@@ -1160,13 +1150,13 @@
     "relativePath": "scene\\Stage4.fire"
   },
   "739e20a6-d8c3-4e86-a610-3e677a116ae2": {
-    "asset": 1563725147061,
-    "meta": 1563725147085,
+    "asset": 1563991037387,
+    "meta": 1563991037402,
     "relativePath": "scene\\Stage5.fire"
   },
   "f6f7ad04-7a53-413d-977a-5f903777750c": {
-    "asset": 1563725182833,
-    "meta": 1563725182850,
+    "asset": 1563990572635,
+    "meta": 1563990572674,
     "relativePath": "scene\\Stage6.fire"
   },
   "c84023ab-d342-433d-afca-e00d9be7d72e": {
@@ -1175,7 +1165,7 @@
     "relativePath": "scripts"
   },
   "be290017-1503-40c8-8d8b-fe27e3cb0154": {
-    "asset": 1563715800701,
+    "asset": 1563983867861,
     "meta": 1563608858000,
     "relativePath": "scripts\\Game"
   },
@@ -1199,11 +1189,6 @@
     "meta": 1563609975239,
     "relativePath": "scripts\\Game\\Blast.js"
   },
-  "080e7b6f-bdb5-4e38-b9d8-603d56a8523d": {
-    "asset": 1563608858000,
-    "meta": 1563609975248,
-    "relativePath": "scripts\\Game\\Bomb.js"
-  },
   "c00c3922-1e37-4b60-836e-a49e04150df8": {
     "asset": 1563608858000,
     "meta": 1563609975259,
@@ -1218,11 +1203,6 @@
     "asset": 1563608858000,
     "meta": 1563609975290,
     "relativePath": "scripts\\Game\\Enemy.js"
-  },
-  "393c3bff-f1dd-4653-be6c-39399f4175ab": {
-    "asset": 1563608858000,
-    "meta": 1563609975310,
-    "relativePath": "scripts\\Game\\EnemyCopter.js"
   },
   "dcd0a6df-e2fb-4bc2-a51f-c7707d8a9d79": {
     "asset": 1563608858000,
@@ -1315,8 +1295,8 @@
     "relativePath": "scene\\Stage11.fire"
   },
   "105ccdd3-aab5-4982-be8f-a6acaba140be": {
-    "asset": 1563725283794,
-    "meta": 1563725283836,
+    "asset": 1563980220012,
+    "meta": 1563980220060,
     "relativePath": "scene\\Stage12.fire"
   },
   "d5d3f6d6-f8af-4d3f-952f-b332186cb787": {
@@ -1699,11 +1679,6 @@
     "meta": 1563609975730,
     "relativePath": "scripts\\Game\\Transition.js"
   },
-  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
-    "asset": 1563608858000,
-    "meta": 1563609975463,
-    "relativePath": "scripts\\Game\\Game.js"
-  },
   "e338d6bd-d507-4b08-9c23-f4d594cf945d": {
     "asset": 1563608858000,
     "meta": 1563609975729,
@@ -1715,8 +1690,8 @@
     "relativePath": "resource\\img\\Game\\bg.png"
   },
   "809cdf9c-070c-49c3-9af1-da1bce60ff57": {
-    "asset": 1563725107243,
-    "meta": 1563725107265,
+    "asset": 1563991011317,
+    "meta": 1563991011346,
     "relativePath": "scene\\Stage2.fire"
   },
   "c4e376ed-92e5-4115-a33c-ba3e504556ab": {
@@ -1725,33 +1700,68 @@
     "relativePath": "resource\\img\\Game\\bullet.png"
   },
   "dfd683d1-babf-45ab-8dbb-90806e98b751": {
-    "asset": 1563716198329,
-    "meta": 1563716198340,
+    "asset": 1563988811251,
+    "meta": 1563988811272,
     "relativePath": "scene\\loadScene.fire"
   },
   "52d80b20-06d0-4e26-b7e7-1b88eb161bee": {
     "asset": 1563716056060,
-    "meta": 1563716056239,
-    "relativePath": "scripts\\Game\\load.js"
-  },
-  "bd90925f-96dd-4985-947d-18de37a1dada": {
-    "asset": 1563717403223,
-    "meta": 1563717403454,
-    "relativePath": "scripts\\Game\\EnemyStatic.js"
+    "meta": 1563987989767,
+    "relativePath": "scripts\\Game\\Load.js"
   },
   "d87d999f-c94c-4f92-b9ec-d7e46c4a3e96": {
     "asset": 1563720805441,
     "meta": 1563722638296,
     "relativePath": "resource\\audio\\bgm.mp3"
   },
-  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
-    "asset": 1563723128037,
-    "meta": 1563723128253,
-    "relativePath": "scripts\\StartMenu\\Menu.js"
-  },
   "2f23c59e-43f6-49dd-894c-36f2173dc38d": {
     "asset": 1563725007307,
     "meta": 1563725007593,
     "relativePath": "scripts\\Game\\JoyStick.js"
+  },
+  "393c3bff-f1dd-4653-be6c-39399f4175ab": {
+    "asset": 1563980184027,
+    "meta": 1563980215011,
+    "relativePath": "scripts\\Game\\EnemyCopter.js"
+  },
+  "6721bffa-d145-4eba-b005-a987135b4331": {
+    "asset": 1563987043828,
+    "meta": 1563987043848,
+    "relativePath": "scene\\End.fire"
+  },
+  "d9035a3f-9c27-485b-8530-7431b2e772da": {
+    "asset": 1563981389999,
+    "meta": 1563981391648,
+    "relativePath": "resource\\img\\Game\\player1.png"
+  },
+  "7db1d010-315c-4add-97da-9adea3c5e542": {
+    "asset": 1563982350714,
+    "meta": 1563982353308,
+    "relativePath": "resource\\img\\Game\\player2.png"
+  },
+  "8619bdb0-e66e-4c9e-8dce-10bf1fb0b7e9": {
+    "asset": 1563984546107,
+    "meta": 1563984548706,
+    "relativePath": "scripts\\Game\\End.js"
+  },
+  "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
+    "asset": 1563987029893,
+    "meta": 1563987030207,
+    "relativePath": "scripts\\Game\\Game.js"
+  },
+  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
+    "asset": 1563988107452,
+    "meta": 1563988107688,
+    "relativePath": "scripts\\StartMenu\\Menu.js"
+  },
+  "516f0510-e313-4c80-9c57-19951554e79a": {
+    "asset": 1563987132264,
+    "meta": 1563988686282,
+    "relativePath": "scene\\load.png"
+  },
+  "bd90925f-96dd-4985-947d-18de37a1dada": {
+    "asset": 1563990676847,
+    "meta": 1563990678001,
+    "relativePath": "scripts\\Game\\EnemyStatic.js"
   }
 }

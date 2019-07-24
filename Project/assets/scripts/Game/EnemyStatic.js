@@ -27,7 +27,7 @@ cc.Class({
     },
 
     onCollisionEnter(other, self) {
-        if (other.node.group == "Bind") {
+        if (other.node.group === "Bind" || other.node.group === "Player" || other.node.group === "Shield" ) {
 
             for (let i = 0; i < 360; i += 360 / this.shootNum) {
                 // 构造新子弹，并设置参数
@@ -41,7 +41,7 @@ cc.Class({
                 bulletSetting.direction = cc.v2(Math.cos(i * Math.PI / 180), Math.sin(i * Math.PI / 180))
                 bulletSetting.speed = this.bulletSpeed
 
-                this.node.parent.addChild(newBullet)
+                this.node.parent.parent.addChild(newBullet)
             }
 
         }
