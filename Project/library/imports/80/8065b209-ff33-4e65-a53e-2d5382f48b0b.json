@@ -45,8 +45,8 @@
     },
     "_scale": {
       "__type__": "cc.Vec3",
-      "x": 0.39892939814814815,
-      "y": 0.39892939814814815,
+      "x": 0.37842305869023807,
+      "y": 0.37842305869023807,
       "z": 1
     },
     "_quat": {
@@ -924,7 +924,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -787,
-      "y": 412,
+      "y": 375,
       "z": 0
     },
     "_scale": {
@@ -950,7 +950,7 @@
   {
     "__type__": "cc.Node",
     "_name": "UI",
-    "_objFlags": 512,
+    "_objFlags": 0,
     "_parent": {
       "__id__": 11
     },
@@ -2124,7 +2124,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -544,
-      "y": 412,
+      "y": 375,
       "z": 0
     },
     "_scale": {
@@ -2232,7 +2232,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -840,
-      "y": 420,
+      "y": 383,
       "z": 0
     },
     "_scale": {
@@ -2320,7 +2320,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": -602,
-      "y": 420,
+      "y": 383,
       "z": 0
     },
     "_scale": {
@@ -2413,7 +2413,7 @@
     "_position": {
       "__type__": "cc.Vec3",
       "x": 34,
-      "y": 437,
+      "y": 400,
       "z": 0
     },
     "_scale": {
@@ -3340,7 +3340,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 20,
+      "width": 60,
       "height": 10000
     },
     "_anchorPoint": {
@@ -3350,7 +3350,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": -244,
+      "x": -265,
       "y": -4949,
       "z": 0
     },
@@ -3418,7 +3418,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 20,
+      "width": 60,
       "height": 10000
     },
     "_id": "5eJ8p8XvJNL55dgP9kBIkw"
@@ -3478,7 +3478,7 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 20,
+      "width": 60,
       "height": 10000
     },
     "_anchorPoint": {
@@ -3488,7 +3488,7 @@
     },
     "_position": {
       "__type__": "cc.Vec3",
-      "x": 221,
+      "x": 243,
       "y": -4949,
       "z": 0
     },
@@ -3556,7 +3556,7 @@
     },
     "_size": {
       "__type__": "cc.Size",
-      "width": 20,
+      "width": 60,
       "height": 10000
     },
     "_id": "05ElUlXlpKHq4ZlSKxYpX7"
@@ -3616,8 +3616,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 463,
-      "height": 20
+      "width": 520,
+      "height": 60
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3695,7 +3695,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 463,
-      "height": 20
+      "height": 60
     },
     "_id": "6eRrt2Hv5KW4o/3HHNjLgu"
   },
@@ -3754,8 +3754,8 @@
     },
     "_contentSize": {
       "__type__": "cc.Size",
-      "width": 463,
-      "height": 20
+      "width": 520,
+      "height": 60
     },
     "_anchorPoint": {
       "__type__": "cc.Vec2",
@@ -3833,7 +3833,7 @@
     "_size": {
       "__type__": "cc.Size",
       "width": 463,
-      "height": 20
+      "height": 60
     },
     "_id": "26Htlr8+BFNr+jOppmjv5q"
   },
@@ -4805,7 +4805,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -5468,7 +5468,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -6144,7 +6144,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -7609,7 +7609,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -7753,7 +7753,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -7897,7 +7897,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8041,7 +8041,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8185,7 +8185,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8329,7 +8329,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8473,7 +8473,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8617,7 +8617,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8761,7 +8761,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -8905,7 +8905,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9049,7 +9049,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9193,7 +9193,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9337,7 +9337,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9481,7 +9481,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9625,7 +9625,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9769,7 +9769,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -9913,7 +9913,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10057,7 +10057,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10201,7 +10201,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10345,7 +10345,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10633,7 +10633,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10777,7 +10777,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -10921,7 +10921,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11065,7 +11065,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11209,7 +11209,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11353,7 +11353,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11497,7 +11497,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11641,7 +11641,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11785,7 +11785,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -11929,7 +11929,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12073,7 +12073,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12217,7 +12217,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12361,7 +12361,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12505,7 +12505,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12649,7 +12649,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12793,7 +12793,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -12937,7 +12937,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -13081,7 +13081,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -13225,7 +13225,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -13369,7 +13369,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy  copy",
+    "_name": "enemy",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -13662,7 +13662,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_static copy",
+    "_name": "enemy_static",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -13960,7 +13960,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_static copy",
+    "_name": "enemy_static",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -14258,7 +14258,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_static copy",
+    "_name": "enemy_static",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -14556,7 +14556,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_static copy",
+    "_name": "enemy_static",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -14854,7 +14854,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_static copy",
+    "_name": "enemy_static",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -15172,7 +15172,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -15341,7 +15341,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -15510,7 +15510,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98
@@ -15679,7 +15679,7 @@
   },
   {
     "__type__": "cc.Node",
-    "_name": "enemy_swing copy",
+    "_name": "enemy_swing",
     "_objFlags": 0,
     "_parent": {
       "__id__": 98

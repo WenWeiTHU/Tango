@@ -178,7 +178,9 @@ cc.Class({
         
         this.scheduleOnce(()=>{
             cc.director.loadScene("Transition")
-        }, 2) 
+        }, 2)
+
+        this.end = true
     },
 
     onLoad() {
@@ -208,11 +210,16 @@ cc.Class({
     },
 
     start() {
+        this.end = false
         this.stateChange = false
         this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio)
     },
 
     update(dt) {
+        if(this.end){
+            return
+        }
+        
         if (this.stateChange) {
             this.pauseScene()
             this.stateChange = false
@@ -242,7 +249,14 @@ cc.Class({
                 case 'player2':
                 case 'bind':
                 case 'target': {
-                    child.active = this.pause
+                    if(!this.pause){
+                        this.targetExist = child.active
+                        child.active = false
+                    }
+                    else{
+                        child.active = this.targetExist
+                    }
+                    break
                 }
                 case 'UI': {
                     for (var grandSon of child.children) {

@@ -219,6 +219,7 @@ cc.Class({
         this.node.sortAllChildren();
     },
     start: function start() {
+        this.end = false;
         this.stateChange = false;
         this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio);
     },
@@ -260,7 +261,13 @@ cc.Class({
                     case 'bind':
                     case 'target':
                         {
-                            child.active = this.pause;
+                            if (!this.pause) {
+                                this.targetExist = child.active;
+                                child.active = false;
+                            } else {
+                                child.active = this.targetExist;
+                            }
+                            break;
                         }
                     case 'UI':
                         {

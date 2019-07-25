@@ -32,9 +32,9 @@ cc.Class({
         this.end = false;
     },
     update: function update(dt) {
-        if (this.MainCamera.node.y >= -3750) {
+        if (this.MainCamera.node.y >= -3770) {
             this.MainCamera.node.y -= 1.4;
-        } else if (!this.end && this.MainCamera.node.y < -3750) {
+        } else if (!this.end && this.MainCamera.node.y < -3770) {
             this.end = true;
             this.scheduleOnce(function () {
                 cc.director.loadScene('beginMenu');

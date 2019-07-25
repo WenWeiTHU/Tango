@@ -231,23 +231,6 @@ cc.Class({
         //生命值更新
         this.lifeLabel.string = this.life;
         this.shieldLabel.string = this.shield;
-
-        // // 运动
-        // this.node.x += this.speedX * dt
-        // this.node.y += this.speedY * dt
-
-        // // 阻力
-        // if (this.speedX > this.resistance) {
-        //     this.speedX -= this.speedX * 0.01;
-        // } else if (this.speedX < -this.resistance) {
-        //     this.speedX -= this.speedX * 0.01;
-        // }
-
-        // if (this.speedY > this.resistance) {
-        //     this.speedY -= this.speedY * 0.01;
-        // } else if (this.speedY < -this.resistance) {
-        //     this.speedY -= this.speedY * 0.01;
-        // }
     }
 });
 

@@ -84,16 +84,14 @@
         "cocos-services",
         "scene"
       ]
-    },
-    "window-1563988364759": {},
-    "worker": {}
+    }
   },
   "panels": {
     "builder": {
       "x": 436,
       "y": 52,
       "width": 670,
-      "height": 736
+      "height": 734
     },
     "simulator-debugger": {
       "x": 552,
