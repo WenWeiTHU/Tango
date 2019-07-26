@@ -1,48 +1,48 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 摆动敌人脚本
+ */
 
 cc.Class({
-    extends: require("Enemy"),
+  extends: require('Enemy'),
 
-    properties: {
-        swingDuration: 0,
-        rotateDuration: 0,
-        targetPosX: 0,
-        targetPosY: 0,
-    },
+  properties: {
+    swingDuration: 0, // 摆动周期
+    rotateDuration: 0, // 旋转周期
+    targetPosX: 0, // 目标点位置
+    targetPosY: 0
+  },
 
-    // LIFE-CYCLE CALLBACKS:
+  // LIFE-CYCLE CALLBACKS:
 
-    onLoad () {
-    },
+  // onLoad () {},
 
-    setSwingAction: function(){
-        if(this.targetPosX === 0){
-            this.targetPosX = 1
-        }
-        this.node.rotation = 90 - 180 * Math.atan(this.targetPosY / this.targetPosX) / Math.PI
+  /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
+  start () {
+    cc.director.getCollisionManager().enabled = true
 
-        var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut()); 
-        var rotate = cc.rotateBy(this.rotateDuration, 180)
-        var swingDown = cc.moveBy(this.swingDuration, cc.v2(-this.targetPosX, -this.targetPosY)).easing(cc.easeCubicActionInOut())
-        var rotate = cc.rotateBy(this.rotateDuration, 180)
-        // 不断重复
-        return cc.repeatForever(cc.sequence(swingUp, rotate, swingDown, rotate));
-    },
+    this.swingAction = this.setSwingAction()
+    this.node.runAction(this.swingAction)
+  },
 
-    start () {
-        cc.director.getCollisionManager().enabled = true;
-        
-        this.swingAction = this.setSwingAction()
-        this.node.runAction(this.swingAction)
-    },
+  /*
+     * 设置摆动行为函数
+     * 功能：给对象设定一个按目标位置摆动的行为
+     */
+  setSwingAction () {
+    if (this.targetPosX === 0) {
+      this.targetPosX = 1
+    }
+    this.node.rotation = 90 - 180 * Math.atan(this.targetPosY / this.targetPosX) / Math.PI
 
-    // update (dt) {},
-});
+    var swingUp = cc.moveBy(this.swingDuration, cc.v2(this.targetPosX, this.targetPosY)).easing(cc.easeCubicActionInOut())
+    var rotate = cc.rotateBy(this.rotateDuration, 180)
+    var swingDown = cc.moveBy(this.swingDuration, cc.v2(-this.targetPosX, -this.targetPosY)).easing(cc.easeCubicActionInOut())
+    // 不断重复
+    return cc.repeatForever(cc.sequence(swingUp, rotate, swingDown, rotate))
+  }
+
+  // update (dt) {},
+})

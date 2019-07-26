@@ -4,50 +4,56 @@ cc._RF.push(module, 'c97547u30RIOKGjKzxiYhjP', 'PauseMenu', __filename);
 
 'use strict';
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 暂停菜单脚本
+ */
 
 cc.Class({
-    extends: cc.Component,
+  extends: cc.Component,
 
-    properties: {
-        ContinueBtn: {
-            type: cc.Button,
-            default: null
-        },
-        HomeBtn: {
-            type: cc.Button,
-            default: null
-        }
+  properties: {
+    ContinueBtn: {
+      type: cc.Button,
+      default: null
     },
-
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start: function start() {
-        this.ContinueBtn.node.on('click', this.Continue, this);
-        this.HomeBtn.node.on('click', function () {
-            var sceneName = cc.director._loadingScene;
-            if (sceneName != 'beginMenu') {
-                cc.director.loadScene('beginMenu');
-            }
-        }, this);
-    },
-    Continue: function Continue() {
-        var s = this.node.parent.parent;
-        s._components[1].stateChange = true;
-        this.node.destroy();
+    HomeBtn: {
+      type: cc.Button,
+      default: null
     }
+  },
 
-    // update (dt) {},
+  // LIFE-CYCLE CALLBACKS:
+
+  // onLoad () {},
+
+  /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
+  start: function start() {
+    // 绑定两个按钮的回调函数
+    this.ContinueBtn.node.on('click', this.Continue, this);
+    this.HomeBtn.node.on('click', function () {
+      var sceneName = cc.director._loadingScene;
+      if (sceneName !== 'beginMenu') {
+        cc.director.loadScene('beginMenu');
+      }
+    }, this);
+  },
+
+
+  /*
+     * 恢复函数
+     * 功能：当继续游戏时，将父节点的stateChange设为真，
+     *      使得父节点在更新中进行恢复
+     */
+  Continue: function Continue() {
+    var s = this.node.parent.parent;
+    s._components[1].stateChange = true;
+    this.node.destroy();
+  }
+
+  // update (dt) {},
 
 });
 
