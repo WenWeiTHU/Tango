@@ -382,7 +382,7 @@ cc.Class({
      * 生成旋转敌人函数
      * 功能：根据给定的时间间隔，生成旋转型敌人
      */
-    SpinEnemyAttact (time) {
+    SpinEnemyAttack (time) {
         this.schedule(() => {
             this.generate(this.Player1.x, this.Player1.y, 'spinEnemy')
             this.generate(this.Player2.x, this.Player2.y, 'spinEnemy')
@@ -480,10 +480,25 @@ cc.Class({
      * 功能：向本地储存中写入游戏结果，并准备加载下一场景
      */
     GameOver () {
+        this.end = true
         cc.sys.localStorage.setItem('SurviveScore', String(this.time))
+        var result = JSON.parse(cc.sys.localStorage.getItem('highestScore'))
+        var scores = cc.sys.localStorage.getItem('ranking')
+        scores = JSON.parse(scores)
+        scores.push({
+                'score' : this.time,
+                'time' : Date(Date.now())
+        })
+        scores.sort(function(a, b) {
+            return a.score > b.score ? -1 : 1
+        })
+        cc.sys.localStorage.setItem('ranking', JSON.stringify(scores))
+        if (this.time > result) {
+            cc.sys.localStorage.setItem('highestScore', this.time)
+        }
             this.schedule(() => {
-                this.MainCamera.zoomRatio -= 0.0003
-            }, 0.05)
+                this.MainCamera.zoomRatio -= 0.003
+            }, 0.01)
             
             this.scheduleOnce(()=>{
                 var sceneName = cc.director._loadingScene
@@ -495,16 +510,16 @@ cc.Class({
 
     // 系统调用的更新函数，与Game.js中的更新函数相同
     update(dt) {
-        if (this.stateChange) {
+        if (this.stateChange && !this.end) {
             this.pauseScene()
             this.stateChange = false
         }
 
-        if (this.Player1.getComponent('Player').Dead) {
+        if (this.Player1.getComponent('Player').Dead && !this.end) {
             this.GameOver()
             return
         }
-        if (this.Player2.getComponent('Player').Dead) {
+        if (this.Player2.getComponent('Player').Dead && !this.end) {
             this.GameOver()
             return
         }

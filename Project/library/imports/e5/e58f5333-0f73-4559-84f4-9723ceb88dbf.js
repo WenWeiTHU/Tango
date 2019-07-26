@@ -34,10 +34,14 @@ cc.Class({
         this.homeBtn.node.on("click", this.loadBeginMenu, this);
         this.continueBtn.node.on("click", this.loadContinue, this);
         var sceneName = cc.director.getScene().name;
-        debugger;
         if (sceneName == 'Transition_INF') {
             var score = cc.sys.localStorage.getItem('SurviveScore');
+            var highestScore = cc.sys.localStorage.getItem('highestScore');
             this.node.getChildByName('Score').getComponent(cc.Label).string = 'SurvivalTime: ' + score + 's';
+            this.node.getChildByName('Score').getComponent(cc.Label).string += '\nHighest Score: ' + highestScore + 's';
+            this.node.getChildByName('rankBtn').on('click', function () {
+                cc.director.loadScene('Ranking');
+            }, this);
         }
     },
     loadBeginMenu: function loadBeginMenu() {
@@ -46,7 +50,6 @@ cc.Class({
     loadContinue: function loadContinue() {
         var s = cc.sys.localStorage.getItem("lastStage");
         s = JSON.parse(s);
-        debugger;
         if (s.Stage == 'Infinity War') {
             cc.director.loadScene('Infinity War');
             return;

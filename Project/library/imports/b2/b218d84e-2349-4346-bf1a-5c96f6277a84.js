@@ -87,7 +87,6 @@ cc.Class({
      * 根据 X 轴和 Y 轴的分速度来更新对象的位置
      */
     updatePos: function updatePos(dt) {
-        debugger;
         this.node.x += this.speedX * dt;
         this.node.y += this.speedY * dt;
     },

@@ -1160,7 +1160,7 @@
     "relativePath": "scene\\Stage6.fire"
   },
   "c84023ab-d342-433d-afca-e00d9be7d72e": {
-    "asset": 1563608858000,
+    "asset": 1564120107590,
     "meta": 1563608858000,
     "relativePath": "scripts"
   },
@@ -1505,8 +1505,8 @@
     "relativePath": "scripts\\Game\\StageControl.js"
   },
   "063573fa-4150-4273-bed3-686c503efe59": {
-    "asset": 1563608858000,
-    "meta": 1563609974945,
+    "asset": 1564130396306,
+    "meta": 1564130396373,
     "relativePath": "scene\\Transition_INF.fire"
   },
   "71561142-4c83-4933-afca-cb7a17f67053": {
@@ -1614,11 +1614,6 @@
     "meta": 1563609975716,
     "relativePath": "scripts\\Game\\Supply.js"
   },
-  "e58f5333-0f73-4559-84f4-9723ceb88dbf": {
-    "asset": 1563608858000,
-    "meta": 1563609975730,
-    "relativePath": "scripts\\Game\\Transition.js"
-  },
   "e338d6bd-d507-4b08-9c23-f4d594cf945d": {
     "asset": 1563608858000,
     "meta": 1563609975729,
@@ -1668,11 +1663,6 @@
     "asset": 1563982350714,
     "meta": 1563982353308,
     "relativePath": "resource\\img\\Game\\player2.png"
-  },
-  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
-    "asset": 1564079199053,
-    "meta": 1564119071793,
-    "relativePath": "scripts\\StartMenu\\Menu.js"
   },
   "516f0510-e313-4c80-9c57-19951554e79a": {
     "asset": 1563987132264,
@@ -1734,11 +1724,6 @@
     "meta": 1564076928666,
     "relativePath": "scripts\\Game\\Gravity.js"
   },
-  "0312d836-632b-4831-9405-b547574c4150": {
-    "asset": 1564074213598,
-    "meta": 1564076928740,
-    "relativePath": "scripts\\Game\\InfinityWar.js"
-  },
   "2f23c59e-43f6-49dd-894c-36f2173dc38d": {
     "asset": 1564076422822,
     "meta": 1564076928805,
@@ -1754,14 +1739,54 @@
     "meta": 1564077155459,
     "relativePath": "scripts\\Game\\PauseMenu.js"
   },
-  "b218d84e-2349-4346-bf1a-5c96f6277a84": {
-    "asset": 1564119429101,
-    "meta": 1564119438718,
-    "relativePath": "scripts\\Game\\Enemy.js"
-  },
   "9edac9bf-29dc-4d04-97d5-43aea4af2d40": {
     "asset": 1564119592230,
     "meta": 1564119595699,
     "relativePath": "scripts\\Game\\Game.js"
+  },
+  "0ebf2793-0a49-4515-a3f9-04b953c04b9f": {
+    "asset": 1564119912369,
+    "meta": 1564120107590,
+    "relativePath": "scripts\\Rank"
+  },
+  "b218d84e-2349-4346-bf1a-5c96f6277a84": {
+    "asset": 1564124760855,
+    "meta": 1564124793431,
+    "relativePath": "scripts\\Game\\Enemy.js"
+  },
+  "ade23dd7-a632-4525-afb1-b3d976f079eb": {
+    "asset": 1564127545298,
+    "meta": 1564127545338,
+    "relativePath": "scene\\Ranking.fire"
+  },
+  "3de02fbc-5650-4b55-9e3d-cdb88e8b16e9": {
+    "asset": 1564126920744,
+    "meta": 1564126922672,
+    "relativePath": "scripts\\StartMenu\\Menu.js"
+  },
+  "c9f5a925-1145-4519-aa4d-37161508fae9": {
+    "asset": 1564127496106,
+    "meta": 1564127497689,
+    "relativePath": "scripts\\Rank\\Ranking.js"
+  },
+  "0312d836-632b-4831-9405-b547574c4150": {
+    "asset": 1564129552701,
+    "meta": 1564129563955,
+    "relativePath": "scripts\\Game\\InfinityWar.js"
+  },
+  "84a78a7e-1901-4537-aa03-8bc68c435ef4": {
+    "asset": 1564129811901,
+    "meta": 1564129811897,
+    "relativePath": "resource\\img\\Rank"
+  },
+  "83ec8976-8d8a-4534-9bcc-981358c2c757": {
+    "asset": 1564129807625,
+    "meta": 1564129811990,
+    "relativePath": "resource\\img\\Rank\\rankBtn.png"
+  },
+  "e58f5333-0f73-4559-84f4-9723ceb88dbf": {
+    "asset": 1564130245157,
+    "meta": 1564130246463,
+    "relativePath": "scripts\\Game\\Transition.js"
   }
 }

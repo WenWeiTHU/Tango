@@ -449,7 +449,7 @@ cc.Class({
      * 生成旋转敌人函数
      * 功能：根据给定的时间间隔，生成旋转型敌人
      */
-    SpinEnemyAttact: function SpinEnemyAttact(time) {
+    SpinEnemyAttack: function SpinEnemyAttack(time) {
         var _this5 = this;
 
         this.schedule(function () {
@@ -565,10 +565,25 @@ cc.Class({
     GameOver: function GameOver() {
         var _this11 = this;
 
+        this.end = true;
         cc.sys.localStorage.setItem('SurviveScore', String(this.time));
+        var result = JSON.parse(cc.sys.localStorage.getItem('highestScore'));
+        var scores = cc.sys.localStorage.getItem('ranking');
+        scores = JSON.parse(scores);
+        scores.push({
+            'score': this.time,
+            'time': Date(Date.now())
+        });
+        scores.sort(function (a, b) {
+            return a.score > b.score ? -1 : 1;
+        });
+        cc.sys.localStorage.setItem('ranking', JSON.stringify(scores));
+        if (this.time > result) {
+            cc.sys.localStorage.setItem('highestScore', this.time);
+        }
         this.schedule(function () {
-            _this11.MainCamera.zoomRatio -= 0.0003;
-        }, 0.05);
+            _this11.MainCamera.zoomRatio -= 0.003;
+        }, 0.01);
 
         this.scheduleOnce(function () {
             var sceneName = cc.director._loadingScene;
@@ -581,16 +596,16 @@ cc.Class({
 
     // 系统调用的更新函数，与Game.js中的更新函数相同
     update: function update(dt) {
-        if (this.stateChange) {
+        if (this.stateChange && !this.end) {
             this.pauseScene();
             this.stateChange = false;
         }
 
-        if (this.Player1.getComponent('Player').Dead) {
+        if (this.Player1.getComponent('Player').Dead && !this.end) {
             this.GameOver();
             return;
         }
-        if (this.Player2.getComponent('Player').Dead) {
+        if (this.Player2.getComponent('Player').Dead && !this.end) {
             this.GameOver();
             return;
         }

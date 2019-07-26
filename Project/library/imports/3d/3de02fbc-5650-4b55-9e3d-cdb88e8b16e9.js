@@ -90,6 +90,8 @@ cc.Class({
             for (var i = 2; i < 13; ++i) {
                 cc.sys.localStorage.setItem("Stage" + String(i), false);
             }
+            cc.sys.localStorage.setItem('highestScore', -1);
+            cc.sys.localStorage.setItem('ranking', JSON.stringify([]));
         }
     },
 
