@@ -1,12 +1,6 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 普通敌人脚本
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -26,17 +20,23 @@ cc.Class({
         }
     },
 
-    // 自转
-    rotate: function(){
+    /*
+     * 自转函数
+     * 功能：更新对象的旋转角度，使其发生旋转
+     */
+    rotate () {
         var newDegree = this.node.rotation + (this.rotationUpdate/Math.PI)
         this.node.rotation = newDegree > 360 ? newDegree - 360 : newDegree
     },
 
-    // LIFE-CYCLE CALLBACKS:
 
+    /*
+     * 初始化函数
+     * 功能：初始化脚本运行所需的参数
+     */
     onLoad () {
-        this.manager = cc.director.getCollisionManager();
-        this.manager.enabled = true;
+        // 开启碰撞检测
+        cc.director.getCollisionManager().enabled = true
     },
 
     
@@ -44,35 +44,52 @@ cc.Class({
     start () {
     },
 
+    /*
+     * 碰撞函数
+     * 功能：在发生碰撞时对对象进行处理
+     */
     onCollisionEnter (other, self) {
-        // 直接回弹
+        // 如果碰到了地图边界，则直接进行回弹
         if (other.node.group === "Map") {
             this.speedX *= -1
             this.speedY *= -1
             return
-        }
-        // 碰撞主角,链接,护盾则爆炸
-        else {
-            this.Explode.play()
-            
-            var blast = cc.instantiate(this.BlastPrefab)
-
-            this.node.parent.addChild(blast)
-            blast.setPosition(this.node.x, this.node.y)
-
-            var animComponent = blast.getComponent(cc.Animation)
-            animComponent.play('blast3')
-
-        
-            this.node.destroy();
+        } else {
+            // 碰到其他对象，则直接爆炸，并设置动画
+            this.explode()
         }
     },
 
-    // 位置更新
-    update (dt) {
-        this.rotate()
+    /*
+     * 爆炸函数
+     * 功能：销毁对象，并产生爆炸动画
+     */
+    explode () {
+        // 产生动画和音效
+        this.Explode.play()
+        var blast = cc.instantiate(this.BlastPrefab)
+        this.node.parent.addChild(blast)
+        blast.setPosition(this.node.x, this.node.y)
+        var animComponent = blast.getComponent(cc.Animation)
+        animComponent.play('blast3')
 
+        // 销毁本节点
+        this.node.destroy();
+    },
+
+    /*
+     * 更新位置函数
+     * 根据 X 轴和 Y 轴的分速度来更新对象的位置
+     */
+    updatePos (dt) {
+        debugger
         this.node.x += this.speedX * dt
         this.node.y += this.speedY * dt
+    },
+
+    // 系统调用的更新函数
+    update (dt) {
+        this.rotate()
+        this.updatePos(dt)
     },
 });

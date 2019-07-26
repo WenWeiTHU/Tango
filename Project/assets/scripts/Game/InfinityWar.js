@@ -1,13 +1,6 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
+/*
+ * 生存模式控制脚本
+ */
 cc.Class({
     extends: cc.Component,
 
@@ -94,9 +87,11 @@ cc.Class({
         stateChange: false,
     },
 
-    // TODO 避免重叠
-    // LIFE-CYCLE CALLBACKS:
-    getRandomPosition: function () {
+    /*
+     * 获取随机位置函数
+     * 功能：获取一个随机的位置
+     */
+    getRandomPosition () {
         var maxX = this.Width / 2 - this.borderSize;
         var randX = (Math.random() - 0.5) * 2 * maxX
         var maxY = this.Height / 2 - this.borderSize
@@ -105,7 +100,11 @@ cc.Class({
         return cc.v2(randX, randY)
     },
 
-    generate: function (posX, posY, name) {
+    /*
+     * 生成函数
+     * 功能：根据参数生成一个对象，是敌人或者补给或者其他
+     */
+    generate (posX, posY, name) {
         let thing
         switch (name) {
             case 'enemy':
@@ -166,7 +165,12 @@ cc.Class({
     },
 
 
+    /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
     onLoad() {
+        // 设置对象的zIndex，保证显示层级的正确
         for (var i = 0; i < this.node.children.length; ++i) {
             switch (this.node.children[i].name) {
                 case 'player1': {
@@ -189,16 +193,25 @@ cc.Class({
             }
         }
         this.node.sortAllChildren()
+        
+        // 绑定暂停按键的回调函数
         this.pauseBtn.node.on('click', this.pauseScene, this)
-    },
 
-    start() {
+        
         this.time = 0
         this.scheduleOnce(this.initGame, 0)
         this.schedule(this.updateTime, 1)
     },
 
-    updateTime: function(){
+    start() {
+        
+    },
+
+    /*
+     * 计时函数
+     * 功能：计算玩家生存的时间，并将其更新到分数栏上
+     */
+    updateTime () {
         if (this.pause) {
             return
         }
@@ -206,7 +219,12 @@ cc.Class({
         this.TimeLabel.string = 'Time: ' + this.time + 's'
     },
 
-    initGame: function () {
+    /*
+     * 初始化游戏场景函数
+     * 功能：初始化游戏场景，生成一些敌人，
+     *      并且设置定时生成敌人的时间
+     */
+    initGame () {
         this.generate(-500, 500, 'enemy')
         this.generate(500, 500, 'enemy')
         this.generate(500, -500, 'enemy')
@@ -259,7 +277,12 @@ cc.Class({
         }, 330)
     },
 
+    /*
+     * 暂停场景函数
+     * 功能：暂停/恢复场景内容
+     */
     pauseScene () {
+        // 此函数与Game.js相同，可参考Game.js中的pauseScene函数
         for (var child of this.node.children) {
             debugger;
             switch (child.name) {
@@ -316,7 +339,11 @@ cc.Class({
         }
     },
 
-    EnemyAttack: function (time) {
+    /*
+     * 定时生成enemy
+     * 功能：根据给定的时间间隔，生成2个普通的enemy
+     */
+    EnemyAttack (time) {
         this.schedule(() => {
             for (let i = 0; i < 2; i++) {
                 let pos = this.getRandomPosition()
@@ -327,14 +354,22 @@ cc.Class({
         }, time)
     },
 
-    StaticEnemyAttack: function (time) {
+    /*
+     * 生成静态敌人函数
+     * 功能：根据给定的时间间隔，生成静态敌人
+     */
+    StaticEnemyAttack (time) {
         this.schedule(() => {
             let pos = this.getRandomPosition()
             this.generate(pos.x, pos.y, 'staticEnemy')
         }, time)
     },
 
-    TrackEnemyAttack: function (time) {
+    /*
+     * 生成追踪敌人函数
+     * 功能：根据给定的时间间隔，生成追踪型敌人
+     */
+    TrackEnemyAttack (time) {
         this.schedule(() => {
             for (let i = 0; i < 2; i++) {
                 let pos = this.getRandomPosition()
@@ -343,21 +378,34 @@ cc.Class({
         }, time)
     },
 
-    SpinEnemyAttack: function (time) {
+    /*
+     * 生成旋转敌人函数
+     * 功能：根据给定的时间间隔，生成旋转型敌人
+     */
+    SpinEnemyAttact (time) {
         this.schedule(() => {
             this.generate(this.Player1.x, this.Player1.y, 'spinEnemy')
             this.generate(this.Player2.x, this.Player2.y, 'spinEnemy')
         }, time)
     },
 
-    CopterEnemyAttack: function (time) {
+
+    /*
+     * 直升机敌人生成函数
+     * 功能：根据给定的时间间隔，生成直升机敌人
+     */
+    CopterEnemyAttack (time) {
         this.schedule(() => {
             this.generate(this.Player1.x, this.Player1.y, 'copterEnemy')
             this.generate(this.Player2.x, this.Player2.y, 'copterEnemy')
         }, time)
     },
 
-    SwingEnemyAttack(dir, targetposX, targetposY, num, duration){
+    /*
+     * 生成往返敌人函数
+     * 功能：根据给定的参数和时间间隔，生成往返敌人
+     */
+    SwingEnemyAttack (dir, targetposX, targetposY, num, duration) {
         this.scheduleOnce(() => {
             for (let i = -1100; i < 1100; i += 2200 / (num  - 1)) {
                 let thing
@@ -375,7 +423,11 @@ cc.Class({
         }, 0)
     },
 
-    SupplyHelp: function (time) {
+    /*
+     * 生成补集函数
+     * 功能：根据给定的时间间隔产生补集
+     */
+    SupplyHelp (time) {
         this.schedule(() => {
             let pos = this.getRandomPosition()
             let num = Math.random()
@@ -387,7 +439,11 @@ cc.Class({
         }, time)
     },
 
-    BatteryAdd: function (time) {
+    /*
+     * 生成炮台函数
+     * 功能：根据给定的时间间隔，生成炮台
+     */
+    BatteryAdd (time) {
         this.scheduleOnce(() => {
             this.generate(1100, 1100, 'battery')
             this.scheduleOnce(() => {
@@ -399,7 +455,11 @@ cc.Class({
         }, time)
     },
 
-    BatteryPowerUp: function (posx, posy, time) {
+    /*
+     * 炮台死亡函数
+     * 功能：计时炮台寿命，当炮台寿命到期后则销毁
+     */
+    BatteryPowerUp (posx, posy, time) {
         this.scheduleOnce(() => {
             var Battery = this.generate(posx, posy, 'battery').getComponent('Battery')
             Battery.shootNum = 1
@@ -415,6 +475,25 @@ cc.Class({
         }, time)
     },
 
+    /*
+     * 游戏结束函数
+     * 功能：向本地储存中写入游戏结果，并准备加载下一场景
+     */
+    GameOver () {
+        cc.sys.localStorage.setItem('SurviveScore', String(this.time))
+            this.schedule(() => {
+                this.MainCamera.zoomRatio -= 0.0003
+            }, 0.05)
+            
+            this.scheduleOnce(()=>{
+                var sceneName = cc.director._loadingScene
+                if (sceneName != 'Transition_INF') {
+                    cc.director.loadScene("Transition_INF")
+                }
+            }, 2) 
+    },
+
+    // 系统调用的更新函数，与Game.js中的更新函数相同
     update(dt) {
         if (this.stateChange) {
             this.pauseScene()
@@ -422,32 +501,11 @@ cc.Class({
         }
 
         if (this.Player1.getComponent('Player').Dead) {
-            cc.sys.localStorage.setItem('SurviveScore', String(this.time))
-            this.schedule(() => {
-                this.MainCamera.zoomRatio -= 0.0003
-            }, 0.05)
-            
-            this.scheduleOnce(()=>{
-                var sceneName = cc.director._loadingScene
-                if (sceneName != 'Transition_INF') {
-                    cc.director.loadScene("Transition_INF")
-                }
-            }, 2) 
+            this.GameOver()
             return
         }
         if (this.Player2.getComponent('Player').Dead) {
-            debugger;
-            cc.sys.localStorage.setItem('SurviveScore', String(this.time))
-            this.schedule(() => {
-                this.MainCamera.zoomRatio -= 0.0003
-            }, 0.05)
-            
-            this.scheduleOnce(()=>{
-                var sceneName = cc.director._loadingScene
-                if (sceneName != 'Transition_INF') {
-                    cc.director.loadScene("Transition_INF")
-                }
-            }, 2) 
+            this.GameOver()
             return
         }
     },

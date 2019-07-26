@@ -4,15 +4,9 @@ cc._RF.push(module, 'dcd0abf4vtLwqUfx3B9ip15', 'EnemySpin');
 
 "use strict";
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 旋转围绕敌人脚本
+ */
 
 cc.Class({
     extends: require("EnemyTrack"),
@@ -30,13 +24,23 @@ cc.Class({
         circulateUpdate: 2
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
+    /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
     onLoad: function onLoad() {
+        // 开启碰撞检测
         cc.director.getCollisionManager().enabled = true;
+
+        this.angle = 0;
+        this.circulateDir = 1;
     },
 
 
+    /*
+     * 自转函数
+     * 功能：更新对象自转角度
+     */
     circulate: function circulate() {
         this.angle += this.circulateDir * this.circulateUpdate;
 
@@ -45,36 +49,60 @@ cc.Class({
         this.node.x = this.centerX + this.radius * Math.sin(this.angle * Math.PI / 180);
         this.node.y = this.centerY + this.radius * Math.cos(this.angle * Math.PI / 180);
     },
+    start: function start() {},
 
-    start: function start() {
-        this.angle = 0;
-        this.circulateDir = 1;
-    },
+
+    /*
+     * 碰撞检测函数
+     * 功能：当敌人发生碰撞时，调用此函数对对象进行处理
+     */
     onCollisionEnter: function onCollisionEnter(other, self) {
         if (other.node.group == "Map") {
+            // 如果碰到了地图边界，则直接反弹
             this.circulateDir *= -1;
             return;
         } else {
-            this.Explode.play();
-            var blast = cc.instantiate(this.BlastPrefab);
-
-            this.node.parent.addChild(blast);
-            blast.setPosition(this.node.x, this.node.y);
-
-            var animComponent = blast.getComponent(cc.Animation);
-            animComponent.play('blast3');
-
-            this.node.destroy();
+            // 如果碰到了其他对象，则发生爆炸并销毁
+            this.explode();
         }
     },
-    update: function update(dt) {
-        this.rotate();
 
+
+    /*
+     * 爆炸函数
+     * 功能：产生爆炸动画并销毁自身
+     */
+    explode: function explode() {
+        this.Explode.play();
+        var blast = cc.instantiate(this.BlastPrefab);
+
+        this.node.parent.addChild(blast);
+        blast.setPosition(this.node.x, this.node.y);
+
+        var animComponent = blast.getComponent(cc.Animation);
+        animComponent.play('blast3');
+
+        this.node.destroy();
+    },
+
+
+    /*
+     * 更新位置函数
+     * 功能：根据分速度来更新对象的下一个位置
+     */
+    updatePos: function updatePos(dt) {
         this.dir = cc.v2(this.Player.x - this.centerX, this.Player.y - this.centerY);
         this.distance = this.dir.mag();
 
         this.centerX += this.dir.x / this.distance * this.centerSpeed * dt;
         this.centerY += this.dir.y / this.distance * this.centerSpeed * dt;
+    },
+
+
+    // 系统调用的更新函数
+    update: function update(dt) {
+        this.rotate();
+        this.updatePos();
         this.circulate();
     }
 });

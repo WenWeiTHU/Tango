@@ -1,13 +1,6 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
+/*
+ * 来回移动敌人脚本
+ */
 cc.Class({
     extends: require("Enemy"),
 
@@ -18,12 +11,26 @@ cc.Class({
         targetPosY: 0,
     },
 
-    // LIFE-CYCLE CALLBACKS:
 
+
+    /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
     onLoad () {
+        // 开启碰撞检测
+        cc.director.getCollisionManager().enabled = true;
+        
+        // 为对象设定一个环绕和旋转的行为
+        this.swingAction = this.setSwingAction()
+        this.node.runAction(this.swingAction)
     },
 
-    setSwingAction: function(){
+    /*
+     * 设置环绕行为函数 
+     * 功能：给对象设定一个环绕着主角旋转的行为
+     */
+    setSwingAction () {
         if(this.targetPosX === 0){
             this.targetPosX = 1
         }
@@ -38,10 +45,7 @@ cc.Class({
     },
 
     start () {
-        cc.director.getCollisionManager().enabled = true;
         
-        this.swingAction = this.setSwingAction()
-        this.node.runAction(this.swingAction)
     },
 
     // update (dt) {},

@@ -4,28 +4,24 @@ cc._RF.push(module, 'ad735tfp8hJar9OkRuTB6K8', 'Map', __filename);
 
 "use strict";
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 地图脚本
+ */
 
 cc.Class({
     extends: cc.Component,
 
     properties: {},
 
-    // LIFE-CYCLE CALLBACKS:
-
+    /*
+     * 初始化函数
+     * 功能：初始化脚本所需设定
+     */
     onLoad: function onLoad() {
+        // 开启碰撞检测
         this.collidManager = cc.director.getCollisionManager();
         this.collidManager.enabled = true;
     },
-    onCollisionEnter: function onCollisionEnter(other, self) {},
     start: function start() {}
 }
 

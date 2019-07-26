@@ -2,17 +2,11 @@
 cc._RF.push(module, '9edacm/KdxNBJfVQ66kry1A', 'Game');
 // scripts/Game/Game.js
 
-'use strict';
+"use strict";
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 游戏控制脚本
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -110,87 +104,35 @@ cc.Class({
         stateChange: false
     },
 
-    // TODO 避免重叠
-    // LIFE-CYCLE CALLBACKS:
-    getRandomPosition: function getRandomPosition() {
-        var maxX = this.Width / 2 - this.borderSize;
-        var randX = (Math.random() - 0.5) * 2 * maxX;
-        var maxY = this.Height / 2 - this.borderSize;
-        var randY = (Math.random() - 0.5) * 2 * maxY;
-
-        return cc.v2(randX, randY);
-    },
-
-    generate: function generate(posX, posY, name) {
-        var thing = void 0;
-        switch (name) {
-            case 'enemy':
-                thing = cc.instantiate(this.EnemyPrefab);
-                thing.getComponent('Enemy').Explode = this.Explode1;
-                break;
-            case 'staticEnemy':
-                thing = cc.instantiate(this.StaticEnemyPrefab);
-                thing.getComponent('EnemyStatic').Explode = this.Explode3;
-                break;
-            case 'trackEnemy':
-                thing = cc.instantiate(this.TrackEnemyPrefab);
-                thing.getComponent('EnemyTrack').Explode = this.Explode1;
-                thing.getComponent('EnemyTrack').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
-                break;
-            case 'spinEnemy':
-                thing = cc.instantiate(this.SpinEnemyPrefab);
-                thing.getComponent('EnemySpin').Explode = this.Explode2;
-                thing.getComponent('EnemySpin').centerX = posX;
-                thing.getComponent('EnemySpin').centerY = posY;
-
-                thing.getComponent('EnemySpin').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
-                break;
-            case 'swingEnemy':
-                thing = cc.instantiate(this.SwingEnemyPrefab);
-                thing.getComponent('EnemySwing').Explode = this.Explode1;
-                break;
-            case 'copterEnemy':
-                thing = cc.instantiate(this.CopterEnemyPrefab);
-                thing.getComponent('EnemyCopter').BulletPrefab = this.BulletPrefab;
-                thing.getComponent('EnemyCopter').Explode = this.Explode2;
-
-                thing.getComponent('EnemySpin').centerX = posX;
-                thing.getComponent('EnemySpin').centerY = posY;
-
-                thing.getComponent('EnemyCopter').Player = Math.random() < 0.5 ? this.Player1 : this.Player2;
-                break;
-            case 'supply':
-                thing = cc.instantiate(this.SupplyPrefab);
-                break;
-            case 'shieldSupply':
-                thing = cc.instantiate(this.ShieldSupplyPrefab);
-                break;
-            case 'battery':
-                thing = cc.instantiate(this.BatteryPrefab);
-                thing.getComponent('Battery').Player1 = this.Player1;
-                thing.getComponent('Battery').Player2 = this.Player2;
-                thing.getComponent('Battery').BulletPrefab = this.BulletPrefab;
-                break;
-        }
-        this.node.addChild(thing);
-        thing.setPosition(posX, posY);
-        return thing;
-    },
-
+    /*
+     * 游戏结束函数
+     * 功能：执行游戏结束的动作，设置定时器缩小相机焦距，
+     *      并且准备定时加载场景，将游戏状态设成结束
+     */
     GameOver: function GameOver() {
         var _this = this;
 
         this.schedule(function () {
-            _this.MainCamera.zoomRatio -= 0.0003;
-        }, 0.05);
+            _this.MainCamera.zoomRatio -= 0.008;
+        }, 0.001);
 
         this.scheduleOnce(function () {
             cc.director.loadScene("Transition");
         }, 2);
+
+        this.end = true;
     },
 
+
+    /*
+     * 初始化函数
+     * 功能：初始化脚本所需的设定
+     */
     onLoad: function onLoad() {
+        // 设置暂停按钮的回调函数
         this.pauseBtn.node.on("click", this.pauseScene, this);
+
+        // 设置各个游戏对象的zIndex，确保显示层级的正确
         for (var i = 0; i < this.node.children.length; ++i) {
             switch (this.node.children[i].name) {
                 case 'player1':
@@ -217,28 +159,23 @@ cc.Class({
             }
         }
         this.node.sortAllChildren();
-    },
-    start: function start() {
+
+        // 将游戏结束状态参数设成假
+        this.end = false;
+
+        // 将游戏状态改变变量设成假
         this.stateChange = false;
+
+        // 设定全景相机的移动
         this.cameraMove(this.srcX, this.srcY, this.dstX, this.dstY, this.ratio);
     },
-    update: function update(dt) {
-        if (this.stateChange) {
-            this.pauseScene();
-            this.stateChange = false;
-        }
-        if (this.Player1.getComponent('Player').Dead) {
-            this.GameOver();
-        }
-        if (this.Player2.getComponent('Player').Dead) {
-            this.GameOver();
-        }
-        debugger;
-        var temp = this.Target.getComponent('Target').win;
-        if (this.Target.getComponent('Target').win) {
-            this.GameOver();
-        }
-    },
+    start: function start() {},
+
+
+    /*
+     * 暂停函数
+     * 功能：暂停/恢复当前场景，并设置其每一个子节点的运行状态
+     */
     pauseScene: function pauseScene() {
         var _iteratorNormalCompletion = true;
         var _didIteratorError = false;
@@ -248,18 +185,38 @@ cc.Class({
             for (var _iterator = this.node.children[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                 var child = _step.value;
 
+                // 遍历Canvas的每一个子节点，将其设为活跃/不活跃状态
                 switch (child.name) {
                     case 'Enemy':
                     case 'Map':
                     case 'player1':
                     case 'player2':
                     case 'bind':
+                    case 'bullet':
+                        {
+                            // 普通对象直接根据暂停还是恢复来设置活跃状态
+                            child.active = this.pause;
+                            break;
+                        }
                     case 'target':
                         {
-                            child.active = this.pause;
+                            // 将暂停前的target活跃状态记录，并在恢复时进行恢复
+                            if (!this.pause) {
+                                this.targetExist = child.active;
+                                child.active = false;
+                            } else {
+                                child.active = this.targetExist;
+                            }
+                            break;
                         }
                     case 'UI':
                         {
+                            /*
+                             * 以下函数有些繁琐，目的是为了记录护盾对象
+                             * 的存在状态，并在恢复时进行恢复。同时，由于
+                             * 护盾本身存在寿命，所以我们对恢复后的寿命给
+                             * 出一个统计的平均数——2.5s
+                             */
                             var _iteratorNormalCompletion2 = true;
                             var _didIteratorError2 = false;
                             var _iteratorError2 = undefined;
@@ -314,6 +271,8 @@ cc.Class({
                         }
                 }
             }
+
+            // 修改场景的暂停状态
         } catch (err) {
             _didIteratorError = true;
             _iteratorError = err;
@@ -331,6 +290,8 @@ cc.Class({
 
         this.pause = this.pause ? false : true;
         if (this.pause) {
+            // 如果当前操作是要暂停此场景
+            // 则要显示一个暂停菜单
             var Menu = cc.instantiate(this.PauseMenuPrefab);
             Menu.x = 0;
             Menu.y = 0;
@@ -340,6 +301,12 @@ cc.Class({
         }
     },
 
+
+    /*
+     * 相机移动功能
+     * 功能：定时缩放相机的焦距和移动相机的焦点，
+     *      使得玩家在开场前可以总览地图全局面貌
+     */
     cameraMove: function cameraMove(srcx, srcy, dstx, dsty, initRatio) {
         this.MapCamera.node.x = srcx;
         this.MapCamera.node.y = srcy;
@@ -358,6 +325,44 @@ cc.Class({
                 }
             }, 0.0001);
         }, 0.8);
+    },
+
+
+    // 系统调用的更新函数
+    update: function update(dt) {
+        if (this.end) {
+            // 如果检测到游戏已经结束，则停止更新
+            return;
+        }
+
+        if (this.stateChange && !this.end) {
+            // 如果检测到游戏状态发生改变（从子部件处设此变量为真），
+            // 则调用暂停函数，并恢复stateChange变量为假
+            this.pauseScene();
+            this.stateChange = false;
+        }
+        if (this.Player1.getComponent('Player').Dead && !this.end) {
+            // 如果检测到玩家死亡，则游戏结束，并且立即返回
+            this.GameOver();
+            return;
+        }
+        if (this.Player2.getComponent('Player').Dead && !this.end) {
+            this.GameOver();
+            return;
+        }
+
+        if (this.Target.getComponent('Target').win && !this.end) {
+            // 如果检测到玩家通关，则游戏结束
+            var stageName = cc.director.getScene().name;
+            if (stageName === 'Stage12') {
+                // 如果当前是最后一关，则调用结束字幕
+                cc.director.loadScene('End');
+                this.end = true;
+                return;
+            }
+            // 否则进入正常的游戏结束函数
+            this.GameOver();
+        }
     }
 });
 

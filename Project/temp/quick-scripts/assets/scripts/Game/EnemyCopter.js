@@ -4,15 +4,9 @@ cc._RF.push(module, '393c3v/8d1GU75sOTmfQXWr', 'EnemyCopter', __filename);
 
 "use strict";
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 直升机敌人脚本
+ */
 
 cc.Class({
     extends: require("EnemySpin"),
@@ -37,42 +31,61 @@ cc.Class({
         flyRotationUpdate: 15
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
+    /*
+     * 发射子弹函数
+     * 功能：间隔一段较短的时间发射多颗子弹
+     */
     shoot: function shoot() {
         this.schedule(this.createBullet, this.shootInterval, this.shootNum - 1);
     },
 
+
+    /*
+     * 创造子弹函数
+     * 功能：根据给定参数实例化一颗子弹，并且将其添加到本节点的父节点中
+     */
     createBullet: function createBullet() {
+        // 对象和主角的位差向量
         var dir = cc.v2(this.Player.x - this.node.x, this.Player.y - this.node.y);
 
         // 构造新子弹，并设置参数
         var newBullet = cc.instantiate(this.BulletPrefab);
         var bulletSetting = newBullet.getComponent("Bullet");
 
+        // 计算角度
         var r = Math.atan2(dir.y, dir.x);
         var degree = r * 180 / Math.PI;
         newBullet.rotation = 450 - degree;
 
+        // 设置参数
         newBullet.x = this.node.x;
         newBullet.y = this.node.y;
         bulletSetting.direction = dir;
         bulletSetting.speed = this.bulletSpeed;
 
-        this.node.parent.addChild(newBullet);
+        // 添加到父节点中
+        this.node.parent.parent.addChild(newBullet);
         this.node.parent.sortAllChildren();
     },
 
-    start: function start() {
+
+    /*
+     * 初始化函数
+     * 功能：初始化脚本运行所需的参数
+     */
+    onLoad: function onLoad() {
         this.angle = 0;
         this.circulateDir = 1;
         this.flyDegree = 0;
+        // 每隔一定时间要触发射击函数
         this.schedule(this.shoot, this.shootTime);
     },
 
 
+    /*
+     * 调整旋转角度函数
+     * 功能：调整对象的旋转角度，使其一直面向主角
+     */
     face: function face() {
         this.angle += this.circulateDir * this.circulateUpdate;
         this.angle = this.angle > 360 ? this.angle - 360 : this.angle;
@@ -83,7 +96,12 @@ cc.Class({
         this.node.y = this.centerY + this.radius * Math.cos(this.angle * Math.PI / 180);
     },
 
-    update: function update(dt) {
+
+    /*
+     * 更新飞行角度
+     * 功能：改变飞机的飞行角度，使得其绕着主角飞行
+     */
+    updateFlyDegree: function updateFlyDegree(dt) {
         this.flyDegree += this.circulateDir * this.flyRotationUpdate / Math.PI;
         this.flyDegree = this.flyDegree > 360 ? this.flyDegree - 360 : this.flyDegree;
         this.Fly.rotation = this.flyDegree;
@@ -93,6 +111,12 @@ cc.Class({
 
         this.centerX += this.dir.x / this.distance * this.centerSpeed * dt;
         this.centerY += this.dir.y / this.distance * this.centerSpeed * dt;
+    },
+
+
+    // 系统调用的更新函数
+    update: function update(dt) {
+        this.updateFlyDegree();
         this.face();
     }
 });

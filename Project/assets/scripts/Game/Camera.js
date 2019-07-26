@@ -1,13 +1,6 @@
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
-
+/*
+ * 主相机运行脚本
+ */
 cc.Class({
     extends: cc.Component,
 
@@ -22,16 +15,21 @@ cc.Class({
         },
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
 
     start () {
 
     },
 
-    update (dt) {
+    /*
+     * 更新位置函数
+     * 功能：将相机的中心锁定在两个角色的中间点
+     */
+    updatePos () {
         this.node.x = (this.Player1.x + this.Player2.x) / 2
         this.node.y = (this.Player1.y + this.Player2.y) / 2
+    },
+
+    update (dt) {
+      this.updatePos()  
     },
 });

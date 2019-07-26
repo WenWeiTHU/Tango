@@ -21,7 +21,7 @@
   "inlineSpriteFrames": true,
   "inlineSpriteFrames_native": true,
   "md5Cache": true,
-  "mergeStartScene": false,
+  "mergeStartScene": true,
   "optimizeHotUpdate": false,
   "orientation": {
     "landscapeLeft": true,
@@ -35,12 +35,12 @@
     "orientation": "portrait",
     "zip": false
   },
-  "startScene": "2a6b44f5-57d6-4137-9993-7a965bef67fc",
+  "startScene": "dfd683d1-babf-45ab-8dbb-90806e98b751",
   "title": "Tango",
   "webOrientation": "auto",
   "wechatgame": {
     "REMOTE_SERVER_ROOT": "",
-    "appid": "",
+    "appid": "wx7cfcca5462348f24",
     "orientation": "landscapeRight",
     "separate_engine": false,
     "subContext": ""

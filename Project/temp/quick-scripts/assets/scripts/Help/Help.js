@@ -4,15 +4,9 @@ cc._RF.push(module, '114a25hW5xJGaNFaWWLJUc/', 'Help', __filename);
 
 'use strict';
 
-// Learn cc.Class:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/class.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/class.html
-// Learn Attribute:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/reference/attributes.html
-//  - [English] http://docs.cocos2d-x.org/creator/manual/en/scripting/reference/attributes.html
-// Learn life-cycle callbacks:
-//  - [Chinese] https://docs.cocos.com/creator/manual/zh/scripting/life-cycle-callbacks.html
-//  - [English] https://www.cocos2d-x.org/docs/creator/manual/en/scripting/life-cycle-callbacks.html
+/*
+ * 帮助场景函数
+ */
 
 cc.Class({
     extends: cc.Component,
@@ -104,13 +98,14 @@ cc.Class({
         }
     },
 
-    // LIFE-CYCLE CALLBACKS:
-
-    // onLoad () {},
-
-    start: function start() {
+    /*
+     * 初始化函数
+     * 功能：初始化场景所需的设定
+     */
+    onLoad: function onLoad() {
         this.newDegree = 0;
         this.stage = 0;
+        // 将右边控制杆设置为无效
         this.JoyStickLeft.children[1].on(cc.Node.EventType.TOUCH_START, function (e) {
             if (this.stage === 0) {
                 this.Label1.node.active = false;
@@ -121,8 +116,13 @@ cc.Class({
             }
         }, this);
     },
+    start: function start() {},
 
 
+    /*
+     * 展示敌人函数
+     * 功能：将敌人生成在地图上
+     */
     showEnemy: function showEnemy() {
         this.Label2.node.active = false;
         this.Label3.node.active = true;
@@ -136,12 +136,15 @@ cc.Class({
         this.node.addChild(thing);
         thing.setPosition(0, 0);
 
-        // this.length = length(this.node.children)
-
         this.Label4.node.active = true;
         this.stage = 3;
     },
 
+
+    /*
+     * 展示引导语函数
+     * 功能：将引导语显示出来
+     */
     showLabel: function showLabel() {
         this.Label3.node.active = false;
         this.Label4.node.active = false;
@@ -150,6 +153,11 @@ cc.Class({
         this.stage = 5;
     },
 
+
+    /*
+     * 展示队友函数
+     * 功能：显示队友
+     */
     showFriend: function showFriend() {
         this.Label5.node.active = false;
         this.Label6.node.active = true;
@@ -157,6 +165,11 @@ cc.Class({
         this.stage = 7;
     },
 
+
+    /*
+     * 展示链接函数
+     * 功能：使链接显示出来
+     */
     showBind: function showBind() {
         this.Bind.active = true;
         this.Gravity.active = true;
@@ -173,6 +186,11 @@ cc.Class({
         thing.setPosition(0, 300);
     },
 
+
+    /*
+     * 系统更新函数
+     * 功能：根据当前玩家的状态来更新下一步的状态
+     */
     update: function update(dt) {
         var _this = this;
 
